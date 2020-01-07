@@ -42,10 +42,10 @@ module "ecs_service_scaling_target" {
   source           = "HENNGE/ecs/aws//modules/core/ecs-autoscaling-target"
   version          = "1.0.0"
 
-  ecs_cluster_name = "${module.application_stack.ecs_cluster_name}"
-  ecs_service_name = "${module.application_stack.ecs_service_name}"
-  min_capacity     = "${module.application_stack.ecs_service_desired_count}"
-  max_capacity     = "${module.application_stack.ecs_service_desired_count * 2}"
+  ecs_cluster_name = module.application_stack.ecs_cluster_name
+  ecs_service_name = module.application_stack.ecs_service_name
+  min_capacity     = module.application_stack.ecs_service_desired_count
+  max_capacity     = module.application_stack.ecs_service_desired_count * 2
 }
 ```
 
