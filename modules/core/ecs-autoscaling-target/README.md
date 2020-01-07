@@ -15,7 +15,7 @@ Creates the following:
 
 ## Assumptions
 
-- ECS Cluster made by main module (HENNGE/terraform-aws-ecs)
+- ECS Cluster made by `HENNGE/ecs/aws`
 - Service is also by `core/service` or `simple/*`
 
 
