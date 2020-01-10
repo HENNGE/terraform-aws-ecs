@@ -1,0 +1,15 @@
+name: lint
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run pre-commit test
+      run: |
+        curl https://pre-commit.com/install-local.py | python -
+        /home/runner/bin/pre-commit run -a
