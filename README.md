@@ -21,7 +21,8 @@ Requires Terraform AWS Provider version >=2.42.0 for Capacity Provider options.
 
 ```hcl
 module "ecs_cluster" {
-  source = "HENNGE/ecs/aws"
+  source  = "HENNGE/ecs/aws"
+  version = "1.0.0"
 
   name = "${local.prefix}-cluster"
 }
