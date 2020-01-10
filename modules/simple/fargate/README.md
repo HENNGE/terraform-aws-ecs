@@ -1,4 +1,18 @@
+# simple/fargate
 
+A Terraform module to create `ECS Service` that is launched on `FARGATE` (not `EC2`)
+
+Just by supplying `container_definitions` json, and few parameters, an ECS Service should be up and ready.
+
+This can also create an `ECS Service` that is connected to `Load Balancer`
+
+See [example](https://github.com/HENNGE/terraform-aws-ecs/tree/master/examples/easy/fargate) for usage.
+
+## Components
+
+Creates the following:
+- ECS Service
+- ECS Task Definition
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs

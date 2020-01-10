@@ -1,4 +1,10 @@
+# core/task
 
+Module to create task definition. Mostly a module that is used internally by `core/service`
+
+There should be no need to instantiate this module directly except if you know what you're doing.
+
+Almost a 1-1 mapping to `resources`.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs

@@ -32,5 +32,12 @@ module "ec2" {
   task_proxy_configuration   = var.proxy_configuration
   service_registry           = var.service_registry
 
+  capacity_provider_strategy = var.capacity_provider_arn == null ? [] : [
+    {
+      capacity_provider = var.capacity_provider_arn
+      weight            = 1
+    }
+  ]
+
   tags = var.tags
 }

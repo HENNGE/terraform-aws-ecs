@@ -1,10 +1,25 @@
+# simple/ec2
 
+A Terraform module to create `ECS Service` that is launched on `EC2` (not `FARGATE`)
+
+Just by supplying `container_definitions` json, and few parameters, an ECS Service should be up and ready.
+
+This can also create an `ECS Service` that is connected to `Load Balancer`
+
+See [example](https://github.com/HENNGE/terraform-aws-ecs/tree/master/examples/easy/ec2) for usage.
+
+## Components
+
+Creates the following:
+- ECS Service
+- ECS Task Definition
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| capacity\_provider\_arn | Run the service only on this capacity provider | string | `"null"` | no |
 | cluster | The cluster name or ARN. | string | n/a | yes |
 | container\_definitions | Container definitions raw json string or rendered template. Not required if `create\_task\_definition` is `false`. | string | n/a | yes |
 | container\_name | Container name to register to Load Balancer | string | `"null"` | no |
@@ -27,6 +42,18 @@
 | tags | Key-value mapping of resource tags | map(string) | `{}` | no |
 | target\_group\_arn | ARN of the Application Load Balancer / Network Load Balancer target group | string | `"null"` | no |
 | volume\_configurations | Volume Block Arguments for Task Definition. List of map. Note that `docker\_volume\_configuration` should be specified as map argument instead of block. \[Terraform Docs\]\(https://www.terraform.io/docs/providers/aws/r/ecs\_task\_definition.html#volume-block-arguments\) | list(any) | `[]` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| cluster | The Amazon Resource Name \(ARN\) of cluster which the service runs on |
+| desired\_count | The number of instances of the task definition |
+| id | The Amazon Resource Name \(ARN\) that identifies the service |
+| name | The name of the service |
+| task\_definition\_arn | The complete ARN of task definition generated includes Task Family and Task Revision |
+| task\_definition\_name | The name \(family\) of created Task Definition. |
+| task\_definition\_revision | The revision of the task in a particular family |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

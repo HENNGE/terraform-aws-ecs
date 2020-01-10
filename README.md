@@ -4,12 +4,12 @@ Terraform module which creates ECS resources on AWS.
 
 These types of resources are supported:
 
-* [ECS Cluster]()
-* [ECS Service]()
-* [ECS Task Definition]()
-* [ECS Autoscaling]
+* [ECS Cluster](https://github.com/HENNGE/terraform-aws-ecs)
+* [ECS Service](https://github.com/HENNGE/terraform-aws-ecs/tree/master/modules/core/service)
+* [ECS Task Definition](https://github.com/HENNGE/terraform-aws-ecs/tree/master/modules/core/task)
+* [ECS Autoscaling](https://github.com/HENNGE/terraform-aws-ecs/tree/master/modules/autoscaling)
 
-//<!insert more readme here>
+The root module (this) only creates `ecs_cluster`, to create other resources, please instantiate the submodules.
 
 ## Terraform versions
 
@@ -20,12 +20,16 @@ Requires Terraform AWS Provider version >=2.42.0 for Capacity Provider options.
 ## Usage
 
 ```hcl
+module "ecs_cluster" {
+  source = "HENNGE/ecs/aws"
 
+  name = "${local.prefix}-cluster"
+}
 ```
 
 ## Examples
 
-//<!insert examples here>
+See examples folder for usage guide.
 
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

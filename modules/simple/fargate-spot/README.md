@@ -1,5 +1,22 @@
+# simple/fargate-spot
+
+A Terraform module to create `ECS Service` that is launched on `FARGATE` (not `EC2`)
+
+Just by supplying `container_definitions` json, and few parameters, an ECS Service should be up and ready.
+
+This can also create an `ECS Service` that is connected to `Load Balancer`
+
+See [example](https://github.com/HENNGE/terraform-aws-ecs/tree/master/examples/easy/fargate-spot) for usage.
+
 Make sure to read: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/fargate-capacity-providers.html
 and understand consequences of running your workload on `FARGATE_SPOT`
+
+
+## Components
+
+Creates the following:
+- ECS Service
+- ECS Task Definition
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs

@@ -1,4 +1,14 @@
+# core/service
 
+A Terraform module to define AWS ECS Service
+
+Create ECS Service that can be connected to ELB/ALB
+
+Offers creation of `task_definition` as well. By default, this will create corresponding `task_definition` for the service.
+
+The goal of this module is to present a unified view between `ECS Service` and `ECS Task Definition` so only by defining `module "ecs"` and supplying `container_definitions` json, an ECS service would be up and running.
+
+Since this module is the closest to the `resources` form, there are a lot of customization, for those who want it easy, do check the `simple` module instead of this `core` module.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs

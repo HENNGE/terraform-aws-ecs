@@ -134,6 +134,12 @@ variable "volume_configurations" {
   type        = list(any)
 }
 
+variable "capacity_provider_arn" {
+  description = "Run the service only on this capacity provider"
+  default     = null
+  type        = string
+}
+
 variable "tags" {
   description = "Key-value mapping of resource tags"
   default     = {}
