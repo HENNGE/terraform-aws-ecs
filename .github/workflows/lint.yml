@@ -12,7 +12,7 @@ jobs:
     - name: Run pre-commit test
       run: |
         sudo apt-get update
-        sudo apt-get install -y python-pip3 gawk
+        sudo apt-get install -y python3-pip gawk
         pip3 install pre-commit
         curl -L "$(curl -s https://api.github.com/repos/segmentio/terraform-docs/releases/latest | grep -o -E "https://.+?-linux-amd64")" > terraform-docs && chmod +x terraform-docs && sudo mv terraform-docs /usr/bin/
         pre-commit run -a
