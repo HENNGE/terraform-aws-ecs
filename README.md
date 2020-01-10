@@ -32,6 +32,17 @@ module "ecs_cluster" {
 
 See examples folder for usage guide.
 
+## Versioning
+
+This module uses Semver.
+
+`x.y.z`
+
+`x` shall change when there's major language or breaking feature change (e.g. 0.11 to 0.12 which drastically change the language)
+
+`y` shall change when there's feature addition which is not breaking existing API (e.g. addition of some parameters with default value)
+
+`z` shall change when there's documentation updates, minor fixes, etc.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
