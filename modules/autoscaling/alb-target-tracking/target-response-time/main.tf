@@ -16,16 +16,14 @@ resource "aws_appautoscaling_policy" "ecs_policy" {
       namespace   = "AWS/ApplicationELB"
       statistic   = var.statistic
 
-      dimensions = [
-        {
-          name  = "LoadBalancer"
-          value = var.alb_arn_suffix
-        },
-        {
-          name  = "TargetGroup"
-          value = var.target_group_arn_suffix
-        },
-      ]
+      dimensions {
+        name  = "LoadBalancer"
+        value = var.alb_arn_suffix
+      }
+      dimensions {
+        name  = "TargetGroup"
+        value = var.target_group_arn_suffix
+      }
 
       unit = var.units
     }

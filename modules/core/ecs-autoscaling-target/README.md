@@ -50,14 +50,24 @@ module "ecs_service_scaling_target" {
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+No requirements.
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| aws | n/a |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| ecs\_cluster\_name | ECS Cluster name to apply on \(NOT ARN\) | string | n/a | yes |
-| ecs\_service\_name | ECS Service name to apply on \(NOT ARN\) | string | n/a | yes |
-| max\_capacity | Maximum capacity of ECS autoscaling target, cannot be less than min\_capacity | number | n/a | yes |
-| min\_capacity | Minimum capacity of ECS autoscaling target, cannot be more than max\_capacity | number | n/a | yes |
+|------|-------------|------|---------|:--------:|
+| ecs\_cluster\_name | ECS Cluster name to apply on (NOT ARN) | `string` | n/a | yes |
+| ecs\_service\_name | ECS Service name to apply on (NOT ARN) | `string` | n/a | yes |
+| max\_capacity | Maximum capacity of ECS autoscaling target, cannot be less than min\_capacity | `number` | n/a | yes |
+| min\_capacity | Minimum capacity of ECS autoscaling target, cannot be more than max\_capacity | `number` | n/a | yes |
 
 ## Outputs
 
