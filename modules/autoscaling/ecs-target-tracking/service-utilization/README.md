@@ -51,19 +51,25 @@ module "ecs_service_scaling" {
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Providers
+
+| Name | Version |
+|------|---------|
+| aws | n/a |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| disable\_scale\_in | Disable scale-in action, defaults to false | bool | `"false"` | no |
-| enable\_cpu\_based\_autoscaling | Enable Autoscaling based on ECS Service CPU Usage | bool | `"false"` | no |
-| enable\_memory\_based\_autoscaling | Enable Autoscaling based on ECS Service Memory Usage | bool | `"false"` | no |
-| name | Name of the ECS Policy created, will appear in Auto Scaling under Service in ECS | string | n/a | yes |
-| scalable\_target\_resource\_id | Scalable target resource id, either from resource `aws\_appautoscaling\_target` or from `core/ecs-autoscaling-target` module | string | n/a | yes |
-| scale\_in\_cooldown | Time between scale in action | number | `"300"` | no |
-| scale\_out\_cooldown | Time between scale out action | number | `"300"` | no |
-| target\_cpu\_value | Autoscale when CPU Usage value over the specified value. Must be specified if `enable\_cpu\_based\_autoscaling` is `true`. | number | `"null"` | no |
-| target\_memory\_value | Autoscale when Memory Usage value over the specified value. Must be specified if `enable\_memory\_based\_autoscaling` is `true`. | number | `"null"` | no |
+|------|-------------|------|---------|:-----:|
+| disable\_scale\_in | Disable scale-in action, defaults to false | `bool` | `false` | no |
+| enable\_cpu\_based\_autoscaling | Enable Autoscaling based on ECS Service CPU Usage | `bool` | `false` | no |
+| enable\_memory\_based\_autoscaling | Enable Autoscaling based on ECS Service Memory Usage | `bool` | `false` | no |
+| name | Name of the ECS Policy created, will appear in Auto Scaling under Service in ECS | `string` | n/a | yes |
+| scalable\_target\_resource\_id | Scalable target resource id, either from resource `aws_appautoscaling_target` or from `core/ecs-autoscaling-target` module | `string` | n/a | yes |
+| scale\_in\_cooldown | Time between scale in action | `number` | `300` | no |
+| scale\_out\_cooldown | Time between scale out action | `number` | `300` | no |
+| target\_cpu\_value | Autoscale when CPU Usage value over the specified value. Must be specified if `enable_cpu_based_autoscaling` is `true`. | `number` | n/a | yes |
+| target\_memory\_value | Autoscale when Memory Usage value over the specified value. Must be specified if `enable_memory_based_autoscaling` is `true`. | `number` | n/a | yes |
 
 ## Outputs
 

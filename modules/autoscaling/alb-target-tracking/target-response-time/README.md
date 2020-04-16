@@ -60,20 +60,26 @@ module "ecs_service_scaling" {
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Providers
+
+| Name | Version |
+|------|---------|
+| aws | n/a |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| alb\_arn\_suffix | ARN Suffix \(not full ARN\) of the Application Load Balancer for use with CloudWatch. Output attribute from LB resource: `arn\_suffix` | string | n/a | yes |
-| disable\_scale\_in | Disable scale-in action, defaults to false | bool | `"false"` | no |
-| name | Name of the ECS Policy created, will appear in Auto Scaling under Service in ECS | string | n/a | yes |
-| scalable\_target\_resource\_id | Scalable target resource id, either from resource `aws\_appautoscaling\_target` or from `core/ecs-autoscaling-target` module | string | n/a | yes |
-| scale\_in\_cooldown | Time between scale in action | number | `"300"` | no |
-| scale\_out\_cooldown | Time between scale out action | number | `"300"` | no |
-| statistic | Statistic to use. Valid value one of \[Average, Minimum, Maximum, SampleCount, Sum\] | string | `"Average"` | no |
-| target\_group\_arn\_suffix | ALB Target Group ARN Suffix \(not full ARN\) for use with CloudWatch. Output attribute from Target Group resource: `arn\_suffix` | string | n/a | yes |
-| target\_value | Response time per target in target group metrics to trigger scaling activity \(in seconds\) | number | n/a | yes |
-| units | Units to use in monitoring, valid values are \[Seconds, Microseconds, Milliseconds\] | string | `"Seconds"` | no |
+|------|-------------|------|---------|:-----:|
+| alb\_arn\_suffix | ARN Suffix (not full ARN) of the Application Load Balancer for use with CloudWatch. Output attribute from LB resource: `arn_suffix` | `string` | n/a | yes |
+| disable\_scale\_in | Disable scale-in action, defaults to false | `bool` | `false` | no |
+| name | Name of the ECS Policy created, will appear in Auto Scaling under Service in ECS | `string` | n/a | yes |
+| scalable\_target\_resource\_id | Scalable target resource id, either from resource `aws_appautoscaling_target` or from `core/ecs-autoscaling-target` module | `string` | n/a | yes |
+| scale\_in\_cooldown | Time between scale in action | `number` | `300` | no |
+| scale\_out\_cooldown | Time between scale out action | `number` | `300` | no |
+| statistic | Statistic to use. Valid value one of [Average, Minimum, Maximum, SampleCount, Sum] | `string` | `"Average"` | no |
+| target\_group\_arn\_suffix | ALB Target Group ARN Suffix (not full ARN) for use with CloudWatch. Output attribute from Target Group resource: `arn_suffix` | `string` | n/a | yes |
+| target\_value | Response time per target in target group metrics to trigger scaling activity (in seconds) | `number` | n/a | yes |
+| units | Units to use in monitoring, valid values are [Seconds, Microseconds, Milliseconds] | `string` | `"Seconds"` | no |
 
 ## Outputs
 

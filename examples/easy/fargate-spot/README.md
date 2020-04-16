@@ -32,6 +32,16 @@ $ terraform apply
 
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Providers
+
+| Name | Version |
+|------|---------|
+| aws | ~> 2 |
+
+## Inputs
+
+No input.
+
 ## Outputs
 
 | Name | Description |

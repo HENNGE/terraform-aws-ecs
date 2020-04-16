@@ -74,20 +74,26 @@ module "asg_scaling" {
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Providers
+
+| Name | Version |
+|------|---------|
+| aws | n/a |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| autoscaling\_group\_name | Autoscaling Group to apply the policy | string | n/a | yes |
-| cpu\_statistics | Statistics to use: \[Maximum, SampleCount, Sum, Minimum, Average\]. Note that resolution used in alarm generated is 1 minute. | string | `"Average"` | no |
-| cpu\_threshold | Keep the ECS Cluster CPU Reservation around this value. Value is in percentage \(0..100\). Must be specified if cpu based autoscaling is enabled. | number | `"null"` | no |
-| disable\_scale\_in | Indicates whether scale in by the target tracking policy is disabled. | bool | `"false"` | no |
-| ecs\_cluster\_name | Name \(not ARN\) of ECS Cluster that the autoscaling group is attached to | string | n/a | yes |
-| enable\_cpu\_based\_autoscaling | Enable Autoscaling based on ECS Cluster CPU Reservation | bool | `"false"` | no |
-| enable\_memory\_based\_autoscaling | Enable Autoscaling based on ECS Cluster Memory Reservation | bool | `"false"` | no |
-| memory\_statistics | Statistics to use: \[Maximum, SampleCount, Sum, Minimum, Average\]. Note that resolution used in alarm generated is 1 minute. | string | `"Average"` | no |
-| memory\_threshold | Keep the ECS Cluster Memory Reservation around this value. Value is in percentage \(0..100\). Must be specified if memory based autoscaling is enabled. | number | `"null"` | no |
-| name | Name prefix of the Autoscaling Policy | string | n/a | yes |
+|------|-------------|------|---------|:-----:|
+| autoscaling\_group\_name | Autoscaling Group to apply the policy | `string` | n/a | yes |
+| cpu\_statistics | Statistics to use: [Maximum, SampleCount, Sum, Minimum, Average]. Note that resolution used in alarm generated is 1 minute. | `string` | `"Average"` | no |
+| cpu\_threshold | Keep the ECS Cluster CPU Reservation around this value. Value is in percentage (0..100). Must be specified if cpu based autoscaling is enabled. | `number` | n/a | yes |
+| disable\_scale\_in | Indicates whether scale in by the target tracking policy is disabled. | `bool` | `false` | no |
+| ecs\_cluster\_name | Name (not ARN) of ECS Cluster that the autoscaling group is attached to | `string` | n/a | yes |
+| enable\_cpu\_based\_autoscaling | Enable Autoscaling based on ECS Cluster CPU Reservation | `bool` | `false` | no |
+| enable\_memory\_based\_autoscaling | Enable Autoscaling based on ECS Cluster Memory Reservation | `bool` | `false` | no |
+| memory\_statistics | Statistics to use: [Maximum, SampleCount, Sum, Minimum, Average]. Note that resolution used in alarm generated is 1 minute. | `string` | `"Average"` | no |
+| memory\_threshold | Keep the ECS Cluster Memory Reservation around this value. Value is in percentage (0..100). Must be specified if memory based autoscaling is enabled. | `number` | n/a | yes |
+| name | Name prefix of the Autoscaling Policy | `string` | n/a | yes |
 
 ## Outputs
 

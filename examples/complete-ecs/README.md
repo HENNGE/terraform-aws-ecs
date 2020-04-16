@@ -27,13 +27,19 @@ $ terraform apply
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Providers
+
+| Name | Version |
+|------|---------|
+| aws | ~> 2 |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| availability\_zones | Override automatic detection of availability zones | list(string) | `[]` | no |
-| enable\_ipv6 | Enable IPv6? | bool | `"true"` | no |
-| instance\_profile\_arn | Instance Profile to use for EC2 to join to ECS Cluster. See `modules/iam/ecs-instance-profile` | string | n/a | yes |
+|------|-------------|------|---------|:-----:|
+| availability\_zones | Override automatic detection of availability zones | `list(string)` | `[]` | no |
+| enable\_ipv6 | Enable IPv6? | `bool` | `true` | no |
+| instance\_profile\_arn | Instance Profile to use for EC2 to join to ECS Cluster. See `modules/iam/ecs-instance-profile` | `string` | n/a | yes |
 
 ## Outputs
 

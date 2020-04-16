@@ -45,15 +45,21 @@ This module uses Semver.
 `z` shall change when there's documentation updates, minor fixes, etc.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Providers
+
+| Name | Version |
+|------|---------|
+| aws | n/a |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| capacity\_providers | List of short names or full Amazon Resource Names \(ARNs\) of one or more capacity providers to associate with the cluster. Valid values also include `FARGATE` and `FARGATE\_SPOT`. | list(string) | `"null"` | no |
-| default\_capacity\_provider\_strategy | The capacity provider strategy to use by default for the cluster. Can be one or more. List of map with corresponding items in docs. \[Terraform Docs\]\(https://www.terraform.io/docs/providers/aws/r/ecs\_cluster.html#default\_capacity\_provider\_strategy\) | list(any) | `[]` | no |
-| name | Cluster name. | string | n/a | yes |
-| settings | List of maps with cluster settings. For example, this can be used to enable CloudWatch Container Insights for a cluster. \[Terraform Docs\]\(https://www.terraform.io/docs/providers/aws/r/ecs\_cluster.html#setting\) | list(any) | `[]` | no |
-| tags | Key-value mapping of resource tags. | map(string) | `{}` | no |
+|------|-------------|------|---------|:-----:|
+| capacity\_providers | List of short names or full Amazon Resource Names (ARNs) of one or more capacity providers to associate with the cluster. Valid values also include `FARGATE` and `FARGATE_SPOT`. | `list(string)` | n/a | yes |
+| default\_capacity\_provider\_strategy | The capacity provider strategy to use by default for the cluster. Can be one or more. List of map with corresponding items in docs. [Terraform Docs](https://www.terraform.io/docs/providers/aws/r/ecs_cluster.html#default_capacity_provider_strategy) | `list(any)` | `[]` | no |
+| name | Cluster name. | `any` | n/a | yes |
+| settings | List of maps with cluster settings. For example, this can be used to enable CloudWatch Container Insights for a cluster. [Terraform Docs](https://www.terraform.io/docs/providers/aws/r/ecs_cluster.html#setting) | `list(any)` | `[]` | no |
+| tags | Key-value mapping of resource tags. | `map(string)` | `{}` | no |
 
 ## Outputs
 
