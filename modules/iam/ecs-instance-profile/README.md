@@ -5,6 +5,10 @@ Module to generate IAM Instance Profile (and Role) for EC2 instances backing ECS
 * [More ECS policy examples explained](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/IAMPolicyExamples.html)
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+No requirements.
+
 ## Providers
 
 | Name | Version |
@@ -14,7 +18,7 @@ Module to generate IAM Instance Profile (and Role) for EC2 instances backing ECS
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | name | Name prefix to be used on generated resources | `string` | n/a | yes |
 
 ## Outputs

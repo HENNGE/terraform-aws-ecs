@@ -60,6 +60,10 @@ module "ecs_service_scaling" {
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+No requirements.
+
 ## Providers
 
 | Name | Version |
@@ -69,7 +73,7 @@ module "ecs_service_scaling" {
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | alb\_arn\_suffix | ARN Suffix (not full ARN) of the Application Load Balancer for use with CloudWatch. Output attribute from LB resource: `arn_suffix` | `string` | n/a | yes |
 | disable\_scale\_in | Disable scale-in action, defaults to false | `bool` | `false` | no |
 | name | Name of the ECS Policy created, will appear in Auto Scaling under Service in ECS | `string` | n/a | yes |

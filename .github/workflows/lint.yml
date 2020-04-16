@@ -13,4 +13,6 @@ jobs:
       run: |
         curl https://pre-commit.com/install-local.py | python3 -
         curl -L "$(curl -s https://api.github.com/repos/segmentio/terraform-docs/releases/latest | grep -o -E "https://.+?-linux-amd64")" > terraform-docs && chmod +x terraform-docs && sudo mv terraform-docs /usr/bin/
+        /home/runner/bin/pre-commit --version
+        terraform-docs --version
         /home/runner/bin/pre-commit run -a

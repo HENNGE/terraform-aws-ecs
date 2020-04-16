@@ -71,6 +71,10 @@ module "ecs_fargate_cron" {
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+No requirements.
+
 ## Providers
 
 | Name | Version |
@@ -80,9 +84,9 @@ module "ecs_fargate_cron" {
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | cluster\_arn | ECS Cluster ARN to run ECS Task in | `string` | n/a | yes |
-| container\_overrides | Overrides options of container. Expecting JSON. See https://www.terraform.io/docs/providers/aws/r/cloudwatch_event_target.html#example-ecs-run-task-with-role-and-task-override-usage | `string` | n/a | yes |
+| container\_overrides | Overrides options of container. Expecting JSON. See https://www.terraform.io/docs/providers/aws/r/cloudwatch_event_target.html#example-ecs-run-task-with-role-and-task-override-usage | `string` | `null` | no |
 | fargate\_assign\_public\_ip | Assign Public IP or not to Fargate task, specify if `is_fargate` | `bool` | `false` | no |
 | fargate\_security\_groups | Security groups to assign to Fargate task, specify if `is_fargate` | `list(string)` | `[]` | no |
 | fargate\_subnets | Subnets to assign to Fargate task, specify if `is_fargate` | `list(string)` | `[]` | no |

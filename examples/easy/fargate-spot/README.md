@@ -32,6 +32,12 @@ $ terraform apply
 
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| aws | ~> 2 |
+
 ## Providers
 
 | Name | Version |
