@@ -64,7 +64,7 @@ No requirements.
 
 | Name | Description |
 |------|-------------|
-| cluster | The Amazon Resource Name (ARN) of cluster which the service runs on |
+| cluster | The name of the cluster which the service runs on |
 | desired\_count | The number of instances of the task definition |
 | id | The Amazon Resource Name (ARN) that identifies the service |
 | name | The name of the service |
