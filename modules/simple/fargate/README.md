@@ -6,7 +6,7 @@ Just by supplying `container_definitions` json, and few parameters, an ECS Servi
 
 This can also create an `ECS Service` that is connected to `Load Balancer`
 
-See [example](https://github.com/HENNGE/terraform-aws-ecs/tree/master/examples/easy/fargate) for usage.
+See [example](https://github.com/HENNGE/terraform-aws-ecs/tree/main/examples/easy/fargate) for usage.
 
 ## Components
 

@@ -7,7 +7,7 @@ Means there cannot be more than 1 task in an instance. Do experiment with dynami
 
 This example will also create `vpc` and `security_group` and `autoscaling group`.
 
-Note: Instance profile is required for EC2 to connect to ECS Cluster. See [`modules/iam/ecs-instance-profile`](https://github.com/HENNGE/terraform-aws-ecs/tree/master/modules/iam/ecs-instance-profile).
+Note: Instance profile is required for EC2 to connect to ECS Cluster. See [`modules/iam/ecs-instance-profile`](https://github.com/HENNGE/terraform-aws-ecs/tree/main/modules/iam/ecs-instance-profile).
 
 To test that it's working:
 1. Go to EC2 console

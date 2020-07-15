@@ -5,9 +5,9 @@ Terraform module which creates ECS resources on AWS.
 These types of resources are supported:
 
 * [ECS Cluster](https://github.com/HENNGE/terraform-aws-ecs)
-* [ECS Service](https://github.com/HENNGE/terraform-aws-ecs/tree/master/modules/core/service)
-* [ECS Task Definition](https://github.com/HENNGE/terraform-aws-ecs/tree/master/modules/core/task)
-* [ECS Autoscaling](https://github.com/HENNGE/terraform-aws-ecs/tree/master/modules/autoscaling)
+* [ECS Service](https://github.com/HENNGE/terraform-aws-ecs/tree/main/modules/core/service)
+* [ECS Task Definition](https://github.com/HENNGE/terraform-aws-ecs/tree/main/modules/core/task)
+* [ECS Autoscaling](https://github.com/HENNGE/terraform-aws-ecs/tree/main/modules/autoscaling)
 
 The root module (this) only creates `ecs_cluster`, to create other resources, please instantiate the submodules.
 
