@@ -14,7 +14,7 @@ jobs:
         curl https://pre-commit.com/install-local.py | python3 -
         curl -Lo ./terraform-docs https://github.com/terraform-docs/terraform-docs/releases/download/v0.9.1/terraform-docs-v0.9.1-$(uname | tr '[:upper:]' '[:lower:]')-amd64
         chmod +x ./terraform-docs
-        mv ./terraform-docs /usr/bin/terraform-docs
+        sudo mv ./terraform-docs /usr/bin/terraform-docs
         /home/runner/bin/pre-commit --version
         terraform-docs --version
         /home/runner/bin/pre-commit run -a
