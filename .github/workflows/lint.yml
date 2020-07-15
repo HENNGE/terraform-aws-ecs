@@ -1,6 +1,6 @@
 name: lint
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -12,7 +12,9 @@ jobs:
     - name: Run pre-commit test
       run: |
         curl https://pre-commit.com/install-local.py | python3 -
-        curl -L "$(curl -s https://api.github.com/repos/segmentio/terraform-docs/releases/latest | grep -o -E "https://.+?-linux-amd64")" > terraform-docs && chmod +x terraform-docs && sudo mv terraform-docs /usr/bin/
+        curl -Lo ./terraform-docs https://github.com/terraform-docs/terraform-docs/releases/download/v0.9.1/terraform-docs-v0.9.1-$(uname | tr '[:upper:]' '[:lower:]')-amd64
+        chmod +x ./terraform-docs
+        sudo mv ./terraform-docs /usr/bin/terraform-docs
         /home/runner/bin/pre-commit --version
         terraform-docs --version
         /home/runner/bin/pre-commit run -a
