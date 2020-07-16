@@ -21,7 +21,7 @@ output "name" {
 }
 
 output "cluster" {
-  description = "The Amazon Resource Name (ARN) of cluster which the service runs on"
+  description = "The name of the cluster which the service runs on"
   value       = local.this_service_cluster_name
 }
 
