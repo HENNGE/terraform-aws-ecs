@@ -30,6 +30,19 @@ resource "aws_ecs_task_definition" "main" {
           labels        = lookup(docker_volume_configuration.value, "labels", null)
         }
       }
+      dynamic "efs_volume_configuration" {
+        for_each = lookup(volume.value, "efs_volume_configuration", null) == null ? [] : [volume.value["efs_volume_configuration"]]
+        content {
+          file_system_id      = lookup(efs_volume_configuration.value, "file_system_id", null)
+          root_directory      = lookup(efs_volume_configuration.value, "root_directory", null)
+          transit_encryption  = lookup(efs_volume_configuration.value, "transit_encryption", "ENABLED")
+          transit_encryption  = lookup(efs_volume_configuration.value, "transit_encryption", 2999)
+          authorization_config {
+            access_point_id   = lookup(efs_volume_configuration.value, "authorization_config.access_point_id", 2999)
+            iam               = lookup(efs_volume_configuration.value, "authorization_config.iam", "ENABLED")
+          }
+        }
+      }
     }
   }
 
