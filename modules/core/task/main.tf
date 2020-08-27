@@ -40,8 +40,8 @@ resource "aws_ecs_task_definition" "main" {
           dynamic "authorization_config" {
             for_each = lookup(efs_volume_configuration.value, "authorization_config", null) == null ? [] : [efs_volume_configuration.value["authorization_config"]]
             content {
-              access_point_id       = lookup(authorization_config.value, "access_point_id", null)
-              iam                   = lookup(authorization_config.value, "iam", "DISABLED")
+              access_point_id = lookup(authorization_config.value, "access_point_id", null)
+              iam             = lookup(authorization_config.value, "iam", "DISABLED")
             }
           }
         }
