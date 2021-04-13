@@ -1,12 +1,19 @@
-provider "aws" {
-  version = "~> 2"
+terraform {
+  required_version = ">= 0.12.26"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3"
+    }
+  }
 }
 
 # Just Supporting Infrastructures
 
 data "aws_availability_zones" "available" {}
 
-data "aws_ssm_parameter" "ami-image" {
+data "aws_ssm_parameter" "ami_image" {
   name = "/aws/service/ecs/optimized-ami/amazon-linux-2/recommended/image_id"
 }
 
@@ -63,7 +70,7 @@ module "asg" {
 
   name = "${local.prefix}-asg"
 
-  image_id                    = data.aws_ssm_parameter.ami-image.value
+  image_id                    = data.aws_ssm_parameter.ami_image.value
   instance_type               = "t2.micro"
   security_groups             = [module.ec2_security_group.this_security_group_id]
   vpc_zone_identifier         = module.vpc.public_subnets

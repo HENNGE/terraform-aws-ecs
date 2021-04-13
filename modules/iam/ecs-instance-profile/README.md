@@ -7,13 +7,16 @@ Module to generate IAM Instance Profile (and Role) for EC2 instances backing ECS
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12.26 |
+| aws | >= 3.35.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | n/a |
+| aws | >= 3.35.0 |
 
 ## Inputs
 

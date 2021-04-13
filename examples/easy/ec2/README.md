@@ -30,13 +30,14 @@ $ terraform apply
 
 | Name | Version |
 |------|---------|
-| aws | ~> 2 |
+| terraform | >= 0.12.26 |
+| aws | ~> 3 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | ~> 2 |
+| aws | ~> 3 |
 
 ## Inputs
 
