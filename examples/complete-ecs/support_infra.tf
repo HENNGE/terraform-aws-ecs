@@ -127,7 +127,7 @@ resource "aws_lb_listener_rule" "fargate" {
 
 module "asg" {
   source  = "terraform-aws-modules/autoscaling/aws"
-  version = "~> 3"
+  version = "~> 3.0"
 
   name = "${local.prefix}-asg"
 
