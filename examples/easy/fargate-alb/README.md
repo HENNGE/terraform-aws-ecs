@@ -32,13 +32,13 @@ $ terraform apply
 | Name | Version |
 |------|---------|
 | terraform | >= 0.12.26 |
-| aws | ~> 3 |
+| aws | >= 3.35.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | ~> 3 |
+| aws | >= 3.35.0 |
 
 ## Inputs
 
