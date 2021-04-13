@@ -17,7 +17,10 @@ Creates the following:
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12.26 |
+| aws | >= 3.35.0 |
 
 ## Providers
 
@@ -37,6 +40,10 @@ No provider.
 | deployment\_minimum\_healthy\_percent | lower limit (% of `desired_count`) of # of running tasks during a deployment | `number` | `100` | no |
 | desired\_count | The number of instances of the task definition to place and keep running. Defaults to 0. Do not specify if using the `DAEMON` scheduling strategy. | `number` | `null` | no |
 | elb\_name | Name of ELB (Classic ELB) to associate with the service | `string` | `null` | no |
+| enable\_deployment\_circuit\_breaker\_with\_rollback | Enable Deployment Circuit Breaker with Rollback. When a service deployment fails, the service is rolled back to the last deployment that completed successfully. | `bool` | `false` | no |
+| enable\_deployment\_circuit\_breaker\_without\_rollback | Enable Deployment Circuit Breaker without Rollback. | `bool` | `false` | no |
+| enable\_ecs\_managed\_tags | Specifies whether to enable Amazon ECS managed tags for the tasks within the service. Boolean value. | `bool` | `null` | no |
+| force\_new\_deployment | Enable to force a new task deployment of the service. This can be used to update tasks to use a newer Docker image with same image/tag combination (e.g. `myimage:latest`), roll Fargate tasks onto a newer platform version, or immediately deploy `ordered_placement_strategy` and `placement_constraints` updates. | `bool` | `null` | no |
 | health\_check\_grace\_period\_seconds | Seconds to ignore failing load balancer health checks on newly instantiated tasks to prevent premature shutdown, up to 2147483647. Only valid for services configured to use load balancers. | `number` | `null` | no |
 | iam\_daemon\_role | IAM Role for ECS Agent and Docker Daemon to use (ECR, etc.). Required if specifying `repositoryCredentials` in container configuration. | `string` | `null` | no |
 | iam\_lb\_role | IAM Role ARN to use to attach service to Load Balancer. This parameter is required if you are using a load balancer with your service, but only if your task definition does not use the awsvpc network mode. If using awsvpc network mode, do not specify this role. If your account has already created the Amazon ECS service-linked role, that role is used by default for your service unless you specify a role here. | `string` | `null` | no |
@@ -45,6 +52,7 @@ No provider.
 | memory | Memory for this task | `number` | n/a | yes |
 | name | The service name. | `string` | n/a | yes |
 | platform\_version | The platform version on which to run your service. Defaults to `LATEST`. [AWS Docs](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html) | `string` | `null` | no |
+| propagate\_tags | Specifies whether to propagate the tags from the task definition or the service to the tasks. The valid values are `SERVICE` and `TASK_DEFINITION`. | `string` | `null` | no |
 | proxy\_configuration | The proxy configuration details for the App Mesh proxy. Defined as map argument. [Terraform Docs](https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#proxy-configuration-arguments) | `any` | `null` | no |
 | security\_groups | Security Groups to apply for the task | `list(string)` | n/a | yes |
 | service\_registry | Map of a service discovery registries for the service. Consists of `registry_arn`, `port`(optional), `container_port`(optional), `container_port`(optional). [Terraform Docs](https://www.terraform.io/docs/providers/aws/r/ecs_service.html#service_registries) | `any` | `null` | no |
@@ -52,6 +60,7 @@ No provider.
 | target\_group\_arn | ARN of the Application Load Balancer / Network Load Balancer target group | `string` | `null` | no |
 | volume\_configurations | Volume Block Arguments for Task Definition. List of map. Note that `docker_volume_configuration` should be specified as map argument instead of block. [Terraform Docs](https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#volume-block-arguments) | `list(any)` | `[]` | no |
 | vpc\_subnets | VPC Subnets where the tasks should live in | `list(string)` | n/a | yes |
+| wait\_for\_steady\_state | If `true`, Terraform will wait for the service to reach a steady state (like aws ecs wait services-stable) before continuing. | `bool` | `null` | no |
 
 ## Outputs
 

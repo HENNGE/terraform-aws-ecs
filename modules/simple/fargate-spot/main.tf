@@ -22,9 +22,12 @@ module "fargate" {
       container_port   = var.container_port
     }
   ] : []
-  deployment_minimum_healthy_percent = var.deployment_minimum_healthy_percent
-  deployment_maximum_percent         = var.deployment_maximum_percent
-  health_check_grace_period_seconds  = var.health_check_grace_period_seconds
+  force_new_deployment                               = var.force_new_deployment
+  deployment_minimum_healthy_percent                 = var.deployment_minimum_healthy_percent
+  deployment_maximum_percent                         = var.deployment_maximum_percent
+  enable_deployment_circuit_breaker_with_rollback    = var.enable_deployment_circuit_breaker_with_rollback
+  enable_deployment_circuit_breaker_without_rollback = var.enable_deployment_circuit_breaker_without_rollback
+  health_check_grace_period_seconds                  = var.health_check_grace_period_seconds
 
   task_requires_compatibilites = ["FARGATE"]
 
@@ -52,6 +55,11 @@ module "fargate" {
       base              = var.num_of_task_on_demand
     }
   ]
+
+  wait_for_steady_state = var.wait_for_steady_state
+
+  enable_ecs_managed_tags = var.enable_ecs_managed_tags
+  propagate_tags          = var.propagate_tags
 
   tags = var.tags
 }

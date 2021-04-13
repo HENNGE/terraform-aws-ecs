@@ -22,10 +22,15 @@ module "fargate" {
       container_port   = var.container_port
     }
   ] : []
-  deployment_minimum_healthy_percent = var.deployment_minimum_healthy_percent
-  deployment_maximum_percent         = var.deployment_maximum_percent
-  health_check_grace_period_seconds  = var.health_check_grace_period_seconds
-  launch_type                        = "FARGATE"
+  force_new_deployment                               = var.force_new_deployment
+  deployment_minimum_healthy_percent                 = var.deployment_minimum_healthy_percent
+  deployment_maximum_percent                         = var.deployment_maximum_percent
+  enable_deployment_circuit_breaker_with_rollback    = var.enable_deployment_circuit_breaker_with_rollback
+  enable_deployment_circuit_breaker_without_rollback = var.enable_deployment_circuit_breaker_without_rollback
+  health_check_grace_period_seconds                  = var.health_check_grace_period_seconds
+
+  launch_type                  = "FARGATE"
+  task_requires_compatibilites = ["FARGATE"]
 
   task_network_mode = "awsvpc"
   network_configuration = {
@@ -39,6 +44,11 @@ module "fargate" {
   service_registry           = var.service_registry
 
   platform_version = var.platform_version
+
+  enable_ecs_managed_tags = var.enable_ecs_managed_tags
+  propagate_tags          = var.propagate_tags
+
+  wait_for_steady_state = var.wait_for_steady_state
 
   tags = var.tags
 }
