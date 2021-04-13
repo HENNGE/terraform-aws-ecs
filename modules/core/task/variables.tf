@@ -85,6 +85,7 @@ variable "placement_constraints" {
 variable "proxy_configuration" {
   description = "The proxy configuration details for the App Mesh proxy. Defined as map argument. [Terraform Docs](https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#proxy-configuration-arguments)"
   default     = null
+  type        = any
 }
 
 variable "tags" {
