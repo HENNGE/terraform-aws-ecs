@@ -64,38 +64,47 @@ module "ecs_service_scaling" {
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12.26 |
-| aws | >= 3.35.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.12.26 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.35.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | >= 3.35.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.35.0 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [aws_appautoscaling_policy.ecs_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/appautoscaling_policy) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| alb\_arn\_suffix | ARN Suffix (not full ARN) of the Application Load Balancer for use with CloudWatch. Output attribute from LB resource: `arn_suffix` | `string` | n/a | yes |
-| disable\_scale\_in | Disable scale-in action, defaults to false | `bool` | `false` | no |
-| name | Name of the ECS Policy created, will appear in Auto Scaling under Service in ECS | `string` | n/a | yes |
-| scalable\_target\_resource\_id | Scalable target resource id, either from resource `aws_appautoscaling_target` or from `core/ecs-autoscaling-target` module | `string` | n/a | yes |
-| scale\_in\_cooldown | Time between scale in action | `number` | `300` | no |
-| scale\_out\_cooldown | Time between scale out action | `number` | `300` | no |
-| statistic | Statistic to use. Valid value one of [Average, Minimum, Maximum, SampleCount, Sum] | `string` | `"Average"` | no |
-| target\_group\_arn\_suffix | ALB Target Group ARN Suffix (not full ARN) for use with CloudWatch. Output attribute from Target Group resource: `arn_suffix` | `string` | n/a | yes |
-| target\_value | Response time per target in target group metrics to trigger scaling activity (in seconds) | `number` | n/a | yes |
-| units | Units to use in monitoring, valid values are [Seconds, Microseconds, Milliseconds] | `string` | `"Seconds"` | no |
+| <a name="input_alb_arn_suffix"></a> [alb\_arn\_suffix](#input\_alb\_arn\_suffix) | ARN Suffix (not full ARN) of the Application Load Balancer for use with CloudWatch. Output attribute from LB resource: `arn_suffix` | `string` | n/a | yes |
+| <a name="input_disable_scale_in"></a> [disable\_scale\_in](#input\_disable\_scale\_in) | Disable scale-in action, defaults to false | `bool` | `false` | no |
+| <a name="input_name"></a> [name](#input\_name) | Name of the ECS Policy created, will appear in Auto Scaling under Service in ECS | `string` | n/a | yes |
+| <a name="input_scalable_target_resource_id"></a> [scalable\_target\_resource\_id](#input\_scalable\_target\_resource\_id) | Scalable target resource id, either from resource `aws_appautoscaling_target` or from `core/ecs-autoscaling-target` module | `string` | n/a | yes |
+| <a name="input_scale_in_cooldown"></a> [scale\_in\_cooldown](#input\_scale\_in\_cooldown) | Time between scale in action | `number` | `300` | no |
+| <a name="input_scale_out_cooldown"></a> [scale\_out\_cooldown](#input\_scale\_out\_cooldown) | Time between scale out action | `number` | `300` | no |
+| <a name="input_statistic"></a> [statistic](#input\_statistic) | Statistic to use. Valid value one of [Average, Minimum, Maximum, SampleCount, Sum] | `string` | `"Average"` | no |
+| <a name="input_target_group_arn_suffix"></a> [target\_group\_arn\_suffix](#input\_target\_group\_arn\_suffix) | ALB Target Group ARN Suffix (not full ARN) for use with CloudWatch. Output attribute from Target Group resource: `arn_suffix` | `string` | n/a | yes |
+| <a name="input_target_value"></a> [target\_value](#input\_target\_value) | Response time per target in target group metrics to trigger scaling activity (in seconds) | `number` | n/a | yes |
+| <a name="input_units"></a> [units](#input\_units) | Units to use in monitoring, valid values are [Seconds, Microseconds, Milliseconds] | `string` | `"Seconds"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| arn | ARN of the autoscaling policy generated. |
-| name | Name of the autoscaling policy generated |
-| policy\_type | Policy type of the autoscaling policy generated. Always TargetTrackingScaling |
-
+| <a name="output_arn"></a> [arn](#output\_arn) | ARN of the autoscaling policy generated. |
+| <a name="output_name"></a> [name](#output\_name) | Name of the autoscaling policy generated |
+| <a name="output_policy_type"></a> [policy\_type](#output\_policy\_type) | Policy type of the autoscaling policy generated. Always TargetTrackingScaling |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 

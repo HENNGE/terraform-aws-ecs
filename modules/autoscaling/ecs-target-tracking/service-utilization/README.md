@@ -55,38 +55,48 @@ module "ecs_service_scaling" {
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12.26 |
-| aws | >= 3.35.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.12.26 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.35.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | >= 3.35.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.35.0 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [aws_appautoscaling_policy.ecs_service_cpu_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/appautoscaling_policy) | resource |
+| [aws_appautoscaling_policy.ecs_service_memory_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/appautoscaling_policy) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| disable\_scale\_in | Disable scale-in action, defaults to false | `bool` | `false` | no |
-| enable\_cpu\_based\_autoscaling | Enable Autoscaling based on ECS Service CPU Usage | `bool` | `false` | no |
-| enable\_memory\_based\_autoscaling | Enable Autoscaling based on ECS Service Memory Usage | `bool` | `false` | no |
-| name | Name of the ECS Policy created, will appear in Auto Scaling under Service in ECS | `string` | n/a | yes |
-| scalable\_target\_resource\_id | Scalable target resource id, either from resource `aws_appautoscaling_target` or from `core/ecs-autoscaling-target` module | `string` | n/a | yes |
-| scale\_in\_cooldown | Time between scale in action | `number` | `300` | no |
-| scale\_out\_cooldown | Time between scale out action | `number` | `300` | no |
-| target\_cpu\_value | Autoscale when CPU Usage value over the specified value. Must be specified if `enable_cpu_based_autoscaling` is `true`. | `number` | `null` | no |
-| target\_memory\_value | Autoscale when Memory Usage value over the specified value. Must be specified if `enable_memory_based_autoscaling` is `true`. | `number` | `null` | no |
+| <a name="input_disable_scale_in"></a> [disable\_scale\_in](#input\_disable\_scale\_in) | Disable scale-in action, defaults to false | `bool` | `false` | no |
+| <a name="input_enable_cpu_based_autoscaling"></a> [enable\_cpu\_based\_autoscaling](#input\_enable\_cpu\_based\_autoscaling) | Enable Autoscaling based on ECS Service CPU Usage | `bool` | `false` | no |
+| <a name="input_enable_memory_based_autoscaling"></a> [enable\_memory\_based\_autoscaling](#input\_enable\_memory\_based\_autoscaling) | Enable Autoscaling based on ECS Service Memory Usage | `bool` | `false` | no |
+| <a name="input_name"></a> [name](#input\_name) | Name of the ECS Policy created, will appear in Auto Scaling under Service in ECS | `string` | n/a | yes |
+| <a name="input_scalable_target_resource_id"></a> [scalable\_target\_resource\_id](#input\_scalable\_target\_resource\_id) | Scalable target resource id, either from resource `aws_appautoscaling_target` or from `core/ecs-autoscaling-target` module | `string` | n/a | yes |
+| <a name="input_scale_in_cooldown"></a> [scale\_in\_cooldown](#input\_scale\_in\_cooldown) | Time between scale in action | `number` | `300` | no |
+| <a name="input_scale_out_cooldown"></a> [scale\_out\_cooldown](#input\_scale\_out\_cooldown) | Time between scale out action | `number` | `300` | no |
+| <a name="input_target_cpu_value"></a> [target\_cpu\_value](#input\_target\_cpu\_value) | Autoscale when CPU Usage value over the specified value. Must be specified if `enable_cpu_based_autoscaling` is `true`. | `number` | `null` | no |
+| <a name="input_target_memory_value"></a> [target\_memory\_value](#input\_target\_memory\_value) | Autoscale when Memory Usage value over the specified value. Must be specified if `enable_memory_based_autoscaling` is `true`. | `number` | `null` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| cpu\_policy\_arn | ARN of the autoscaling policy generated. |
-| cpu\_policy\_name | Name of the autoscaling policy generated |
-| cpu\_policy\_type | Policy type of the autoscaling policy generated. Always TargetTrackingScaling |
-| memory\_policy\_arn | ARN of the autoscaling policy generated. |
-| memory\_policy\_name | Name of the autoscaling policy generated |
-| memory\_policy\_type | Policy type of the autoscaling policy generated. Always TargetTrackingScaling |
-
+| <a name="output_cpu_policy_arn"></a> [cpu\_policy\_arn](#output\_cpu\_policy\_arn) | ARN of the autoscaling policy generated. |
+| <a name="output_cpu_policy_name"></a> [cpu\_policy\_name](#output\_cpu\_policy\_name) | Name of the autoscaling policy generated |
+| <a name="output_cpu_policy_type"></a> [cpu\_policy\_type](#output\_cpu\_policy\_type) | Policy type of the autoscaling policy generated. Always TargetTrackingScaling |
+| <a name="output_memory_policy_arn"></a> [memory\_policy\_arn](#output\_memory\_policy\_arn) | ARN of the autoscaling policy generated. |
+| <a name="output_memory_policy_name"></a> [memory\_policy\_name](#output\_memory\_policy\_name) | Name of the autoscaling policy generated |
+| <a name="output_memory_policy_type"></a> [memory\_policy\_type](#output\_memory\_policy\_type) | Policy type of the autoscaling policy generated. Always TargetTrackingScaling |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
