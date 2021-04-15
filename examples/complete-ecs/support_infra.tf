@@ -65,7 +65,7 @@ module "ecs_security_group" {
 
 module "alb" {
   source  = "terraform-aws-modules/alb/aws"
-  version = "~> 5"
+  version = "5.13.0"
 
   name               = "${local.prefix}-alb"
   load_balancer_type = "application"
