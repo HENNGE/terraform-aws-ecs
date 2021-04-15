@@ -206,6 +206,7 @@ module "task" {
   requires_compatibilites = var.task_requires_compatibilites
   volume_configurations   = var.task_volume_configurations
   placement_constraints   = var.placement_constraints
+  inference_accelerator   = var.task_inference_accelerator
   proxy_configuration     = var.task_proxy_configuration
   tags                    = var.tags
 }

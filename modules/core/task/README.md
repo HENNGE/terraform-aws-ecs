@@ -38,6 +38,7 @@ No modules.
 | <a name="input_cpu"></a> [cpu](#input\_cpu) | CPU unit for this task. | `number` | `null` | no |
 | <a name="input_create_task_definition"></a> [create\_task\_definition](#input\_create\_task\_definition) | Create the Task Definition | `bool` | `true` | no |
 | <a name="input_daemon_role"></a> [daemon\_role](#input\_daemon\_role) | The IAM Role to assign for the ECS container agent and Docker daemon. | `string` | `null` | no |
+| <a name="input_inference_accelerator"></a> [inference\_accelerator](#input\_inference\_accelerator) | Inference Accelerators settings. List of map. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#inference_accelerator) | `list(any)` | `[]` | no |
 | <a name="input_ipc_mode"></a> [ipc\_mode](#input\_ipc\_mode) | The IPC resource namespace to be used for the containers in the task The valid values are `host`, `task`, and `none`. | `string` | `null` | no |
 | <a name="input_memory"></a> [memory](#input\_memory) | Memory for this task. | `number` | `null` | no |
 | <a name="input_name"></a> [name](#input\_name) | The task name. | `string` | n/a | yes |

@@ -72,6 +72,7 @@ Since this module is the closest to the `resources` form, there are a lot of cus
 | <a name="input_tags"></a> [tags](#input\_tags) | Key-value mapping of resource tags | `map(string)` | `{}` | no |
 | <a name="input_task_cpu"></a> [task\_cpu](#input\_task\_cpu) | Task level CPU units. | `number` | `null` | no |
 | <a name="input_task_definition_arn"></a> [task\_definition\_arn](#input\_task\_definition\_arn) | If `create_task_definition` is `false`, provide the ARN of task definition to use | `string` | `null` | no |
+| <a name="input_task_inference_accelerator"></a> [task\_inference\_accelerator](#input\_task\_inference\_accelerator) | Inference accelerator for Task Definition. List of map. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#inference_accelerator) | `list(any)` | `[]` | no |
 | <a name="input_task_ipc_mode"></a> [task\_ipc\_mode](#input\_task\_ipc\_mode) | The IPC resource namespace to be used for the containers in the task The valid values are `host`, `task`, and `none`. | `string` | `null` | no |
 | <a name="input_task_memory"></a> [task\_memory](#input\_task\_memory) | Task level Memory units. | `number` | `null` | no |
 | <a name="input_task_network_mode"></a> [task\_network\_mode](#input\_task\_network\_mode) | The network mode for container. | `string` | `"bridge"` | no |

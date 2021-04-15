@@ -82,6 +82,12 @@ variable "placement_constraints" {
   type        = list(any)
 }
 
+variable "inference_accelerator" {
+  description = "Inference Accelerators settings. List of map. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#inference_accelerator)"
+  default     = []
+  type        = list(any)
+}
+
 variable "proxy_configuration" {
   description = "The proxy configuration details for the App Mesh proxy. Defined as map argument. [Terraform Docs](https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#proxy-configuration-arguments)"
   default     = null
