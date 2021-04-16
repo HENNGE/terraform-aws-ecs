@@ -1,7 +1,3 @@
-provider "aws" {
-  version = "~> 2"
-}
-
 # Just Supporting Infrastructures
 
 data "aws_availability_zones" "available" {}
@@ -77,7 +73,7 @@ module "task_security_group" {
 
 module "alb" {
   source  = "terraform-aws-modules/alb/aws"
-  version = "~> 5.0"
+  version = "5.13.0"
 
   name               = "${local.prefix}-alb"
   load_balancer_type = "application"

@@ -1,5 +1,6 @@
 variable "name" {
   description = "Cluster name."
+  type        = string
 }
 
 variable "capacity_providers" {
@@ -18,6 +19,12 @@ variable "settings" {
   description = "List of maps with cluster settings. For example, this can be used to enable CloudWatch Container Insights for a cluster. [Terraform Docs](https://www.terraform.io/docs/providers/aws/r/ecs_cluster.html#setting)"
   default     = []
   type        = list(any)
+}
+
+variable "enable_container_insights" {
+  description = "Enable container insights."
+  default     = null
+  type        = bool
 }
 
 variable "tags" {

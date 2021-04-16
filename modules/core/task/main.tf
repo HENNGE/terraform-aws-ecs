@@ -66,6 +66,14 @@ resource "aws_ecs_task_definition" "main" {
     }
   }
 
+  dynamic "inference_accelerator" {
+    for_each = var.inference_accelerator
+    content {
+      device_name = lookup(inference_accelerator.value, "device_name", null)
+      device_type = lookup(inference_accelerator.value, "device_type", null)
+    }
+  }
+
   tags = var.tags
 
   lifecycle {

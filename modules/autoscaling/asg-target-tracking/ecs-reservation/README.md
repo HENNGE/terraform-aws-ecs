@@ -76,42 +76,55 @@ module "asg_scaling" {
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.12.26 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.35.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | n/a |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.35.0 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [aws_autoscaling_policy.cpu_autoscaling](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_policy) | resource |
+| [aws_autoscaling_policy.memory_autoscaling](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_policy) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| autoscaling\_group\_name | Autoscaling Group to apply the policy | `string` | n/a | yes |
-| cpu\_statistics | Statistics to use: [Maximum, SampleCount, Sum, Minimum, Average]. Note that resolution used in alarm generated is 1 minute. | `string` | `"Average"` | no |
-| cpu\_threshold | Keep the ECS Cluster CPU Reservation around this value. Value is in percentage (0..100). Must be specified if cpu based autoscaling is enabled. | `number` | `null` | no |
-| disable\_scale\_in | Indicates whether scale in by the target tracking policy is disabled. | `bool` | `false` | no |
-| ecs\_cluster\_name | Name (not ARN) of ECS Cluster that the autoscaling group is attached to | `string` | n/a | yes |
-| enable\_cpu\_based\_autoscaling | Enable Autoscaling based on ECS Cluster CPU Reservation | `bool` | `false` | no |
-| enable\_memory\_based\_autoscaling | Enable Autoscaling based on ECS Cluster Memory Reservation | `bool` | `false` | no |
-| memory\_statistics | Statistics to use: [Maximum, SampleCount, Sum, Minimum, Average]. Note that resolution used in alarm generated is 1 minute. | `string` | `"Average"` | no |
-| memory\_threshold | Keep the ECS Cluster Memory Reservation around this value. Value is in percentage (0..100). Must be specified if memory based autoscaling is enabled. | `number` | `null` | no |
-| name | Name prefix of the Autoscaling Policy | `string` | n/a | yes |
+| <a name="input_autoscaling_group_name"></a> [autoscaling\_group\_name](#input\_autoscaling\_group\_name) | Autoscaling Group to apply the policy | `string` | n/a | yes |
+| <a name="input_cpu_statistics"></a> [cpu\_statistics](#input\_cpu\_statistics) | Statistics to use: [Maximum, SampleCount, Sum, Minimum, Average]. Note that resolution used in alarm generated is 1 minute. | `string` | `"Average"` | no |
+| <a name="input_cpu_threshold"></a> [cpu\_threshold](#input\_cpu\_threshold) | Keep the ECS Cluster CPU Reservation around this value. Value is in percentage (0..100). Must be specified if cpu based autoscaling is enabled. | `number` | `null` | no |
+| <a name="input_disable_scale_in"></a> [disable\_scale\_in](#input\_disable\_scale\_in) | Indicates whether scale in by the target tracking policy is disabled. | `bool` | `false` | no |
+| <a name="input_ecs_cluster_name"></a> [ecs\_cluster\_name](#input\_ecs\_cluster\_name) | Name (not ARN) of ECS Cluster that the autoscaling group is attached to | `string` | n/a | yes |
+| <a name="input_enable_cpu_based_autoscaling"></a> [enable\_cpu\_based\_autoscaling](#input\_enable\_cpu\_based\_autoscaling) | Enable Autoscaling based on ECS Cluster CPU Reservation | `bool` | `false` | no |
+| <a name="input_enable_memory_based_autoscaling"></a> [enable\_memory\_based\_autoscaling](#input\_enable\_memory\_based\_autoscaling) | Enable Autoscaling based on ECS Cluster Memory Reservation | `bool` | `false` | no |
+| <a name="input_memory_statistics"></a> [memory\_statistics](#input\_memory\_statistics) | Statistics to use: [Maximum, SampleCount, Sum, Minimum, Average]. Note that resolution used in alarm generated is 1 minute. | `string` | `"Average"` | no |
+| <a name="input_memory_threshold"></a> [memory\_threshold](#input\_memory\_threshold) | Keep the ECS Cluster Memory Reservation around this value. Value is in percentage (0..100). Must be specified if memory based autoscaling is enabled. | `number` | `null` | no |
+| <a name="input_name"></a> [name](#input\_name) | Name prefix of the Autoscaling Policy | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| cpu\_autoscaling\_arn | The ARN assigned by AWS to the scaling policy. |
-| cpu\_autoscaling\_asg\_name | The scaling policy's assigned autoscaling group. |
-| cpu\_autoscaling\_name | The scaling policy's name. |
-| cpu\_autoscaling\_policy\_type | The scaling policy's type. |
-| memory\_autoscaling\_arn | The ARN assigned by AWS to the scaling policy. |
-| memory\_autoscaling\_asg\_name | The scaling policy's assigned autoscaling group. |
-| memory\_autoscaling\_name | The scaling policy's name. |
-| memory\_autoscaling\_policy\_type | The scaling policy's type. |
-
+| <a name="output_cpu_autoscaling_arn"></a> [cpu\_autoscaling\_arn](#output\_cpu\_autoscaling\_arn) | The ARN assigned by AWS to the scaling policy. |
+| <a name="output_cpu_autoscaling_asg_name"></a> [cpu\_autoscaling\_asg\_name](#output\_cpu\_autoscaling\_asg\_name) | The scaling policy's assigned autoscaling group. |
+| <a name="output_cpu_autoscaling_name"></a> [cpu\_autoscaling\_name](#output\_cpu\_autoscaling\_name) | The scaling policy's name. |
+| <a name="output_cpu_autoscaling_policy_type"></a> [cpu\_autoscaling\_policy\_type](#output\_cpu\_autoscaling\_policy\_type) | The scaling policy's type. |
+| <a name="output_memory_autoscaling_arn"></a> [memory\_autoscaling\_arn](#output\_memory\_autoscaling\_arn) | The ARN assigned by AWS to the scaling policy. |
+| <a name="output_memory_autoscaling_asg_name"></a> [memory\_autoscaling\_asg\_name](#output\_memory\_autoscaling\_asg\_name) | The scaling policy's assigned autoscaling group. |
+| <a name="output_memory_autoscaling_name"></a> [memory\_autoscaling\_name](#output\_memory\_autoscaling\_name) | The scaling policy's name. |
+| <a name="output_memory_autoscaling_policy_type"></a> [memory\_autoscaling\_policy\_type](#output\_memory\_autoscaling\_policy\_type) | The scaling policy's type. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Things to note

@@ -52,33 +52,45 @@ module "ecs_service_scaling_target" {
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.12.26 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.35.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | n/a |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.35.0 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [aws_appautoscaling_target.ecs_target](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/appautoscaling_target) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| ecs\_cluster\_name | ECS Cluster name to apply on (NOT ARN) | `string` | n/a | yes |
-| ecs\_service\_name | ECS Service name to apply on (NOT ARN) | `string` | n/a | yes |
-| max\_capacity | Maximum capacity of ECS autoscaling target, cannot be less than min\_capacity | `number` | n/a | yes |
-| min\_capacity | Minimum capacity of ECS autoscaling target, cannot be more than max\_capacity | `number` | n/a | yes |
+| <a name="input_ecs_cluster_name"></a> [ecs\_cluster\_name](#input\_ecs\_cluster\_name) | ECS Cluster name to apply on (NOT ARN) | `string` | n/a | yes |
+| <a name="input_ecs_service_name"></a> [ecs\_service\_name](#input\_ecs\_service\_name) | ECS Service name to apply on (NOT ARN) | `string` | n/a | yes |
+| <a name="input_max_capacity"></a> [max\_capacity](#input\_max\_capacity) | Maximum capacity of ECS autoscaling target, cannot be less than min\_capacity | `number` | n/a | yes |
+| <a name="input_min_capacity"></a> [min\_capacity](#input\_min\_capacity) | Minimum capacity of ECS autoscaling target, cannot be more than max\_capacity | `number` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| max\_capacity | Maximum capacity for autoscaling target, same value as inputted |
-| min\_capacity | Minimum capacity for autoscaling target, same value as inputted |
-| resource\_id | Resources ID of the created Autoscaling Target for ECS Service, used in policy/schedule |
-| scalable\_dimension | Scalable dimension for autoscaling target. Always ecs:service:DesiredCount. |
-| service\_namespace | Service namespace for autoscaling target. Always ecs |
-
+| <a name="output_max_capacity"></a> [max\_capacity](#output\_max\_capacity) | Maximum capacity for autoscaling target, same value as inputted |
+| <a name="output_min_capacity"></a> [min\_capacity](#output\_min\_capacity) | Minimum capacity for autoscaling target, same value as inputted |
+| <a name="output_resource_id"></a> [resource\_id](#output\_resource\_id) | Resources ID of the created Autoscaling Target for ECS Service, used in policy/schedule |
+| <a name="output_scalable_dimension"></a> [scalable\_dimension](#output\_scalable\_dimension) | Scalable dimension for autoscaling target. Always ecs:service:DesiredCount. |
+| <a name="output_service_namespace"></a> [service\_namespace](#output\_service\_namespace) | Service namespace for autoscaling target. Always ecs |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 

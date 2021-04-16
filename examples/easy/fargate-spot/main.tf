@@ -1,7 +1,3 @@
-provider "aws" {
-  version = "~> 2"
-}
-
 # Just Supporting Infrastructures
 
 data "aws_availability_zones" "available" {}

@@ -20,6 +20,14 @@ resource "aws_ecs_cluster" "main" {
     }
   }
 
+  dynamic "setting" {
+    for_each = var.enable_container_insights ? [1] : []
+    content {
+      name  = "containerInsights"
+      value = "enabled"
+    }
+  }
+
   lifecycle {
     create_before_destroy = true
   }

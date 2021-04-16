@@ -74,6 +74,7 @@ variable "ignore_desired_count_changes" {
 variable "network_mode" {
   description = "Network mode of the container, valid options are none, bridge, awsvpc, and host"
   default     = "bridge"
+  type        = string
 }
 
 variable "elb_name" {
@@ -121,11 +122,13 @@ variable "deployment_maximum_percent" {
 variable "proxy_configuration" {
   description = "The proxy configuration details for the App Mesh proxy. Defined as map argument. [Terraform Docs](https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#proxy-configuration-arguments)"
   default     = null
+  type        = any
 }
 
 variable "service_registry" {
   description = "Map of a service discovery registries for the service. Consists of `registry_arn`, `port`(optional), `container_port`(optional), `container_port`(optional). [Terraform Docs](https://www.terraform.io/docs/providers/aws/r/ecs_service.html#service_registries)"
   default     = null
+  type        = any
 }
 
 variable "volume_configurations" {
@@ -136,6 +139,47 @@ variable "volume_configurations" {
 
 variable "capacity_provider_arn" {
   description = "Run the service only on this capacity provider"
+  default     = null
+  type        = string
+}
+
+variable "enable_deployment_circuit_breaker_without_rollback" {
+  description = "Enable Deployment Circuit Breaker without Rollback."
+  default     = false
+  type        = bool
+}
+variable "enable_deployment_circuit_breaker_with_rollback" {
+  description = "Enable Deployment Circuit Breaker with Rollback. When a service deployment fails, the service is rolled back to the last deployment that completed successfully."
+  default     = false
+  type        = bool
+}
+
+variable "enable_execute_command" {
+  description = "Specifies whether to enable Amazon ECS Exec for the tasks within the service."
+  default     = null
+  type        = bool
+}
+
+variable "force_new_deployment" {
+  description = "Enable to force a new task deployment of the service. This can be used to update tasks to use a newer Docker image with same image/tag combination (e.g. `myimage:latest`), roll Fargate tasks onto a newer platform version, or immediately deploy `ordered_placement_strategy` and `placement_constraints` updates."
+  default     = null
+  type        = bool
+}
+
+variable "wait_for_steady_state" {
+  description = "If `true`, Terraform will wait for the service to reach a steady state (like aws ecs wait services-stable) before continuing."
+  default     = null
+  type        = bool
+}
+
+variable "enable_ecs_managed_tags" {
+  description = "Specifies whether to enable Amazon ECS managed tags for the tasks within the service. Boolean value."
+  default     = null
+  type        = bool
+}
+
+variable "propagate_tags" {
+  description = "Specifies whether to propagate the tags from the task definition or the service to the tasks. The valid values are `SERVICE` and `TASK_DEFINITION`."
   default     = null
   type        = string
 }

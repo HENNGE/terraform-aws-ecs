@@ -12,15 +12,26 @@ resource "aws_ecs_service" "main" {
   deployment_minimum_healthy_percent = var.deployment_minimum_healthy_percent
   desired_count                      = var.desired_count
   enable_ecs_managed_tags            = var.enable_ecs_managed_tags
+  enable_execute_command             = var.enable_execute_command
+  force_new_deployment               = var.force_new_deployment
   health_check_grace_period_seconds  = var.health_check_grace_period_seconds
   iam_role                           = var.iam_lb_role
   launch_type                        = var.launch_type
   platform_version                   = var.platform_version
   propagate_tags                     = var.propagate_tags
   scheduling_strategy                = var.scheduling_strategy
+  wait_for_steady_state              = var.wait_for_steady_state
 
   deployment_controller {
     type = var.deployment_controller
+  }
+
+  dynamic "deployment_circuit_breaker" {
+    for_each = var.enable_deployment_circuit_breaker_with_rollback || var.enable_deployment_circuit_breaker_without_rollback ? [1] : []
+    content {
+      enable   = var.enable_deployment_circuit_breaker_with_rollback || var.enable_deployment_circuit_breaker_without_rollback
+      rollback = var.enable_deployment_circuit_breaker_with_rollback
+    }
   }
 
   dynamic "capacity_provider_strategy" {
@@ -101,15 +112,26 @@ resource "aws_ecs_service" "main_ignore_desired_count_changes" {
   deployment_minimum_healthy_percent = var.deployment_minimum_healthy_percent
   desired_count                      = var.desired_count
   enable_ecs_managed_tags            = var.enable_ecs_managed_tags
+  enable_execute_command             = var.enable_execute_command
+  force_new_deployment               = var.force_new_deployment
   health_check_grace_period_seconds  = var.health_check_grace_period_seconds
   iam_role                           = var.iam_lb_role
   launch_type                        = var.launch_type
   platform_version                   = var.platform_version
   propagate_tags                     = var.propagate_tags
   scheduling_strategy                = var.scheduling_strategy
+  wait_for_steady_state              = var.wait_for_steady_state
 
   deployment_controller {
     type = var.deployment_controller
+  }
+
+  dynamic "deployment_circuit_breaker" {
+    for_each = var.enable_deployment_circuit_breaker_with_rollback || var.enable_deployment_circuit_breaker_without_rollback ? [1] : []
+    content {
+      enable   = var.enable_deployment_circuit_breaker_with_rollback || var.enable_deployment_circuit_breaker_without_rollback
+      rollback = var.enable_deployment_circuit_breaker_with_rollback
+    }
   }
 
   dynamic "capacity_provider_strategy" {
@@ -181,9 +203,10 @@ module "task" {
   daemon_role             = var.iam_daemon_role
   cpu                     = var.task_cpu
   memory                  = var.task_memory
-  requires_compatibilites = var.launch_type == "FARGATE" ? ["EC2", "FARGATE"] : ["EC2"]
+  requires_compatibilites = var.task_requires_compatibilites
   volume_configurations   = var.task_volume_configurations
   placement_constraints   = var.placement_constraints
+  inference_accelerator   = var.task_inference_accelerator
   proxy_configuration     = var.task_proxy_configuration
   tags                    = var.tags
 }

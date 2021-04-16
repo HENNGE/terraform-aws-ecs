@@ -1,10 +1,10 @@
-data "aws_ssm_parameter" "ami-image" {
+data "aws_ssm_parameter" "ami_image" {
   name = "/aws/service/ecs/optimized-ami/amazon-linux-2/recommended/image_id"
 }
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "2.18.0"
+  version = "~> 2"
 
   name = "${local.prefix}-vpc"
   cidr = local.vpc_cidr
@@ -24,7 +24,7 @@ module "vpc" {
 
 module "alb_security_group" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "3.2.0"
+  version = "~> 3"
 
   name   = "${local.prefix}-alb-sg"
   vpc_id = module.vpc.vpc_id
@@ -42,7 +42,7 @@ module "alb_security_group" {
 
 module "ecs_security_group" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "3.2.0"
+  version = "~> 3"
 
   name   = "${local.prefix}-ec2-sg"
   vpc_id = module.vpc.vpc_id
@@ -65,7 +65,7 @@ module "ecs_security_group" {
 
 module "alb" {
   source  = "terraform-aws-modules/alb/aws"
-  version = "~> 5.0"
+  version = "5.13.0"
 
   name               = "${local.prefix}-alb"
   load_balancer_type = "application"
@@ -131,7 +131,7 @@ module "asg" {
 
   name = "${local.prefix}-asg"
 
-  image_id                    = data.aws_ssm_parameter.ami-image.value
+  image_id                    = data.aws_ssm_parameter.ami_image.value
   instance_type               = "t2.micro"
   security_groups             = [module.ecs_security_group.this_security_group_id]
   vpc_zone_identifier         = module.vpc.public_subnets

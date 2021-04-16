@@ -6,7 +6,6 @@ locals {
   this_service_id            = concat(aws_ecs_service.main[*].id, aws_ecs_service.main_ignore_desired_count_changes[*].id, [""])[0]
   this_service_name          = concat(aws_ecs_service.main[*].name, aws_ecs_service.main_ignore_desired_count_changes[*].name, [""])[0]
   this_service_cluster_name  = concat(aws_ecs_service.main[*].cluster, aws_ecs_service.main_ignore_desired_count_changes[*].cluster, [""])[0]
-  this_service_iam_role      = concat(aws_ecs_service.main[*].iam_role, aws_ecs_service.main_ignore_desired_count_changes[*].iam_role, [""])[0]
   this_service_desired_count = concat(aws_ecs_service.main[*].desired_count, aws_ecs_service.main_ignore_desired_count_changes[*].desired_count, [""])[0]
 }
 

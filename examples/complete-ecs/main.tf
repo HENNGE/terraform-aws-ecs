@@ -1,7 +1,3 @@
-provider "aws" {
-  version = "~> 2"
-}
-
 data "aws_availability_zones" "available" {}
 
 locals {
