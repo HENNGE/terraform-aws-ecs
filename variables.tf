@@ -23,7 +23,7 @@ variable "settings" {
 
 variable "enable_container_insights" {
   description = "Enable container insights."
-  default     = null
+  default     = false
   type        = bool
 }
 
