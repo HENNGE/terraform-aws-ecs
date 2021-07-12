@@ -28,7 +28,7 @@ Since this module is the closest to the `resources` form, there are a lot of cus
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_task"></a> [task](#module\_task) | ../task |  |
+| <a name="module_task"></a> [task](#module\_task) | ../task | n/a |
 
 ## Resources
 

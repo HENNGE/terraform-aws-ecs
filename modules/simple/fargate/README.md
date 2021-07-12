@@ -30,7 +30,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_fargate"></a> [fargate](#module\_fargate) | ../../core/service |  |
+| <a name="module_fargate"></a> [fargate](#module\_fargate) | ../../core/service | n/a |
 
 ## Resources
 
