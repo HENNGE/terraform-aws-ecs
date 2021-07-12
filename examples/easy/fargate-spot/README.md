@@ -49,8 +49,8 @@ $ terraform apply
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_easy_fargate"></a> [easy\_fargate](#module\_easy\_fargate) | ../../../modules/simple/fargate-spot |  |
-| <a name="module_ecs_cluster"></a> [ecs\_cluster](#module\_ecs\_cluster) | ../../.. |  |
+| <a name="module_easy_fargate"></a> [easy\_fargate](#module\_easy\_fargate) | ../../../modules/simple/fargate-spot | n/a |
+| <a name="module_ecs_cluster"></a> [ecs\_cluster](#module\_ecs\_cluster) | ../../.. | n/a |
 | <a name="module_task_security_group"></a> [task\_security\_group](#module\_task\_security\_group) | terraform-aws-modules/security-group/aws | 3.2.0 |
 | <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-aws-modules/vpc/aws | 2.18.0 |
 

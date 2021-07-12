@@ -30,7 +30,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_ec2"></a> [ec2](#module\_ec2) | ../../core/service |  |
+| <a name="module_ec2"></a> [ec2](#module\_ec2) | ../../core/service | n/a |
 
 ## Resources
 

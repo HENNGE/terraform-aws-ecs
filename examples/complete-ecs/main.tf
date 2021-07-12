@@ -48,7 +48,7 @@ module "easy_fargate" {
   desired_count                = 3
   ignore_desired_count_changes = false
 
-  security_groups  = [module.ecs_security_group.this_security_group_id]
+  security_groups  = [module.ecs_security_group.security_group_id]
   vpc_subnets      = module.vpc.public_subnets
   assign_public_ip = true
 
