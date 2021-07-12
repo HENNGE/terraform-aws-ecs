@@ -100,7 +100,7 @@ jobs:
       - name: Install pre-commit dependencies
         run: |
           pip install pre-commit
-          TF_DOCS_VER="v0.14.1"
+          TF_DOCS_VER="v0.13.0"
           curl -Lo ./terraform-docs.tar.gz https://github.com/terraform-docs/terraform-docs/releases/download/${TF_DOCS_VER}/terraform-docs-${TF_DOCS_VER}-$(uname)-amd64.tar.gz && tar -xzf terraform-docs.tar.gz && chmod +x terraform-docs && sudo mv terraform-docs /usr/bin/
           curl -L "$(curl -s https://api.github.com/repos/terraform-linters/tflint/releases/latest | grep -o -E "https://.+?_linux_amd64.zip")" > tflint.zip && unzip tflint.zip && rm tflint.zip && sudo mv tflint /usr/bin/
       - name: Execute pre-commit
