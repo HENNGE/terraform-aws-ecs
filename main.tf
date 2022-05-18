@@ -25,7 +25,7 @@ resource "aws_ecs_cluster" "main" {
 }
 
 resource "aws_ecs_cluster_capacity_providers" "main" {
-  count = var.capacity_providers != null || var.default_capacity_provider_strategy != [] ? 1 : 0
+  count = var.capacity_providers != null || length(var.default_capacity_provider_strategy) > 0 ? 1 : 0
 
   cluster_name = aws_ecs_cluster.main.name
 
