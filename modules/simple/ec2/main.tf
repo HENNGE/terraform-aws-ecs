@@ -35,6 +35,7 @@ module "ec2" {
 
   task_volume_configurations = var.volume_configurations
   task_proxy_configuration   = var.proxy_configuration
+  task_runtime_platform      = var.runtime_platform
   service_registry           = var.service_registry
 
   capacity_provider_strategy = var.capacity_provider_arn == null ? [] : [

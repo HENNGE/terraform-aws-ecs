@@ -71,13 +71,13 @@ variable "requires_compatibilites" {
 }
 
 variable "volume_configurations" {
-  description = "Volume Block Arguments for Task Definition. List of map. Note that `docker_volume_configuration` should be specified as map argument instead of block. [Terraform Docs](https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#volume-block-arguments)"
+  description = "Volume Block Arguments for Task Definition. List of map. Note that `docker_volume_configuration` should be specified as map argument instead of block. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#volume)"
   default     = []
   type        = list(any)
 }
 
 variable "placement_constraints" {
-  description = "Placement constraints for Task Definition. List of map. [Terraform Docs](https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#placement_constraints)"
+  description = "Placement constraints for Task Definition. List of map. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#placement_constraints)"
   default     = []
   type        = list(any)
 }
@@ -89,7 +89,13 @@ variable "inference_accelerator" {
 }
 
 variable "proxy_configuration" {
-  description = "The proxy configuration details for the App Mesh proxy. Defined as map argument. [Terraform Docs](https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#proxy-configuration-arguments)"
+  description = "The proxy configuration details for the App Mesh proxy. Defined as map argument. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#proxy_configuration)"
+  default     = null
+  type        = any
+}
+
+variable "runtime_platform" {
+  description = "Runtime platform (operating system and CPU architecture) that containers may use. Defined as map argument. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#runtime_platform)"
   default     = null
   type        = any
 }

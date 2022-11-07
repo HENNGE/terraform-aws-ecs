@@ -10,13 +10,13 @@ variable "capacity_providers" {
 }
 
 variable "default_capacity_provider_strategy" {
-  description = "The capacity provider strategy to use by default for the cluster. Can be one or more. List of map with corresponding items in docs. [Terraform Docs](https://www.terraform.io/docs/providers/aws/r/ecs_cluster.html#default_capacity_provider_strategy)"
+  description = "The capacity provider strategy to use by default for the cluster. Can be one or more. List of map with corresponding items in docs. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_cluster#default_capacity_provider_strategy)"
   default     = []
   type        = list(any)
 }
 
 variable "settings" {
-  description = "List of maps with cluster settings. For example, this can be used to enable CloudWatch Container Insights for a cluster. [Terraform Docs](https://www.terraform.io/docs/providers/aws/r/ecs_cluster.html#setting)"
+  description = "List of maps with cluster settings. For example, this can be used to enable CloudWatch Container Insights for a cluster. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_cluster#setting)"
   default     = []
   type        = list(any)
 }

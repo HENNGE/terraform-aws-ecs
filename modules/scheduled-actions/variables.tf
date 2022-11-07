@@ -59,7 +59,7 @@ variable "fargate_subnets" {
 }
 
 variable "container_overrides" {
-  description = "Overrides options of container. Expecting JSON. See https://www.terraform.io/docs/providers/aws/r/cloudwatch_event_target.html#example-ecs-run-task-with-role-and-task-override-usage"
+  description = "Overrides options of container. Expecting JSON. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_event_target#ecs-run-task-with-role-and-task-override-usage"
   default     = null
   type        = string
 }

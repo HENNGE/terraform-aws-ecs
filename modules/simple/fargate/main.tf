@@ -43,6 +43,7 @@ module "fargate" {
 
   task_volume_configurations = var.volume_configurations
   task_proxy_configuration   = var.proxy_configuration
+  task_runtime_platform      = var.runtime_platform
   service_registry           = var.service_registry
 
   platform_version = var.platform_version

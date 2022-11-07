@@ -100,7 +100,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_cluster_arn"></a> [cluster\_arn](#input\_cluster\_arn) | ECS Cluster ARN to run ECS Task in | `string` | n/a | yes |
-| <a name="input_container_overrides"></a> [container\_overrides](#input\_container\_overrides) | Overrides options of container. Expecting JSON. See https://www.terraform.io/docs/providers/aws/r/cloudwatch_event_target.html#example-ecs-run-task-with-role-and-task-override-usage | `string` | `null` | no |
+| <a name="input_container_overrides"></a> [container\_overrides](#input\_container\_overrides) | Overrides options of container. Expecting JSON. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_event_target#ecs-run-task-with-role-and-task-override-usage | `string` | `null` | no |
 | <a name="input_fargate_assign_public_ip"></a> [fargate\_assign\_public\_ip](#input\_fargate\_assign\_public\_ip) | Assign Public IP or not to Fargate task, specify if `is_fargate` | `bool` | `false` | no |
 | <a name="input_fargate_security_groups"></a> [fargate\_security\_groups](#input\_fargate\_security\_groups) | Security groups to assign to Fargate task, specify if `is_fargate` | `list(string)` | `[]` | no |
 | <a name="input_fargate_subnets"></a> [fargate\_subnets](#input\_fargate\_subnets) | Subnets to assign to Fargate task, specify if `is_fargate` | `list(string)` | `[]` | no |
