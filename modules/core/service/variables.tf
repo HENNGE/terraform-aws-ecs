@@ -162,31 +162,31 @@ variable "load_balancers" {
 }
 
 variable "network_configuration" {
-  description = "Map of a network configuration for the service. This parameter is required for task definitions that use the awsvpc network mode to receive their own Elastic Network Interface, and it is not supported for other network modes. [Terraform Docs](https://www.terraform.io/docs/providers/aws/r/ecs_service.html#network_configuration)"
+  description = "Map of a network configuration for the service. This parameter is required for task definitions that use the awsvpc network mode to receive their own Elastic Network Interface, and it is not supported for other network modes. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service#network_configuration)"
   default     = null
   type        = any
 }
 
 variable "service_registry" {
-  description = "Map of a service discovery registries for the service. Consists of `registry_arn`, `port`(optional), `container_port`(optional), `container_port`(optional). [Terraform Docs](https://www.terraform.io/docs/providers/aws/r/ecs_service.html#service_registries)"
+  description = "Map of a service discovery registries for the service. Consists of `registry_arn`, `port`(optional), `container_port`(optional), `container_port`(optional). [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service#service_registries)"
   default     = null
   type        = any
 }
 
 variable "capacity_provider_strategy" {
-  description = "List of map of the capacity provider strategy to use for the service. [Terraform Docs](https://www.terraform.io/docs/providers/aws/r/ecs_service.html#capacity_provider_strategy)"
+  description = "List of map of the capacity provider strategy to use for the service. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service#capacity_provider_strategy)"
   default     = []
   type        = list(any)
 }
 
 variable "ordered_placement_strategy" {
-  description = "List of map of service level strategy rules that are taken into consideration during task placement. List from top to bottom in order of precedence. Max 5. [Terraform Docs](https://www.terraform.io/docs/providers/aws/r/ecs_service.html#ordered_placement_strategy)"
+  description = "List of map of service level strategy rules that are taken into consideration during task placement. List from top to bottom in order of precedence. Max 5. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service#ordered_placement_strategy)"
   default     = []
   type        = list(any)
 }
 
 variable "placement_constraints" {
-  description = "List of map of placement constraints for Task Definition. Max 10. [Terraform Docs](https://www.terraform.io/docs/providers/aws/r/ecs_service.html#placement_constraints)"
+  description = "List of map of placement constraints for Task Definition. Max 10. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service#placement_constraints)"
   default     = []
   type        = list(any)
 }
@@ -239,7 +239,7 @@ variable "task_requires_compatibilites" {
 }
 
 variable "task_volume_configurations" {
-  description = "Volume Block Arguments for Task Definition. List of map. Note that `docker_volume_configuration` should be specified as map argument instead of block. [Terraform Docs](https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#volume-block-arguments)"
+  description = "Volume Block Arguments for Task Definition. List of map. Note that `docker_volume_configuration` should be specified as map argument instead of block. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#volume)"
   default     = []
   type        = list(any)
 }
@@ -251,7 +251,13 @@ variable "task_inference_accelerator" {
 }
 
 variable "task_proxy_configuration" {
-  description = "The proxy configuration details for the App Mesh proxy. Defined as map argument. [Terraform Docs](https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#proxy-configuration-arguments)"
+  description = "The proxy configuration details for the App Mesh proxy. Defined as map argument. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#proxy_configuration)"
+  default     = null
+  type        = any
+}
+
+variable "task_runtime_platform" {
+  description = "Runtime platform (operating system and CPU architecture) that containers may use. Defined as map argument. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#runtime_platform)"
   default     = null
   type        = any
 }

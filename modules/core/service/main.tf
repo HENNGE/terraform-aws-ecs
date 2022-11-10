@@ -208,5 +208,6 @@ module "task" {
   placement_constraints   = var.placement_constraints
   inference_accelerator   = var.task_inference_accelerator
   proxy_configuration     = var.task_proxy_configuration
+  runtime_platform        = var.task_runtime_platform
   tags                    = var.tags
 }
