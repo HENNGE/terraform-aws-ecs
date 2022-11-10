@@ -53,18 +53,18 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: ${{ steps.minMax.outputs.minVersion }}
-      - name: Install pre-commit dependencies
-        run: pip install pre-commit
       - name: Execute pre-commit
         # Run only validate pre-commit check on min version supported
         if: ${{ matrix.directory !=  '.' }}
-        run:
-          pre-commit run terraform_validate --color=always --show-diff-on-failure --files ${{ matrix.directory }}/*
+        uses: pre-commit/action@v3.0.0
+        with:
+          extra_args: terraform_validate --color=always --show-diff-on-failure --files ${{ matrix.directory }}/*
       - name: Execute pre-commit
         # Run only validate pre-commit check on min version supported
         if: ${{ matrix.directory ==  '.' }}
-        run:
-          pre-commit run terraform_validate --color=always --show-diff-on-failure --files $(ls *.tf)
+        uses: pre-commit/action@v3.0.0
+        with:
+          extra_args: terraform_validate --color=always --show-diff-on-failure --files $(ls *.tf)
 
 
 
