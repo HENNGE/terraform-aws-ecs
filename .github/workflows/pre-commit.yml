@@ -15,14 +15,17 @@ jobs:
       runs-on: ubuntu-latest
       steps:
           - name: Checkout
-            uses: actions/checkout@v2
+            uses: actions/checkout@v3
           - name: Install Python
-            uses: actions/setup-python@v2
+            uses: actions/setup-python@v4
+            with:
+              python-version: 3.x
           - name: Build matrix
             id: matrix
             run: |
               DIRS=$(python -c "import json; import glob; print(json.dumps([x.replace('/versions.tf', '') for x in glob.glob('./**/versions.tf', recursive=True)]))")
-              echo "::set-output name=directories::$DIRS"
+              echo "directories=$DIRS" >> $GITHUB_OUTPUT
+
       outputs:
           directories: ${{ steps.matrix.outputs.directories }}
 
@@ -36,16 +39,18 @@ jobs:
             directory: ${{ fromJson(needs.getDirectories.outputs.directories) }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Install Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
       - name: Terraform min/max versions
         id: minMax
-        uses: clowdhaus/terraform-min-max@v1.0.1
+        uses: clowdhaus/terraform-min-max@v1.2.0
         with:
           directory: ${{ matrix.directory }}
       - name: Install Terraform v${{ steps.minMax.outputs.minVersion }}
-        uses: hashicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: ${{ steps.minMax.outputs.minVersion }}
       - name: Install pre-commit dependencies
@@ -70,10 +75,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Terraform min/max versions
         id: minMax
-        uses: clowdhaus/terraform-min-max@v1.0.1
+        uses: clowdhaus/terraform-min-max@v1.2.0
     outputs:
       minVersion: ${{ steps.minMax.outputs.minVersion }}
       maxVersion: ${{ steps.minMax.outputs.maxVersion }}
@@ -90,22 +95,24 @@ jobs:
           - ${{ needs.getBaseVersion.outputs.maxVersion }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Install Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
       - name: Install Terraform v${{ matrix.version }}
-        uses: hashicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: ${{ matrix.version }}
-      - name: Install pre-commit dependencies
-        run: |
-          pip install pre-commit
-          TF_DOCS_VER="v0.14.1"
-          pushd /tmp
-            curl -Lo ./terraform-docs.tar.gz https://github.com/terraform-docs/terraform-docs/releases/download/${TF_DOCS_VER}/terraform-docs-${TF_DOCS_VER}-$(uname)-amd64.tar.gz && tar -xzf terraform-docs.tar.gz && chmod +x terraform-docs && sudo mv terraform-docs /usr/bin/
-            curl -L "$(curl -s https://api.github.com/repos/terraform-linters/tflint/releases/latest | grep -o -E "https://.+?_linux_amd64.zip")" > tflint.zip && unzip tflint.zip && rm tflint.zip && sudo mv tflint /usr/bin/
-          popd
+      - name: Install pre-commit dependency - terraform-docs
+        uses: lablabs/setup-terraform-docs@v1
+        with:
+          terraform_docs_version: v0.14.1
+      - name: Install pre-commit dependency - tflint
+        uses: terraform-linters/setup-tflint@v2
       - name: Execute pre-commit
         # Run all pre-commit checks on max version supported
         if: ${{ matrix.version ==  needs.getBaseVersion.outputs.maxVersion }}
-        run: pre-commit run --color=always --show-diff-on-failure --all-files
+        uses: pre-commit/action@v3.0.0
+        with:
+          extra_args: --color=always --show-diff-on-failure --all-files
