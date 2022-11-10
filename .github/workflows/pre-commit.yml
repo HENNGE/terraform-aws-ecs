@@ -105,9 +105,11 @@ jobs:
         with:
           terraform_version: ${{ matrix.version }}
       - name: Install pre-commit dependency - terraform-docs
-        uses: lablabs/setup-terraform-docs@v1
-        with:
-          terraform_docs_version: v0.14.1
+        run: |
+        TF_DOCS_VER="v0.14.1"
+        pushd /tmp
+        curl -Lo ./terraform-docs.tar.gz https://github.com/terraform-docs/terraform-docs/releases/download/${TF_DOCS_VER}/terraform-docs-${TF_DOCS_VER}-$(uname)-amd64.tar.gz && tar -xzf terraform-docs.tar.gz && chmod +x terraform-docs && sudo mv terraform-docs /usr/bin/
+        popd
       - name: Install pre-commit dependency - tflint
         uses: terraform-linters/setup-tflint@v2
       - name: Execute pre-commit
