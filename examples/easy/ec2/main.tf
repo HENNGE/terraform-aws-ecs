@@ -16,7 +16,7 @@ locals {
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "2.18.0"
+  version = "~> 2"
 
   name = "${local.prefix}-vpc"
   cidr = local.vpc_cidr
@@ -36,7 +36,7 @@ module "vpc" {
 
 module "ec2_security_group" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "3.2.0"
+  version = "~> 4.0"
 
   name   = "${local.prefix}-ec2-sg"
   vpc_id = module.vpc.vpc_id
@@ -55,13 +55,13 @@ module "ec2_security_group" {
 
 module "asg" {
   source  = "terraform-aws-modules/autoscaling/aws"
-  version = "~> 3.0"
+  version = "~> 4.0"
 
   name = "${local.prefix}-asg"
 
   image_id                    = data.aws_ssm_parameter.ami_image.value
   instance_type               = "t2.micro"
-  security_groups             = [module.ec2_security_group.this_security_group_id]
+  security_groups             = [module.ec2_security_group.security_group_id]
   vpc_zone_identifier         = module.vpc.public_subnets
   min_size                    = 1
   max_size                    = 2
@@ -71,7 +71,7 @@ module "asg" {
   user_data = templatefile("../../templates/ec2_userdata.tpl", {
     ecs_cluster = module.ecs_cluster.name
   })
-  iam_instance_profile = var.instance_profile_arn
+  iam_instance_profile_arn = var.instance_profile_arn
 }
 
 # This module usage starts here

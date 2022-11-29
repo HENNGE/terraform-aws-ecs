@@ -12,7 +12,7 @@ locals {
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "2.18.0"
+  version = "~> 2"
 
   name = "${local.prefix}-vpc"
   cidr = local.vpc_cidr
@@ -32,7 +32,7 @@ module "vpc" {
 
 module "alb_security_group" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "3.2.0"
+  version = "~> 4.0"
 
   name   = "${local.prefix}-alb-sg"
   vpc_id = module.vpc.vpc_id
@@ -50,7 +50,7 @@ module "alb_security_group" {
 
 module "task_security_group" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "3.2.0"
+  version = "~> 4.0"
 
   name   = "${local.prefix}-task-sg"
   vpc_id = module.vpc.vpc_id
@@ -61,7 +61,7 @@ module "task_security_group" {
   computed_ingress_with_source_security_group_id = [
     {
       rule                     = "all-all"
-      source_security_group_id = module.alb_security_group.this_security_group_id
+      source_security_group_id = module.alb_security_group.security_group_id
     }
   ]
 
@@ -77,7 +77,7 @@ module "alb" {
 
   name               = "${local.prefix}-alb"
   load_balancer_type = "application"
-  security_groups    = [module.alb_security_group.this_security_group_id]
+  security_groups    = [module.alb_security_group.security_group_id]
   subnets            = module.vpc.public_subnets
   vpc_id             = module.vpc.vpc_id
 
@@ -118,7 +118,7 @@ module "easy_fargate" {
   desired_count                = 3
   ignore_desired_count_changes = false
 
-  security_groups  = [module.task_security_group.this_security_group_id]
+  security_groups  = [module.task_security_group.security_group_id]
   vpc_subnets      = module.vpc.public_subnets
   assign_public_ip = true
 

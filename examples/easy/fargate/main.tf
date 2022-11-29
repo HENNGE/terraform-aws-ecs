@@ -11,7 +11,7 @@ locals {
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "2.18.0"
+  version = "~> 2"
 
   name = "${local.prefix}-vpc"
   cidr = local.vpc_cidr
@@ -31,7 +31,7 @@ module "vpc" {
 
 module "task_security_group" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "3.2.0"
+  version = "~> 4.0"
 
   name   = "${local.prefix}-task-sg"
   vpc_id = module.vpc.vpc_id
@@ -65,7 +65,7 @@ module "easy_fargate" {
   desired_count                = 1
   ignore_desired_count_changes = false
 
-  security_groups  = [module.task_security_group.this_security_group_id]
+  security_groups  = [module.task_security_group.security_group_id]
   vpc_subnets      = module.vpc.public_subnets
   assign_public_ip = true
 

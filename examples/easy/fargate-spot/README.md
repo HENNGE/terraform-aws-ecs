@@ -43,7 +43,7 @@ $ terraform apply
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.74.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.42.0 |
 
 ## Modules
 
@@ -51,8 +51,8 @@ $ terraform apply
 |------|--------|---------|
 | <a name="module_easy_fargate"></a> [easy\_fargate](#module\_easy\_fargate) | ../../../modules/simple/fargate-spot | n/a |
 | <a name="module_ecs_cluster"></a> [ecs\_cluster](#module\_ecs\_cluster) | ../../.. | n/a |
-| <a name="module_task_security_group"></a> [task\_security\_group](#module\_task\_security\_group) | terraform-aws-modules/security-group/aws | 3.2.0 |
-| <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-aws-modules/vpc/aws | 2.18.0 |
+| <a name="module_task_security_group"></a> [task\_security\_group](#module\_task\_security\_group) | terraform-aws-modules/security-group/aws | ~> 4.0 |
+| <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-aws-modules/vpc/aws | ~> 2 |
 
 ## Resources
 
