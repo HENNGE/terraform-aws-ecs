@@ -65,7 +65,7 @@ variable "container_overrides" {
 }
 
 variable "capacity_provider_strategy" {
-  description = "The capacity provider strategy to use for the task. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_event_target#capacity_provider_strategy"
+  description = "List of map of capacity provider strategies to use for the task. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_event_target#capacity_provider_strategy"
   default     = null
-  type        = map(any)
+  type        = list(any)
 }
