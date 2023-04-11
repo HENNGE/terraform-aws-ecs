@@ -56,7 +56,7 @@ $ terraform apply
 | <a name="module_ecs_security_group"></a> [ecs\_security\_group](#module\_ecs\_security\_group) | terraform-aws-modules/security-group/aws | ~> 4.0 |
 | <a name="module_fargate_service_autoscaling_target"></a> [fargate\_service\_autoscaling\_target](#module\_fargate\_service\_autoscaling\_target) | ../../modules/core/ecs-autoscaling-target | n/a |
 | <a name="module_fargate_target_request_autoscaling"></a> [fargate\_target\_request\_autoscaling](#module\_fargate\_target\_request\_autoscaling) | ../../modules/autoscaling/alb-target-tracking/target-requests-count | n/a |
-| <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-aws-modules/vpc/aws | ~> 2 |
+| <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-aws-modules/vpc/aws | ~> 2.0 |
 
 ## Resources
 

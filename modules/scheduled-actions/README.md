@@ -99,6 +99,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_capacity_provider_strategy"></a> [capacity\_provider\_strategy](#input\_capacity\_provider\_strategy) | List of map of capacity provider strategies to use for the task. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_event_target#capacity_provider_strategy | `list(any)` | `null` | no |
 | <a name="input_cluster_arn"></a> [cluster\_arn](#input\_cluster\_arn) | ECS Cluster ARN to run ECS Task in | `string` | n/a | yes |
 | <a name="input_container_overrides"></a> [container\_overrides](#input\_container\_overrides) | Overrides options of container. Expecting JSON. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_event_target#ecs-run-task-with-role-and-task-override-usage | `string` | `null` | no |
 | <a name="input_fargate_assign_public_ip"></a> [fargate\_assign\_public\_ip](#input\_fargate\_assign\_public\_ip) | Assign Public IP or not to Fargate task, specify if `is_fargate` | `bool` | `false` | no |
