@@ -13,6 +13,7 @@ This module also includes Autoscaling Group (ASG) Scaling for easier autoscaling
     - `target-response-time`
 - `ecs-target-tracking`
     - `service-utilization`
+- `ecs-scheduled`
 
 
 ### Prerequisites
@@ -51,6 +52,11 @@ Submodules under this submodules are:
 |Submodule Name|Relevant ECS metrics|
 |---|---|
 `service-utilization`|ECS Service's `AverageCPUUtilization` and/or `AverageMemoryUtilization`
+
+
+### `ecs-scheduled`
+
+Autoscales ECS Service desired count on schedule.
 
 ## Module Naming Convention
 
