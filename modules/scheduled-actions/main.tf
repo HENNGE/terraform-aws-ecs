@@ -12,7 +12,7 @@ resource "aws_cloudwatch_event_target" "target" {
   ecs_target {
     task_count          = var.task_count
     task_definition_arn = var.task_definition_arn
-    launch_type         = var.capacity_provider_strategy == null ? (var.is_fargate ? "FARGATE" : "EC2") : null
+    launch_type         = length(var.capacity_provider_strategy) == 0 ? (var.is_fargate ? "FARGATE" : "EC2") : null
 
     dynamic "network_configuration" {
       for_each = var.is_fargate ? ["yes"] : []
