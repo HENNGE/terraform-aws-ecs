@@ -5,10 +5,7 @@ A Terraform module to define AWS ECS Service Auto Scaling scheduled action.
 ## Components
 
 Creates the following:
-- ECS Application Autoscaling Policy
-
-Autocreated by aws:
-- Cloudwatch alarms for tracking service utilization metrics
+- ECS Application Autoscaling Scheduled Action
 
 ## Assumptions
 
