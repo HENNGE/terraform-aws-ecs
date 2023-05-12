@@ -72,6 +72,7 @@ No modules.
 | Name | Type |
 |------|------|
 | [aws_appautoscaling_target.ecs_target](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/appautoscaling_target) | resource |
+| [aws_appautoscaling_target.ecs_target_ignore_capacity_changes](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/appautoscaling_target) | resource |
 
 ## Inputs
 
@@ -79,6 +80,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_ecs_cluster_name"></a> [ecs\_cluster\_name](#input\_ecs\_cluster\_name) | ECS Cluster name to apply on (NOT ARN) | `string` | n/a | yes |
 | <a name="input_ecs_service_name"></a> [ecs\_service\_name](#input\_ecs\_service\_name) | ECS Service name to apply on (NOT ARN) | `string` | n/a | yes |
+| <a name="input_ignore_capacity_changes"></a> [ignore\_capacity\_changes](#input\_ignore\_capacity\_changes) | Ignores any changes to `min_capacity` and `max_capacity` parameter after apply. Note updating this value will destroy the existing autoscaling target and recreate it. | `bool` | `false` | no |
 | <a name="input_max_capacity"></a> [max\_capacity](#input\_max\_capacity) | Maximum capacity of ECS autoscaling target, cannot be less than min\_capacity | `number` | n/a | yes |
 | <a name="input_min_capacity"></a> [min\_capacity](#input\_min\_capacity) | Minimum capacity of ECS autoscaling target, cannot be more than max\_capacity | `number` | n/a | yes |
 
