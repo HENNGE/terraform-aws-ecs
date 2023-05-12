@@ -17,3 +17,9 @@ variable "max_capacity" {
   description = "Maximum capacity of ECS autoscaling target, cannot be less than min_capacity"
   type        = number
 }
+
+variable "ignore_capacity_changes" {
+  description = "Ignores any changes to `min_capacity` and `max_capacity` parameter after apply. Note updating this value will destroy the existing autoscaling target and recreate it."
+  default     = false
+  type        = bool
+}
