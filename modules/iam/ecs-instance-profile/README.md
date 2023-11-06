@@ -16,7 +16,7 @@ Module to generate IAM Instance Profile (and Role) for EC2 instances backing ECS
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) |  >= 3.74.0  |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.74.0 |
 
 ## Modules
 

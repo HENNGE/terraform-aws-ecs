@@ -22,7 +22,7 @@ Since this module is the closest to the `resources` form, there are a lot of cus
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) |  >= 3.74.0  |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.74.0 |
 
 ## Modules
 

@@ -47,7 +47,7 @@ module "ecs_scaling_scheduled" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) |  >= 3.74.0  |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.74.0 |
 
 ## Modules
 
