@@ -3,7 +3,7 @@ module "asg_autoscaling" {
   source = "../../modules/autoscaling/asg-target-tracking/ecs-reservation"
 
   name                   = "${local.prefix}-autoscale"
-  autoscaling_group_name = module.asg.this_autoscaling_group_name
+  autoscaling_group_name = module.asg.autoscaling_group_id
   ecs_cluster_name       = module.ecs_cluster.name
 
   enable_cpu_based_autoscaling = true

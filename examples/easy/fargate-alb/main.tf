@@ -12,7 +12,7 @@ locals {
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 2.0"
+  version = "~> 5.0"
 
   name = "${local.prefix}-vpc"
   cidr = local.vpc_cidr
@@ -25,7 +25,6 @@ module "vpc" {
   dhcp_options_domain_name_servers = ["AmazonProvidedDNS"]
 
   enable_ipv6                                   = var.enable_ipv6
-  assign_ipv6_address_on_creation               = var.enable_ipv6
   public_subnet_assign_ipv6_address_on_creation = var.enable_ipv6
   public_subnet_ipv6_prefixes                   = range(length(local.vpc_azs))
 }
