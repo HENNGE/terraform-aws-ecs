@@ -9,7 +9,7 @@ Module to generate IAM Instance Profile (and Role) for EC2 instances backing ECS
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.1 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.74.0 |
 
 ## Providers

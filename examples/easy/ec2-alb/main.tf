@@ -16,7 +16,7 @@ locals {
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 2.0"
+  version = "~> 5.0"
 
   name = "${local.prefix}-vpc"
   cidr = local.vpc_cidr
@@ -29,7 +29,6 @@ module "vpc" {
   dhcp_options_domain_name_servers = ["AmazonProvidedDNS"]
 
   enable_ipv6                                   = var.enable_ipv6
-  assign_ipv6_address_on_creation               = var.enable_ipv6
   public_subnet_assign_ipv6_address_on_creation = var.enable_ipv6
   public_subnet_ipv6_prefixes                   = range(length(local.vpc_azs))
 }
@@ -107,23 +106,22 @@ module "alb" {
 
 module "asg" {
   source  = "terraform-aws-modules/autoscaling/aws"
-  version = "~> 3.0"
+  version = "~> 7.0"
 
   name = "${local.prefix}-asg"
 
-  image_id                    = data.aws_ssm_parameter.ami_image.value
-  instance_type               = "t2.micro"
-  security_groups             = [module.ec2_security_group.security_group_id]
-  vpc_zone_identifier         = module.vpc.public_subnets
-  min_size                    = 1
-  max_size                    = 2
-  desired_capacity            = 1
-  health_check_type           = "EC2"
-  associate_public_ip_address = true
+  image_id            = data.aws_ssm_parameter.ami_image.value
+  instance_type       = "t2.micro"
+  security_groups     = [module.ec2_security_group.security_group_id]
+  vpc_zone_identifier = module.vpc.public_subnets
+  min_size            = 1
+  max_size            = 2
+  desired_capacity    = 1
+  health_check_type   = "EC2"
   user_data = templatefile("../../templates/ec2_userdata.tpl", {
     ecs_cluster = module.ecs_cluster.name
   })
-  iam_instance_profile = var.instance_profile_arn
+  iam_instance_profile_arn = var.instance_profile_arn
 }
 
 # This module usage starts here
