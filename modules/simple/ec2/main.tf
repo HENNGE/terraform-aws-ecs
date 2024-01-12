@@ -45,8 +45,7 @@ module "ec2" {
     }
   ]
 
-  service_placement_constraints = var.service_placement_constraints
-  task_placement_constraints    = var.task_placement_constraints
+  service_placement_constraints = var.distinct_instance ? [{ type = "distinctInstance" }] : []
 
   wait_for_steady_state = var.wait_for_steady_state
 

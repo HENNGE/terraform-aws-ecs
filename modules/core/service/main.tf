@@ -73,8 +73,8 @@ resource "aws_ecs_service" "main" {
   dynamic "placement_constraints" {
     for_each = var.service_placement_constraints
     content {
-      type       = lookup(service_placement_constraints.value, "type", null)
-      expression = lookup(service_placement_constraints.value, "expression", null)
+      type       = lookup(placement_constraints.value, "type", null)
+      expression = lookup(placement_constraints.value, "expression", null)
     }
   }
 
@@ -173,8 +173,8 @@ resource "aws_ecs_service" "main_ignore_desired_count_changes" {
   dynamic "placement_constraints" {
     for_each = var.service_placement_constraints
     content {
-      type       = lookup(service_placement_constraints.value, "type", null)
-      expression = lookup(service_placement_constraints.value, "expression", null)
+      type       = lookup(placement_constraints.value, "type", null)
+      expression = lookup(placement_constraints.value, "expression", null)
     }
   }
 
