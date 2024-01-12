@@ -45,7 +45,8 @@ module "ec2" {
     }
   ]
 
-  placement_constraints = var.placement_constraints
+  service_placement_constraints = var.service_placement_constraints
+  task_placement_constraints    = var.task_placement_constraints
 
   wait_for_steady_state = var.wait_for_steady_state
 

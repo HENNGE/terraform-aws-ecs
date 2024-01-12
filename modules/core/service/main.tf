@@ -71,10 +71,10 @@ resource "aws_ecs_service" "main" {
   }
 
   dynamic "placement_constraints" {
-    for_each = var.placement_constraints
+    for_each = var.service_placement_constraints
     content {
-      type       = lookup(placement_constraints.value, "type", null)
-      expression = lookup(placement_constraints.value, "expression", null)
+      type       = lookup(service_placement_constraints.value, "type", null)
+      expression = lookup(service_placement_constraints.value, "expression", null)
     }
   }
 
@@ -171,10 +171,10 @@ resource "aws_ecs_service" "main_ignore_desired_count_changes" {
   }
 
   dynamic "placement_constraints" {
-    for_each = var.placement_constraints
+    for_each = var.service_placement_constraints
     content {
-      type       = lookup(placement_constraints.value, "type", null)
-      expression = lookup(placement_constraints.value, "expression", null)
+      type       = lookup(service_placement_constraints.value, "type", null)
+      expression = lookup(service_placement_constraints.value, "expression", null)
     }
   }
 
@@ -205,7 +205,7 @@ module "task" {
   memory                  = var.task_memory
   requires_compatibilites = var.task_requires_compatibilites
   volume_configurations   = var.task_volume_configurations
-  placement_constraints   = var.placement_constraints
+  placement_constraints   = var.task_placement_constraints
   inference_accelerator   = var.task_inference_accelerator
   proxy_configuration     = var.task_proxy_configuration
   runtime_platform        = var.task_runtime_platform

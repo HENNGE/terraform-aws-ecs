@@ -22,7 +22,7 @@ Since this module is the closest to the `resources` form, there are a lot of cus
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.74.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.32.0 |
 
 ## Modules
 
@@ -64,10 +64,10 @@ Since this module is the closest to the `resources` form, there are a lot of cus
 | <a name="input_name"></a> [name](#input\_name) | The service name. | `string` | n/a | yes |
 | <a name="input_network_configuration"></a> [network\_configuration](#input\_network\_configuration) | Map of a network configuration for the service. This parameter is required for task definitions that use the awsvpc network mode to receive their own Elastic Network Interface, and it is not supported for other network modes. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service#network_configuration) | `any` | `null` | no |
 | <a name="input_ordered_placement_strategy"></a> [ordered\_placement\_strategy](#input\_ordered\_placement\_strategy) | List of map of service level strategy rules that are taken into consideration during task placement. List from top to bottom in order of precedence. Max 5. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service#ordered_placement_strategy) | `list(any)` | `[]` | no |
-| <a name="input_placement_constraints"></a> [placement\_constraints](#input\_placement\_constraints) | List of map of placement constraints for Task Definition. Max 10. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service#placement_constraints) | `list(any)` | `[]` | no |
 | <a name="input_platform_version"></a> [platform\_version](#input\_platform\_version) | The platform version on which to run your service. Only applicable for `launch_type` set to `FARGATE`. Defaults to `LATEST`. [AWS Docs](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html) | `string` | `null` | no |
 | <a name="input_propagate_tags"></a> [propagate\_tags](#input\_propagate\_tags) | Specifies whether to propagate the tags from the task definition or the service to the tasks. The valid values are `SERVICE` and `TASK_DEFINITION`. | `string` | `null` | no |
 | <a name="input_scheduling_strategy"></a> [scheduling\_strategy](#input\_scheduling\_strategy) | The scheduling strategy to use for the service. The valid values are `REPLICA` and `DAEMON`. Fargate Tasks do not support `DAEMON` scheduling strategy. | `string` | `null` | no |
+| <a name="input_service_placement_constraints"></a> [service\_placement\_constraints](#input\_service\_placement\_constraints) | List of map of placement constraints for Service. Max 10. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service#placement_constraints) | `list(any)` | `[]` | no |
 | <a name="input_service_registry"></a> [service\_registry](#input\_service\_registry) | Map of a service discovery registries for the service. Consists of `registry_arn`, `port`(optional), `container_port`(optional), `container_port`(optional). [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service#service_registries) | `any` | `null` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Key-value mapping of resource tags | `map(string)` | `{}` | no |
 | <a name="input_task_cpu"></a> [task\_cpu](#input\_task\_cpu) | Task level CPU units. | `number` | `null` | no |
@@ -77,6 +77,7 @@ Since this module is the closest to the `resources` form, there are a lot of cus
 | <a name="input_task_memory"></a> [task\_memory](#input\_task\_memory) | Task level Memory units. | `number` | `null` | no |
 | <a name="input_task_network_mode"></a> [task\_network\_mode](#input\_task\_network\_mode) | The network mode for container. | `string` | `"bridge"` | no |
 | <a name="input_task_pid_mode"></a> [task\_pid\_mode](#input\_task\_pid\_mode) | The process namespace to use for the containers in the task. The valid values are `host` and `task`. | `string` | `null` | no |
+| <a name="input_task_placement_constraints"></a> [task\_placement\_constraints](#input\_task\_placement\_constraints) | Placement constraints for Task Definition. List of map. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#placement_constraints) | `list(any)` | `[]` | no |
 | <a name="input_task_proxy_configuration"></a> [task\_proxy\_configuration](#input\_task\_proxy\_configuration) | The proxy configuration details for the App Mesh proxy. Defined as map argument. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#proxy_configuration) | `any` | `null` | no |
 | <a name="input_task_requires_compatibilites"></a> [task\_requires\_compatibilites](#input\_task\_requires\_compatibilites) | A set of launch types required by the task. The valid values are `EC2` and `FARGATE`. | `list(string)` | <pre>[<br>  "EC2"<br>]</pre> | no |
 | <a name="input_task_runtime_platform"></a> [task\_runtime\_platform](#input\_task\_runtime\_platform) | Runtime platform (operating system and CPU architecture) that containers may use. Defined as map argument. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#runtime_platform) | `any` | `null` | no |

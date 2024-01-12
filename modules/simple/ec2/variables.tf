@@ -149,7 +149,13 @@ variable "capacity_provider_arn" {
   type        = string
 }
 
-variable "placement_constraints" {
+variable "service_placement_constraints" {
+  description = "List of map of placement constraints for Service. Max 10. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service#placement_constraints)"
+  default     = []
+  type        = list(any)
+}
+
+variable "task_placement_constraints" {
   description = "Placement constraints for Task Definition. List of map. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#placement_constraints)"
   default     = []
   type        = list(any)
