@@ -38,7 +38,7 @@ $ terraform apply
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.32.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.74.0 |
 
 ## Modules
 
@@ -81,5 +81,3 @@ $ terraform apply
 |------|-------------|
 | <a name="output_load_balancer_dns"></a> [load\_balancer\_dns](#output\_load\_balancer\_dns) | Accessible load balancer DNS |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
-

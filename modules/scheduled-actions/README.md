@@ -82,7 +82,7 @@ module "ecs_fargate_cron" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.32.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.74.0 |
 
 ## Modules
 
@@ -156,4 +156,3 @@ The template is as follows:
 ```
 
 This template is taken from `AWS managed policy`, the policy name is `AmazonEC2ContainerServiceEventsRole`
-

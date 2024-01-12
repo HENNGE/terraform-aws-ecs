@@ -16,7 +16,7 @@ Module to generate IAM Instance Profile (and Role) for EC2 instances backing ECS
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.32.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.74.0 |
 
 ## Modules
 
@@ -44,5 +44,3 @@ No modules.
 |------|-------------|
 | <a name="output_iam_instance_profile_id"></a> [iam\_instance\_profile\_id](#output\_iam\_instance\_profile\_id) | Instance Profile id |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
-

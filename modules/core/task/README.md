@@ -18,7 +18,7 @@ Almost a 1-1 mapping to `resources`.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.32.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.74.0 |
 
 ## Modules
 
@@ -60,5 +60,3 @@ No modules.
 | <a name="output_name"></a> [name](#output\_name) | The created task definition name |
 | <a name="output_revision"></a> [revision](#output\_revision) | The revision number of the task definition |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
-

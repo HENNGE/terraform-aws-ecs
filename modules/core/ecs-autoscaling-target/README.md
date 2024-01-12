@@ -61,7 +61,7 @@ module "ecs_service_scaling_target" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.32.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.74.0 |
 
 ## Modules
 
@@ -94,5 +94,3 @@ No modules.
 | <a name="output_scalable_dimension"></a> [scalable\_dimension](#output\_scalable\_dimension) | Scalable dimension for autoscaling target. Always ecs:service:DesiredCount. |
 | <a name="output_service_namespace"></a> [service\_namespace](#output\_service\_namespace) | Service namespace for autoscaling target. Always ecs |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
-

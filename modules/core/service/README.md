@@ -22,7 +22,7 @@ Since this module is the closest to the `resources` form, there are a lot of cus
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.32.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.74.0 |
 
 ## Modules
 
@@ -96,5 +96,3 @@ Since this module is the closest to the `resources` form, there are a lot of cus
 | <a name="output_task_definition_name"></a> [task\_definition\_name](#output\_task\_definition\_name) | The name (family) of created Task Definition. |
 | <a name="output_task_definition_revision"></a> [task\_definition\_revision](#output\_task\_definition\_revision) | The revision of the task in a particular family |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
-
