@@ -149,6 +149,12 @@ variable "capacity_provider_arn" {
   type        = string
 }
 
+variable "placement_constraints" {
+  description = "Placement constraints for Task Definition. List of map. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#placement_constraints)"
+  default     = []
+  type        = list(any)
+}
+
 variable "enable_deployment_circuit_breaker_without_rollback" {
   description = "Enable Deployment Circuit Breaker without Rollback."
   default     = false
