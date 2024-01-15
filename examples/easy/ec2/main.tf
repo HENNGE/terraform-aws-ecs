@@ -28,6 +28,8 @@ module "vpc" {
   enable_dhcp_options              = true
   dhcp_options_domain_name_servers = ["AmazonProvidedDNS"]
 
+  map_public_ip_on_launch = true
+
   enable_ipv6                                   = var.enable_ipv6
   public_subnet_assign_ipv6_address_on_creation = var.enable_ipv6
   public_subnet_ipv6_prefixes                   = range(length(local.vpc_azs))
@@ -66,9 +68,9 @@ module "asg" {
   max_size            = 2
   desired_capacity    = 1
   health_check_type   = "EC2"
-  user_data = templatefile("../../templates/ec2_userdata.tpl", {
+  user_data = base64encode(templatefile("../../templates/ec2_userdata.tpl", {
     ecs_cluster = module.ecs_cluster.name
-  })
+  }))
   iam_instance_profile_arn = var.instance_profile_arn
 }
 

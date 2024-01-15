@@ -156,4 +156,3 @@ The template is as follows:
 ```
 
 This template is taken from `AWS managed policy`, the policy name is `AmazonEC2ContainerServiceEventsRole`
-

@@ -7,7 +7,7 @@ data "aws_ssm_parameter" "ami_image" {
 }
 
 locals {
-  prefix = "easy-ec2-alb"
+  prefix = "easy-ec2"
 
   vpc_cidr       = "10.0.0.0/16"
   discovered_azs = data.aws_availability_zones.available.names
@@ -35,12 +35,13 @@ module "vpc" {
   public_subnet_ipv6_prefixes                   = range(length(local.vpc_azs))
 }
 
-module "alb_security_group" {
+module "ec2_security_group" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 4.0"
 
-  name   = "${local.prefix}-alb-sg"
+  name   = "${local.prefix}-ec2-sg"
   vpc_id = module.vpc.vpc_id
+
 
   # Ingress for HTTP
   ingress_cidr_blocks      = ["0.0.0.0/0"]
@@ -51,59 +52,6 @@ module "alb_security_group" {
   egress_cidr_blocks      = ["0.0.0.0/0"]
   egress_ipv6_cidr_blocks = ["::/0"]
   egress_rules            = ["all-all"]
-}
-
-module "ec2_security_group" {
-  source  = "terraform-aws-modules/security-group/aws"
-  version = "~> 4.0"
-
-  name   = "${local.prefix}-ec2-sg"
-  vpc_id = module.vpc.vpc_id
-
-
-  # Ingress from ALB only
-  number_of_computed_ingress_with_source_security_group_id = 1
-  computed_ingress_with_source_security_group_id = [
-    {
-      rule                     = "all-all"
-      source_security_group_id = module.alb_security_group.security_group_id
-    }
-  ]
-
-  # Allow all egress
-  egress_cidr_blocks      = ["0.0.0.0/0"]
-  egress_ipv6_cidr_blocks = ["::/0"]
-  egress_rules            = ["all-all"]
-}
-
-module "alb" {
-  source  = "terraform-aws-modules/alb/aws"
-  version = "5.13.0"
-
-  name               = "${local.prefix}-alb"
-  load_balancer_type = "application"
-  security_groups    = [module.alb_security_group.security_group_id]
-  subnets            = module.vpc.public_subnets
-  vpc_id             = module.vpc.vpc_id
-
-  ip_address_type = var.enable_ipv6 ? "dualstack" : "ipv4"
-
-  listener_ssl_policy_default = "ELBSecurityPolicy-2016-08"
-  http_tcp_listeners = [
-    {
-      target_group_index = 0
-      port               = 80
-      protocol           = "HTTP"
-    },
-  ]
-  target_groups = [
-    {
-      name             = "${local.prefix}-app"
-      backend_protocol = "HTTP"
-      backend_port     = 80
-      target_type      = "instance"
-    },
-  ]
 }
 
 module "asg" {
@@ -117,8 +65,8 @@ module "asg" {
   security_groups     = [module.ec2_security_group.security_group_id]
   vpc_zone_identifier = module.vpc.public_subnets
   min_size            = 1
-  max_size            = 2
-  desired_capacity    = 1
+  max_size            = 5
+  desired_capacity    = 3
   health_check_type   = "EC2"
   user_data = base64encode(templatefile("../../templates/ec2_userdata.tpl", {
     ecs_cluster = module.ecs_cluster.name
@@ -133,26 +81,23 @@ module "ecs_cluster" {
   name = "${local.prefix}-cluster"
 }
 
-module "easy_ec2" {
+module "easy_ec2_distinct_instance_mode" {
   source = "../../../modules/simple/ec2"
 
   name                         = "${local.prefix}-service"
   cluster                      = module.ecs_cluster.name
-  cpu                          = 128
-  memory                       = 128
+  cpu                          = 256
+  memory                       = 512
   desired_count                = 3
   ignore_desired_count_changes = false
 
-  # Workaround when destroy fails
-  target_group_arn = length(module.alb.target_group_arns) == 0 ? "" : module.alb.target_group_arns[0]
-  # container_name must be the same with the name defined in container_definitions!
-  container_name = "${local.prefix}-cont"
-  # Exposed container port, same as in `containerPort` in container_definitions
-  container_port = 80
+  network_mode = "host"
 
-  container_definitions = templatefile("../../templates/container_definitions_ec2_dynamic.tpl", {
+  distinct_instance = true
+
+  container_definitions = templatefile("../../templates/container_definitions.tpl", {
     name   = "${local.prefix}-cont"
-    cpu    = 128
-    memory = 128
+    cpu    = 256
+    memory = 512
   })
 }

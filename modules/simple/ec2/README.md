@@ -49,6 +49,7 @@ No resources.
 | <a name="input_deployment_maximum_percent"></a> [deployment\_maximum\_percent](#input\_deployment\_maximum\_percent) | upper limit (% of `desired_count`) of # of running tasks during a deployment. Do not fill when using `DAEMON` scheduling strategy. | `number` | `null` | no |
 | <a name="input_deployment_minimum_healthy_percent"></a> [deployment\_minimum\_healthy\_percent](#input\_deployment\_minimum\_healthy\_percent) | lower limit (% of `desired_count`) of # of running tasks during a deployment | `number` | `100` | no |
 | <a name="input_desired_count"></a> [desired\_count](#input\_desired\_count) | The number of instances of the task definition to place and keep running. Defaults to 0. Do not specify if using the `DAEMON` scheduling strategy. | `number` | `null` | no |
+| <a name="input_distinct_instance"></a> [distinct\_instance](#input\_distinct\_instance) | Make the service run tasks in distinct instance. Sets the service\_placement\_constraints to distinctInstance. | `bool` | `false` | no |
 | <a name="input_elb_name"></a> [elb\_name](#input\_elb\_name) | Name of ELB (Classic ELB) to associate with the service | `string` | `null` | no |
 | <a name="input_enable_deployment_circuit_breaker_with_rollback"></a> [enable\_deployment\_circuit\_breaker\_with\_rollback](#input\_enable\_deployment\_circuit\_breaker\_with\_rollback) | Enable Deployment Circuit Breaker with Rollback. When a service deployment fails, the service is rolled back to the last deployment that completed successfully. | `bool` | `false` | no |
 | <a name="input_enable_deployment_circuit_breaker_without_rollback"></a> [enable\_deployment\_circuit\_breaker\_without\_rollback](#input\_enable\_deployment\_circuit\_breaker\_without\_rollback) | Enable Deployment Circuit Breaker without Rollback. | `bool` | `false` | no |
@@ -84,5 +85,3 @@ No resources.
 | <a name="output_task_definition_name"></a> [task\_definition\_name](#output\_task\_definition\_name) | The name (family) of created Task Definition. |
 | <a name="output_task_definition_revision"></a> [task\_definition\_revision](#output\_task\_definition\_revision) | The revision of the task in a particular family |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
-

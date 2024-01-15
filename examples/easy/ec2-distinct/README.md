@@ -1,23 +1,29 @@
-# examples/easy/ec2-alb
+# examples/easy/ec2-distinct
 
-In this example we'll instantiate a simple nginx webserver placed behind an `Application Load Balancer`.
+In this example we'll instantiate a simple nginx webserver running in **3 distinct instances**.
 
-Task networking mode in this example is `bridge` and will use dynamic port mapping, thus we can have multiple task running in 1 ec2 instance.
+Task networking mode in this example is `host` so that the port specified in `templates/container_definitions.tpl` will be bind.
+Means there cannot be more than 1 task in an instance. Do experiment with dynamic port mapping with `bridge` network mode.
 
 This example will also create `vpc` and `security_group` and `autoscaling group`.
 
 Note: Instance profile is required for EC2 to connect to ECS Cluster. See [`modules/iam/ecs-instance-profile`](https://github.com/HENNGE/terraform-aws-ecs/tree/main/modules/iam/ecs-instance-profile).
 
 To test that it's working:
-1. Go to ECS Console
-1. Find the created ECS cluster, click the cluster, you should see the cluster info screen
-1. Click on the service
-1. Go to `Tasks` tab
-1. Click on one of the task
-1. Find the public IP of the task
-1. Try putting the IP to your browser, you should *NOT* see nginx hello world screen (this example blocks traffic with security group, disabling public ip assignment to fargate should also work if the container does not need to actively contact the outside world)
-1. Try putting DNS outputted by the example / find the DNS name of created Load Balancer
-1. Nginx hello world screen should appear
+1. Go to EC2 console
+1. Find the EC2 instance started by this example. (Search the name)
+1. Go to the IP Address, you should see nginx hello world screen
+
+## Usage
+
+To run this example you need to execute:
+
+```bash
+$ terraform init
+$ terraform plan
+$ terraform apply
+```
+
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -37,10 +43,8 @@ To test that it's working:
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_alb"></a> [alb](#module\_alb) | terraform-aws-modules/alb/aws | 5.13.0 |
-| <a name="module_alb_security_group"></a> [alb\_security\_group](#module\_alb\_security\_group) | terraform-aws-modules/security-group/aws | ~> 4.0 |
 | <a name="module_asg"></a> [asg](#module\_asg) | terraform-aws-modules/autoscaling/aws | ~> 7.0 |
-| <a name="module_easy_ec2"></a> [easy\_ec2](#module\_easy\_ec2) | ../../../modules/simple/ec2 | n/a |
+| <a name="module_easy_ec2_distinct_instance_mode"></a> [easy\_ec2\_distinct\_instance\_mode](#module\_easy\_ec2\_distinct\_instance\_mode) | ../../../modules/simple/ec2 | n/a |
 | <a name="module_ec2_security_group"></a> [ec2\_security\_group](#module\_ec2\_security\_group) | terraform-aws-modules/security-group/aws | ~> 4.0 |
 | <a name="module_ecs_cluster"></a> [ecs\_cluster](#module\_ecs\_cluster) | ../../.. | n/a |
 | <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-aws-modules/vpc/aws | ~> 5.0 |
@@ -62,7 +66,5 @@ To test that it's working:
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| <a name="output_load_balancer_dns"></a> [load\_balancer\_dns](#output\_load\_balancer\_dns) | Accessible load balancer DNS |
+No outputs.
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

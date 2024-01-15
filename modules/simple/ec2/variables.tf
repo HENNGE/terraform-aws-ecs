@@ -149,6 +149,12 @@ variable "capacity_provider_arn" {
   type        = string
 }
 
+variable "distinct_instance" {
+  description = "Make the service run tasks in distinct instance. Sets the service_placement_constraints to distinctInstance."
+  default     = false
+  type        = bool
+}
+
 variable "enable_deployment_circuit_breaker_without_rollback" {
   description = "Enable Deployment Circuit Breaker without Rollback."
   default     = false

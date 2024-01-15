@@ -60,5 +60,3 @@ No modules.
 | <a name="output_name"></a> [name](#output\_name) | The created task definition name |
 | <a name="output_revision"></a> [revision](#output\_revision) | The revision number of the task definition |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
-

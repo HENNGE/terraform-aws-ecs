@@ -45,6 +45,8 @@ module "ec2" {
     }
   ]
 
+  service_placement_constraints = var.distinct_instance ? [{ type = "distinctInstance" }] : []
+
   wait_for_steady_state = var.wait_for_steady_state
 
   enable_ecs_managed_tags = var.enable_ecs_managed_tags
