@@ -77,6 +77,12 @@ variable "network_mode" {
   type        = string
 }
 
+variable "network_configuration" {
+  description = "Map of a network configuration for the service. This parameter is required for task definitions that use the awsvpc network mode to receive their own Elastic Network Interface, and it is not supported for other network modes. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service#network_configuration)"
+  default     = null
+  type        = any
+}
+
 variable "elb_name" {
   description = "Name of ELB (Classic ELB) to associate with the service"
   default     = null
