@@ -69,3 +69,15 @@ variable "capacity_provider_strategy" {
   default     = []
   type        = list(any)
 }
+
+variable "propagate_tags" {
+  description = "Specifies whether to propagate the tags from the task definition to the task."
+  default     = false
+  type        = bool
+}
+
+variable "tags" {
+  description = "A map of tags to assign to ecs resources."
+  default     = null
+  type        = map(string)
+}
