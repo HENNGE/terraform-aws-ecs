@@ -31,6 +31,9 @@ resource "aws_cloudwatch_event_target" "target" {
         base              = lookup(capacity_provider_strategy.value, "base", null)
       }
     }
+
+    propagate_tags = var.propagate_tags ? "TASK_DEFINITION" : null
+    tags           = var.tags
   }
 
   input = var.container_overrides

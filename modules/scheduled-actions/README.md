@@ -108,8 +108,10 @@ No modules.
 | <a name="input_iam_invoker"></a> [iam\_invoker](#input\_iam\_invoker) | IAM ARN to invoke ECS Task | `string` | n/a | yes |
 | <a name="input_is_fargate"></a> [is\_fargate](#input\_is\_fargate) | Task is fargate | `bool` | `false` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name for scheduled action | `string` | n/a | yes |
+| <a name="input_propagate_tags"></a> [propagate\_tags](#input\_propagate\_tags) | Specifies whether to propagate the tags from the task definition to the task. | `bool` | `false` | no |
 | <a name="input_schedule_description"></a> [schedule\_description](#input\_schedule\_description) | The description of the rule | `string` | `"Cloudwatch event rule to invoke ECS Task"` | no |
 | <a name="input_schedule_rule"></a> [schedule\_rule](#input\_schedule\_rule) | Schedule in cron or rate (see: https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html for rules) | `string` | n/a | yes |
+| <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to assign to ecs resources. | `map(string)` | `null` | no |
 | <a name="input_task_count"></a> [task\_count](#input\_task\_count) | Desired ECS Task count to run | `number` | n/a | yes |
 | <a name="input_task_definition_arn"></a> [task\_definition\_arn](#input\_task\_definition\_arn) | Task definition ARN to run | `string` | n/a | yes |
 
