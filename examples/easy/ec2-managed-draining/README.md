@@ -1,7 +1,7 @@
 # examples/easy/ec2-managed-draining
 
 In this example we'll instantiate a simple nginx webserver, running on EC2 Auto Scaling Group, with managed draining feature enabled.
-This means ECS will monitor the Auto Scaling Group and set an instance status to draining when it's scheduled for termination.
+This means ECS will monitor the Auto Scaling Group and set an instance's status to draining when it's scheduled for termination.
 With draining status set, ECS will safely terminate all tasks running on the instance and create replacement tasks in other instance(s).
 
 Note: Instance profile is required for EC2 to connect to ECS Cluster. See [`modules/iam/ecs-instance-profile`](https://github.com/HENNGE/terraform-aws-ecs/tree/main/modules/iam/ecs-instance-profile).
