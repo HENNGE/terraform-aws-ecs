@@ -1,11 +1,8 @@
-# examples/easy/ec2
+# examples/easy/ec2-managed-draining
 
-In this example we'll instantiate a simple nginx webserver.
-
-Task networking mode in this example is `host` so that the port specified in `templates/container_definitions.tpl` will be bind.
-Means there cannot be more than 1 task in an instance. Do experiment with dynamic port mapping with `bridge` network mode.
-
-This example will also create `vpc` and `security_group` and `autoscaling group`.
+In this example we'll instantiate a simple nginx webserver, running on EC2 Auto Scaling Group, with managed draining feature enabled.
+This means ECS will monitor the Auto Scaling Group and set an instance status to draining when it's scheduled for termination.
+With draining status set, ECS will safely terminate all tasks running on the instance and create replacement tasks in other instance(s).
 
 Note: Instance profile is required for EC2 to connect to ECS Cluster. See [`modules/iam/ecs-instance-profile`](https://github.com/HENNGE/terraform-aws-ecs/tree/main/modules/iam/ecs-instance-profile).
 
@@ -53,6 +50,7 @@ $ terraform apply
 
 | Name | Type |
 |------|------|
+| [aws_ecs_capacity_provider.asg_managed_draining](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_capacity_provider) | resource |
 | [aws_availability_zones.available](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones) | data source |
 | [aws_ssm_parameter.ami_image](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ssm_parameter) | data source |
 

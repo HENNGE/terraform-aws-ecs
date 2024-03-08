@@ -79,7 +79,7 @@ module "asg" {
 }
 
 resource "aws_ecs_capacity_provider" "asg_managed_draining" {
-  name = "${local.prefix}-capacity-provider-asg-managed-draining"
+  name = "${local.prefix}-capacity-provider"
 
   auto_scaling_group_provider {
     auto_scaling_group_arn = module.asg.autoscaling_group_arn
