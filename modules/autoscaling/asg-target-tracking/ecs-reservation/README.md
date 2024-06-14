@@ -34,7 +34,7 @@ Autocreated by aws:
 ## Assumptions
 
 - ECS Cluster made by `HENNGE/ecs/aws`.
-- ASG made by `autoscaling` module on registry / HENNGE's `autoscaling-mixed-instances`
+- ASG made by `autoscaling` module on registry
 - ECS Cluster EC2 Instances are not running on full capacity (remaining capacity is sufficient to start new tasks)
 - Scaling interval is set on ASG side (`default_cooldown`)
 
