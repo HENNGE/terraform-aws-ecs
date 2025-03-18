@@ -74,6 +74,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_capacity_providers"></a> [capacity\_providers](#input\_capacity\_providers) | List of short names or full Amazon Resource Names (ARNs) of one or more capacity providers to associate with the cluster. Valid values also include `FARGATE` and `FARGATE_SPOT`. | `list(string)` | `null` | no |
+| <a name="input_container_insights_enhanced"></a> [container\_insights\_enhanced](#input\_container\_insights\_enhanced) | Use container insights with enhanced observability. | `bool` | `false` | no |
 | <a name="input_default_capacity_provider_strategy"></a> [default\_capacity\_provider\_strategy](#input\_default\_capacity\_provider\_strategy) | The capacity provider strategy to use by default for the cluster. Can be one or more. List of map with corresponding items in docs. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_cluster#default_capacity_provider_strategy) | `list(any)` | `[]` | no |
 | <a name="input_enable_container_insights"></a> [enable\_container\_insights](#input\_enable\_container\_insights) | Enable container insights. | `bool` | `false` | no |
 | <a name="input_execute_command_configuration"></a> [execute\_command\_configuration](#input\_execute\_command\_configuration) | Map with execute command configuration. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_cluster#execute_command_configuration) | `any` | `null` | no |

@@ -17,7 +17,7 @@ resource "aws_ecs_cluster" "main" {
     for_each = var.enable_container_insights ? [1] : []
     content {
       name  = "containerInsights"
-      value = "enabled"
+      value = var.container_insights_enhanced ? "enhanced" : "enabled"
     }
   }
 
