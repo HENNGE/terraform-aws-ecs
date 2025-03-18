@@ -27,6 +27,12 @@ variable "enable_container_insights" {
   type        = bool
 }
 
+variable "container_insights_enhanced" {
+  description = "Use container insights with enhanced observability."
+  default     = false
+  type        = bool
+}
+
 variable "execute_command_configuration" {
   description = "Map with execute command configuration. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_cluster#execute_command_configuration)"
   default     = null
