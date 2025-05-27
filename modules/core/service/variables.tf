@@ -267,3 +267,9 @@ variable "task_runtime_platform" {
   default     = null
   type        = any
 }
+
+variable "availability_zone_rebalancing" {
+  description = "Enable ECS to automatically redistributes tasks within a service across Availability Zones (AZs)."
+  default     = "DISABLED"
+  type        = string
+}

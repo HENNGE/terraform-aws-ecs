@@ -21,6 +21,7 @@ resource "aws_ecs_service" "main" {
   propagate_tags                     = var.propagate_tags
   scheduling_strategy                = var.scheduling_strategy
   wait_for_steady_state              = var.wait_for_steady_state
+  availability_zone_rebalancing      = var.availability_zone_rebalancing
 
   deployment_controller {
     type = var.deployment_controller
@@ -121,6 +122,7 @@ resource "aws_ecs_service" "main_ignore_desired_count_changes" {
   propagate_tags                     = var.propagate_tags
   scheduling_strategy                = var.scheduling_strategy
   wait_for_steady_state              = var.wait_for_steady_state
+  availability_zone_rebalancing      = var.availability_zone_rebalancing
 
   deployment_controller {
     type = var.deployment_controller
