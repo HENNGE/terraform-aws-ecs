@@ -15,7 +15,7 @@ The root module (this) only creates `ecs_cluster`, to create other resources, pl
 
 Supports only Terraform ~> 0.12.
 
-Requires Terraform AWS Provider version >=2.42.0 for Capacity Provider options.
+Requires Terraform AWS Provider version >=5.85.0.
 
 ## Usage
 
