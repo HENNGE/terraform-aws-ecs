@@ -23,3 +23,15 @@ variable "ignore_capacity_changes" {
   default     = false
   type        = bool
 }
+
+variable "role_arn" {
+  description = "ARN of the IAM role that allows Application AutoScaling to modify your scalable target on your behalf. This defaults to an IAM Service-Linked Role for most services and custom IAM Roles are ignored by the API for those namespaces."
+  default     = null
+  type        = string
+}
+
+variable "suspended_state" {
+  description = "Specifies whether the scaling activities for a scalable target are in a suspended state."
+  default     = null
+  type        = map(bool)
+}
