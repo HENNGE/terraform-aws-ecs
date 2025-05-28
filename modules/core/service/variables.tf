@@ -60,6 +60,18 @@ variable "iam_daemon_role" {
 # Service Section
 #################
 
+variable "alarms" {
+  description = "List of CloudWatch alarms to monitor for the service. If any alarm is in ALARM state, the service will be marked as unhealthy and will be stopped."
+  default     = []
+  type        = list(any)
+}
+
+variable "availability_zone_rebalancing" {
+  description = "If `true`, ECS will rebalance tasks across Availability Zones in the cluster when a new task is launched. This is only applicable to services that use the `REPLICA` scheduling strategy."
+  default     = "DISABLED"
+  type        = string
+}
+
 variable "desired_count" {
   description = "The number of instances of the task definition to place and keep running. Defaults to 0. Do not specify if using the `DAEMON` scheduling strategy."
   default     = null
@@ -113,6 +125,12 @@ variable "enable_deployment_circuit_breaker_with_rollback" {
   type        = bool
 }
 
+variable "force_delete" {
+  description = "Enable to delete a service even if it wasn't scaled down to zero tasks. It's only necessary to use this if the service uses the REPLICA scheduling strategy."
+  default     = false
+  type        = bool
+}
+
 variable "force_new_deployment" {
   description = "Enable to force a new task deployment of the service. This can be used to update tasks to use a newer Docker image with same image/tag combination (e.g. `myimage:latest`), roll Fargate tasks onto a newer platform version, or immediately deploy `ordered_placement_strategy` and `placement_constraints` updates."
   default     = null
@@ -126,7 +144,7 @@ variable "health_check_grace_period_seconds" {
 }
 
 variable "launch_type" {
-  description = "The launch type on which to run your service. The valid values are `EC2` or `FARGATE`."
+  description = "The launch type on which to run your service. The valid values are `EC2`,  `FARGATE` or `EXTERNAL`."
   default     = null
   type        = string
 }
@@ -143,10 +161,22 @@ variable "propagate_tags" {
   type        = string
 }
 
+variable "service_connect_configuration" {
+  description = "The ECS Service Connect configuration for this service to discover and connect to services, and be discovered by, and connected from, other services within a namespace"
+  type        = any
+  default     = null
+}
+
 variable "scheduling_strategy" {
   description = "The scheduling strategy to use for the service. The valid values are `REPLICA` and `DAEMON`. Fargate Tasks do not support `DAEMON` scheduling strategy."
   default     = null
   type        = string
+}
+
+variable "triggers" {
+  description = "Map of arbitrary keys and values that, when changed, will trigger an in-place update (redeployment). Useful with `timestamp()`"
+  type        = any
+  default     = {}
 }
 
 variable "wait_for_steady_state" {
@@ -266,4 +296,10 @@ variable "task_runtime_platform" {
   description = "Runtime platform (operating system and CPU architecture) that containers may use. Defined as map argument. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#runtime_platform)"
   default     = null
   type        = any
+}
+
+variable "vpc_lattice_configurations" {
+  description = "The VPC Lattice configuration for your service that allows Lattice to connect, secure, and monitor your service across multiple accounts and VPCs"
+  default     = []
+  type        = list(any)
 }
