@@ -16,13 +16,13 @@ Since this module is the closest to the `resources` form, there are a lot of cus
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.74.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.77.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.74.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.77.0 |
 
 ## Modules
 
@@ -41,6 +41,7 @@ Since this module is the closest to the `resources` form, there are a lot of cus
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_availability_zone_rebalancing"></a> [availability\_zone\_rebalancing](#input\_availability\_zone\_rebalancing) | Enable ECS to automatically redistributes tasks within a service across Availability Zones (AZs). | `string` | `"DISABLED"` | no |
 | <a name="input_capacity_provider_strategy"></a> [capacity\_provider\_strategy](#input\_capacity\_provider\_strategy) | List of map of the capacity provider strategy to use for the service. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service#capacity_provider_strategy) | `list(any)` | `[]` | no |
 | <a name="input_cluster"></a> [cluster](#input\_cluster) | The cluster name or ARN. | `string` | n/a | yes |
 | <a name="input_container_definitions"></a> [container\_definitions](#input\_container\_definitions) | Container definitions raw json string or rendered template. Not required if `create_task_definition` is `false`. | `string` | `null` | no |
@@ -79,7 +80,7 @@ Since this module is the closest to the `resources` form, there are a lot of cus
 | <a name="input_task_pid_mode"></a> [task\_pid\_mode](#input\_task\_pid\_mode) | The process namespace to use for the containers in the task. The valid values are `host` and `task`. | `string` | `null` | no |
 | <a name="input_task_placement_constraints"></a> [task\_placement\_constraints](#input\_task\_placement\_constraints) | Placement constraints for Task Definition. List of map. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#placement_constraints) | `list(any)` | `[]` | no |
 | <a name="input_task_proxy_configuration"></a> [task\_proxy\_configuration](#input\_task\_proxy\_configuration) | The proxy configuration details for the App Mesh proxy. Defined as map argument. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#proxy_configuration) | `any` | `null` | no |
-| <a name="input_task_requires_compatibilites"></a> [task\_requires\_compatibilites](#input\_task\_requires\_compatibilites) | A set of launch types required by the task. The valid values are `EC2` and `FARGATE`. | `list(string)` | <pre>[<br>  "EC2"<br>]</pre> | no |
+| <a name="input_task_requires_compatibilites"></a> [task\_requires\_compatibilites](#input\_task\_requires\_compatibilites) | A set of launch types required by the task. The valid values are `EC2` and `FARGATE`. | `list(string)` | <pre>[<br/>  "EC2"<br/>]</pre> | no |
 | <a name="input_task_runtime_platform"></a> [task\_runtime\_platform](#input\_task\_runtime\_platform) | Runtime platform (operating system and CPU architecture) that containers may use. Defined as map argument. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#runtime_platform) | `any` | `null` | no |
 | <a name="input_task_volume_configurations"></a> [task\_volume\_configurations](#input\_task\_volume\_configurations) | Volume Block Arguments for Task Definition. List of map. Note that `docker_volume_configuration` should be specified as map argument instead of block. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#volume) | `list(any)` | `[]` | no |
 | <a name="input_wait_for_steady_state"></a> [wait\_for\_steady\_state](#input\_wait\_for\_steady\_state) | If `true`, Terraform will wait for the service to reach a steady state (like aws ecs wait services-stable) before continuing. | `bool` | `null` | no |
