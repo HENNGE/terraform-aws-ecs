@@ -334,15 +334,19 @@ module "task" {
   network_mode            = var.task_network_mode
   ipc_mode                = var.task_ipc_mode
   pid_mode                = var.task_pid_mode
+  skip_destroy            = var.task_skip_destroy
   task_role               = var.iam_task_role
   daemon_role             = var.iam_daemon_role
   cpu                     = var.task_cpu
   memory                  = var.task_memory
+  enable_fault_injection  = var.task_enable_fault_injection
+  ephemeral_storage       = var.task_ephemeral_storage
   requires_compatibilites = var.task_requires_compatibilites
   volume_configurations   = var.task_volume_configurations
   placement_constraints   = var.task_placement_constraints
   inference_accelerator   = var.task_inference_accelerator
   proxy_configuration     = var.task_proxy_configuration
   runtime_platform        = var.task_runtime_platform
+  track_latest            = var.task_track_latest
   tags                    = var.tags
 }

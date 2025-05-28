@@ -22,6 +22,18 @@ variable "create_task_definition" {
   type        = bool
 }
 
+variable "enable_fault_injection" {
+  description = "Enables fault injection and allows for fault injection requests to be accepted from the task's containers."
+  default     = false
+  type        = bool
+}
+
+variable "ephemeral_storage" {
+  description = "The amount of ephemeral storage to allocate for the task. This parameter is used to expand the total amount of ephemeral storage available, beyond the default amount, for tasks hosted on AWS Fargate."
+  default     = null
+  type        = any
+}
+
 variable "network_mode" {
   description = "The network mode for container."
   default     = "bridge"
@@ -38,6 +50,12 @@ variable "pid_mode" {
   description = "The process namespace to use for the containers in the task. The valid values are `host` and `task`."
   default     = null
   type        = string
+}
+
+variable "skip_destroy" {
+  description = "Whether to retain the old revision when the resource is destroyed or replacement is necessary."
+  default     = false
+  type        = bool
 }
 
 variable "task_role" {
@@ -98,6 +116,12 @@ variable "runtime_platform" {
   description = "Runtime platform (operating system and CPU architecture) that containers may use. Defined as map argument. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#runtime_platform)"
   default     = null
   type        = any
+}
+
+variable "track_latest" {
+  description = "Whether should track latest ACTIVE task definition on AWS or the one created with the resource stored in state."
+  default     = false
+  type        = bool
 }
 
 variable "tags" {
