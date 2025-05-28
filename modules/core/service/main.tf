@@ -22,7 +22,6 @@ resource "aws_ecs_service" "main" {
   platform_version                   = var.platform_version
   propagate_tags                     = var.propagate_tags
   scheduling_strategy                = var.scheduling_strategy
-  triggers                           = var.triggers
   wait_for_steady_state              = var.wait_for_steady_state
 
   deployment_controller {

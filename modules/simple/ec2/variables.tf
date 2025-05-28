@@ -47,10 +47,40 @@ variable "iam_daemon_role" {
 # Optional settings
 ###################
 
+variable "alarms" {
+  description = "List of CloudWatch alarms to monitor for the service. If any alarm is in ALARM state, the service will be marked as unhealthy and will be stopped."
+  default     = []
+  type        = list(any)
+}
+
+variable "availability_zone_rebalancing" {
+  description = "If `true`, ECS will rebalance tasks across Availability Zones in the cluster when a new task is launched. This is only applicable to services that use the `REPLICA` scheduling strategy."
+  default     = "DISABLED"
+  type        = string
+}
+
 variable "desired_count" {
   description = "The number of instances of the task definition to place and keep running. Defaults to 0. Do not specify if using the `DAEMON` scheduling strategy."
   default     = null
   type        = number
+}
+
+variable "enable_fault_injection" {
+  description = "Enables fault injection and allows for fault injection requests to be accepted from the task's containers."
+  default     = false
+  type        = bool
+}
+
+variable "ephemeral_storage" {
+  description = "The amount of ephemeral storage to allocate for the task. This parameter is used to expand the total amount of ephemeral storage available, beyond the default amount, for tasks hosted on AWS Fargate."
+  default     = null
+  type        = any
+}
+
+variable "force_delete" {
+  description = "Enable to delete a service even if it wasn't scaled down to zero tasks. It's only necessary to use this if the service uses the REPLICA scheduling strategy."
+  default     = false
+  type        = bool
 }
 
 variable "cpu" {
@@ -143,8 +173,32 @@ variable "service_registry" {
   type        = any
 }
 
+variable "service_connect_configuration" {
+  description = "The ECS Service Connect configuration for this service to discover and connect to services, and be discovered by, and connected from, other services within a namespace"
+  type        = any
+  default     = null
+}
+
+variable "skip_destroy" {
+  description = "Whether to retain the old revision when the resource is destroyed or replacement is necessary."
+  default     = false
+  type        = bool
+}
+
+variable "track_latest" {
+  description = "Whether should track latest ACTIVE task definition on AWS or the one created with the resource stored in state."
+  default     = false
+  type        = bool
+}
+
 variable "volume_configurations" {
   description = "Volume Block Arguments for Task Definition. List of map. Note that `docker_volume_configuration` should be specified as map argument instead of block. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#volume)"
+  default     = []
+  type        = list(any)
+}
+
+variable "vpc_lattice_configurations" {
+  description = "The VPC Lattice configuration for your service that allows Lattice to connect, secure, and monitor your service across multiple accounts and VPCs"
   default     = []
   type        = list(any)
 }
