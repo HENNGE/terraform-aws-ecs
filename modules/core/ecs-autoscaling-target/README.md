@@ -84,7 +84,7 @@ No modules.
 | <a name="input_max_capacity"></a> [max\_capacity](#input\_max\_capacity) | Maximum capacity of ECS autoscaling target, cannot be less than min\_capacity | `number` | n/a | yes |
 | <a name="input_min_capacity"></a> [min\_capacity](#input\_min\_capacity) | Minimum capacity of ECS autoscaling target, cannot be more than max\_capacity | `number` | n/a | yes |
 | <a name="input_role_arn"></a> [role\_arn](#input\_role\_arn) | ARN of the IAM role that allows Application AutoScaling to modify your scalable target on your behalf. This defaults to an IAM Service-Linked Role for most services and custom IAM Roles are ignored by the API for those namespaces. | `string` | `null` | no |
-| <a name="input_suspended_state"></a> [suspended\_state](#input\_suspended\_state) | Specifies whether the scaling activities for a scalable target are in a suspended state. | <pre>object({<br/>    dynamic_scaling_in_suspended  = optional(bool)<br/>    dynamic_scaling_out_suspended = optional(bool)<br/>    scheduled_scaling_suspended   = optional(bool)<br/>  })</pre> | `null` | no |
+| <a name="input_suspended_state"></a> [suspended\_state](#input\_suspended\_state) | Specifies whether the scaling activities for a scalable target are in a suspended state. | <pre>object({<br/>    dynamic_scaling_in_suspended  = bool<br/>    dynamic_scaling_out_suspended = bool<br/>    scheduled_scaling_suspended   = bool<br/>  })</pre> | `null` | no |
 
 ## Outputs
 
