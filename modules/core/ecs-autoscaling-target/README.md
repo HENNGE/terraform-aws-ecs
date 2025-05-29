@@ -49,7 +49,7 @@ module "ecs_service_scaling_target" {
 }
 ```
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -84,7 +84,7 @@ No modules.
 | <a name="input_max_capacity"></a> [max\_capacity](#input\_max\_capacity) | Maximum capacity of ECS autoscaling target, cannot be less than min\_capacity | `number` | n/a | yes |
 | <a name="input_min_capacity"></a> [min\_capacity](#input\_min\_capacity) | Minimum capacity of ECS autoscaling target, cannot be more than max\_capacity | `number` | n/a | yes |
 | <a name="input_role_arn"></a> [role\_arn](#input\_role\_arn) | ARN of the IAM role that allows Application AutoScaling to modify your scalable target on your behalf. This defaults to an IAM Service-Linked Role for most services and custom IAM Roles are ignored by the API for those namespaces. | `string` | `null` | no |
-| <a name="input_suspended_state"></a> [suspended\_state](#input\_suspended\_state) | Specifies whether the scaling activities for a scalable target are in a suspended state. | <pre>object({<br>    dynamic_scaling_in_suspended  = bool<br>    dynamic_scaling_out_suspended = bool<br>    scheduled_scaling_suspended   = bool<br>  })</pre> | `null` | no |
+| <a name="input_suspended_state"></a> [suspended\_state](#input\_suspended\_state) | Specifies whether the scaling activities for a scalable target are in a suspended state. | <pre>object({<br/>    dynamic_scaling_in_suspended  = bool<br/>    dynamic_scaling_out_suspended = bool<br/>    scheduled_scaling_suspended   = bool<br/>  })</pre> | `null` | no |
 
 ## Outputs
 
@@ -95,4 +95,4 @@ No modules.
 | <a name="output_resource_id"></a> [resource\_id](#output\_resource\_id) | Resources ID of the created Autoscaling Target for ECS Service, used in policy/schedule |
 | <a name="output_scalable_dimension"></a> [scalable\_dimension](#output\_scalable\_dimension) | Scalable dimension for autoscaling target. Always ecs:service:DesiredCount. |
 | <a name="output_service_namespace"></a> [service\_namespace](#output\_service\_namespace) | Service namespace for autoscaling target. Always ecs |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

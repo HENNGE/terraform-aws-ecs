@@ -58,7 +58,7 @@ module "ecs_service_scaling" {
 }
 ```
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -102,7 +102,7 @@ No modules.
 | <a name="output_arn"></a> [arn](#output\_arn) | ARN of the autoscaling policy generated. |
 | <a name="output_name"></a> [name](#output\_name) | Name of the autoscaling policy generated |
 | <a name="output_policy_type"></a> [policy\_type](#output\_policy\_type) | Policy type of the autoscaling policy generated. Always TargetTrackingScaling |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
 
 ## Things to note
 

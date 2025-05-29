@@ -19,7 +19,7 @@ To test that it's working:
 1. Try putting DNS outputted by the example / find the DNS name of created Load Balancer
 1. Nginx hello world screen should appear
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -65,4 +65,4 @@ To test that it's working:
 | Name | Description |
 |------|-------------|
 | <a name="output_load_balancer_dns"></a> [load\_balancer\_dns](#output\_load\_balancer\_dns) | Accessible load balancer DNS |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

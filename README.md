@@ -44,7 +44,7 @@ This module uses Semver.
 
 `z` shall change when there's documentation updates, minor fixes, etc.
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -88,7 +88,7 @@ No modules.
 |------|-------------|
 | <a name="output_arn"></a> [arn](#output\_arn) | ARN of the generated cluster |
 | <a name="output_name"></a> [name](#output\_name) | Name of the Cluster |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
 
 
 ## Authors

@@ -35,7 +35,7 @@ module "ecs_scaling_scheduled" {
 }
 ```
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -75,4 +75,4 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_scheduled_action_arn"></a> [scheduled\_action\_arn](#output\_scheduled\_action\_arn) | ARN of the autoscaling scheduled action. |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
