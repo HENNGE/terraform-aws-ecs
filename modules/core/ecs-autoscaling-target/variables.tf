@@ -33,5 +33,9 @@ variable "role_arn" {
 variable "suspended_state" {
   description = "Specifies whether the scaling activities for a scalable target are in a suspended state."
   default     = null
-  type        = map(bool)
+  type = object({
+    dynamic_scaling_in_suspended  = optional(bool)
+    dynamic_scaling_out_suspended = optional(bool)
+    scheduled_scaling_suspended   = optional(bool)
+  })
 }
