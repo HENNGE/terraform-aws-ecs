@@ -58,7 +58,7 @@ variable "alarms" {
 }
 
 variable "availability_zone_rebalancing" {
-  description = "If `true`, ECS will rebalance tasks across Availability Zones in the cluster when a new task is launched. This is only applicable to services that use the `REPLICA` scheduling strategy."
+  description = "If `ENABLED`, ECS will rebalance tasks across Availability Zones in the cluster when a new task is launched."
   default     = "DISABLED"
   type        = string
 }

@@ -42,7 +42,7 @@ No resources.
 |------|-------------|------|---------|:--------:|
 | <a name="input_alarms"></a> [alarms](#input\_alarms) | List of CloudWatch alarms to monitor for the service. If any alarm is in ALARM state, the service will be marked as unhealthy and will be stopped. | <pre>object({<br/>    alarm_names = list(string)<br/>    enable      = bool<br/>    rollback    = bool<br/>  })</pre> | `null` | no |
 | <a name="input_assign_public_ip"></a> [assign\_public\_ip](#input\_assign\_public\_ip) | Assign public IP to the ENI | `bool` | `false` | no |
-| <a name="input_availability_zone_rebalancing"></a> [availability\_zone\_rebalancing](#input\_availability\_zone\_rebalancing) | If `true`, ECS will rebalance tasks across Availability Zones in the cluster when a new task is launched. This is only applicable to services that use the `REPLICA` scheduling strategy. | `string` | `"DISABLED"` | no |
+| <a name="input_availability_zone_rebalancing"></a> [availability\_zone\_rebalancing](#input\_availability\_zone\_rebalancing) | If `ENABLED`, ECS will rebalance tasks across Availability Zones in the cluster when a new task is launched. This is only applicable to services that use the `REPLICA` scheduling strategy. | `string` | `"DISABLED"` | no |
 | <a name="input_cluster"></a> [cluster](#input\_cluster) | The cluster name or ARN. | `string` | n/a | yes |
 | <a name="input_container_definitions"></a> [container\_definitions](#input\_container\_definitions) | Container definitions raw json string or rendered template. Not required if `create_task_definition` is `false`. | `string` | n/a | yes |
 | <a name="input_container_name"></a> [container\_name](#input\_container\_name) | Container name to register to Load Balancer | `string` | `null` | no |
