@@ -69,8 +69,12 @@ variable "iam_daemon_role" {
 
 variable "alarms" {
   description = "List of CloudWatch alarms to monitor for the service. If any alarm is in ALARM state, the service will be marked as unhealthy and will be stopped."
-  default     = []
-  type        = list(any)
+  default     = null
+  type = object({
+    alarm_names = list(string)
+    enable      = bool
+    rollback    = bool
+  })
 }
 
 variable "availability_zone_rebalancing" {

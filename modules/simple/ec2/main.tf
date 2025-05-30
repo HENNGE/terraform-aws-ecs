@@ -7,6 +7,7 @@ module "ec2" {
   desired_count                = var.desired_count
   ignore_desired_count_changes = var.ignore_desired_count_changes
   network_configuration        = var.network_configuration
+  volume_configuration         = var.volume_configuration
 
   iam_daemon_role = var.iam_daemon_role
   iam_task_role   = var.iam_task_role

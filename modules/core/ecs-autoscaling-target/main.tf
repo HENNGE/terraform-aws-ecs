@@ -12,9 +12,9 @@ resource "aws_appautoscaling_target" "ecs_target" {
     for_each = var.suspended_state == null ? [] : [var.suspended_state]
 
     content {
-      dynamic_scaling_in_suspended  = try(suspended_state.value.dynamic_scaling_in_suspended, false)
-      dynamic_scaling_out_suspended = try(suspended_state.value.dynamic_scaling_out_suspended, false)
-      scheduled_scaling_suspended   = try(suspended_state.value.scheduled_scaling_suspended, false)
+      dynamic_scaling_in_suspended  = suspended_state.value.dynamic_scaling_in_suspended
+      dynamic_scaling_out_suspended = suspended_state.value.dynamic_scaling_out_suspended
+      scheduled_scaling_suspended   = suspended_state.value.scheduled_scaling_suspended
     }
   }
 }
@@ -37,9 +37,9 @@ resource "aws_appautoscaling_target" "ecs_target_ignore_capacity_changes" {
     for_each = var.suspended_state == null ? [] : [var.suspended_state]
 
     content {
-      dynamic_scaling_in_suspended  = try(suspended_state.value.dynamic_scaling_in_suspended, false)
-      dynamic_scaling_out_suspended = try(suspended_state.value.dynamic_scaling_out_suspended, false)
-      scheduled_scaling_suspended   = try(suspended_state.value.scheduled_scaling_suspended, false)
+      dynamic_scaling_in_suspended  = suspended_state.value.dynamic_scaling_in_suspended
+      dynamic_scaling_out_suspended = suspended_state.value.dynamic_scaling_out_suspended
+      scheduled_scaling_suspended   = suspended_state.value.scheduled_scaling_suspended
     }
   }
 }

@@ -49,8 +49,12 @@ variable "iam_daemon_role" {
 
 variable "alarms" {
   description = "List of CloudWatch alarms to monitor for the service. If any alarm is in ALARM state, the service will be marked as unhealthy and will be stopped."
-  default     = []
-  type        = list(any)
+  default     = null
+  type = object({
+    alarm_names = list(string)
+    enable      = bool
+    rollback    = bool
+  })
 }
 
 variable "availability_zone_rebalancing" {
@@ -175,8 +179,39 @@ variable "service_registry" {
 
 variable "service_connect_configuration" {
   description = "The ECS Service Connect configuration for this service to discover and connect to services, and be discovered by, and connected from, other services within a namespace"
-  type        = any
-  default     = null
+  type = object({
+    enabled = bool
+    log_configuration = optional(object({
+      log_driver = string
+      options    = optional(string)
+      secret_option = optional(object({
+        name       = string
+        value_from = string
+      }))
+    }))
+    namespace = optional(string)
+    service = optional(object({
+      client_alias = optional(list(object({
+        dns_name = optional(string)
+        port     = number
+      })), [])
+      discovery_name        = optional(string)
+      ingress_port_override = optional(number)
+      port_name             = string
+      timeout = optional(object({
+        idle_timeout_seconds        = optional(number)
+        per_request_timeout_seconds = optional(number)
+      }))
+      tls = optional(object({
+        issuer_cert_authority = object({
+          aws_pca_authority_arn = optional(string)
+        })
+        kms_key  = optional(string)
+        role_arn = optional(string)
+      }))
+    }))
+  })
+  default = null
 }
 
 variable "skip_destroy" {
@@ -191,6 +226,30 @@ variable "track_latest" {
   type        = bool
 }
 
+variable "volume_configuration" {
+  description = "Configuration for a volume specified in the task definition as a volume that is configured at launch time. Currently, the only supported volume type is an Amazon EBS volume."
+  default     = []
+  type = list(object({
+    name = string
+    managed_ebs_volume = optional(object({
+      role_arn         = string
+      encrypted        = optional(bool, true)
+      file_system_type = optional(string)
+      iops             = optional(number)
+      kms_key_id       = optional(string)
+      size_in_gb       = optional(number)
+      snapshot_id      = optional(string)
+      throughput       = optional(number)
+      volume_type      = optional(string)
+      tag_specifications = optional(list(object({
+        resource_type  = string
+        propogate_tags = optional(string)
+        tags           = optional(map(string))
+      })), [])
+    }))
+  }))
+}
+
 variable "volume_configurations" {
   description = "Volume Block Arguments for Task Definition. List of map. Note that `docker_volume_configuration` should be specified as map argument instead of block. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#volume)"
   default     = []
@@ -199,8 +258,12 @@ variable "volume_configurations" {
 
 variable "vpc_lattice_configurations" {
   description = "The VPC Lattice configuration for your service that allows Lattice to connect, secure, and monitor your service across multiple accounts and VPCs"
-  default     = []
-  type        = list(any)
+  default     = null
+  type = list(object({
+    role_arn         = string
+    target_group_arn = string
+    port_name        = string
+  }))
 }
 
 variable "capacity_provider_arn" {

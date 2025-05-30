@@ -34,8 +34,8 @@ variable "suspended_state" {
   description = "Specifies whether the scaling activities for a scalable target are in a suspended state."
   default     = null
   type = object({
-    dynamic_scaling_in_suspended  = bool
-    dynamic_scaling_out_suspended = bool
-    scheduled_scaling_suspended   = bool
+    dynamic_scaling_in_suspended  = optional(bool, false)
+    dynamic_scaling_out_suspended = optional(bool, false)
+    scheduled_scaling_suspended   = optional(bool, false)
   })
 }
