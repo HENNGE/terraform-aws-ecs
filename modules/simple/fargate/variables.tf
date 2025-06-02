@@ -98,7 +98,27 @@ variable "enable_fault_injection" {
 variable "ephemeral_storage" {
   description = "The amount of ephemeral storage to allocate for the task. This parameter is used to expand the total amount of ephemeral storage available, beyond the default amount, for tasks hosted on AWS Fargate."
   default     = null
-  type        = any
+  type = object({
+    size_in_gib = number
+  })
+}
+
+variable "inference_accelerator" {
+  description = "Inference accelerator for Task Definition. List of map. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#inference_accelerator)"
+  default     = null
+  type = object({
+    device_name = string
+    device_type = string
+  })
+}
+
+variable "placement_constraints" {
+  description = "Placement constraints for Task Definition. List of map. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#placement_constraints)"
+  default     = null
+  type = object({
+    expression = optional(string)
+    type       = string
+  })
 }
 
 variable "force_delete" {
@@ -170,7 +190,10 @@ variable "platform_version" {
 variable "proxy_configuration" {
   description = "The proxy configuration details for the App Mesh proxy. Defined as map argument. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#proxy_configuration)"
   default     = null
-  type        = any
+  type = object({
+    operating_system_family = optional(string)
+    cpu_architecture        = optional(string)
+  })
 }
 
 variable "runtime_platform" {
@@ -187,8 +210,39 @@ variable "service_registry" {
 
 variable "service_connect_configuration" {
   description = "The ECS Service Connect configuration for this service to discover and connect to services, and be discovered by, and connected from, other services within a namespace"
-  type        = any
-  default     = null
+  type = object({
+    enabled = bool
+    log_configuration = optional(object({
+      log_driver = string
+      options    = optional(string)
+      secret_option = optional(object({
+        name       = string
+        value_from = string
+      }))
+    }))
+    namespace = optional(string)
+    service = optional(object({
+      client_alias = optional(list(object({
+        dns_name = optional(string)
+        port     = number
+      })), [])
+      discovery_name        = optional(string)
+      ingress_port_override = optional(number)
+      port_name             = string
+      timeout = optional(object({
+        idle_timeout_seconds        = optional(number)
+        per_request_timeout_seconds = optional(number)
+      }))
+      tls = optional(object({
+        issuer_cert_authority = object({
+          aws_pca_authority_arn = optional(string)
+        })
+        kms_key  = optional(string)
+        role_arn = optional(string)
+      }))
+    }))
+  })
+  default = null
 }
 
 variable "skip_destroy" {
@@ -203,7 +257,31 @@ variable "track_latest" {
   type        = bool
 }
 
-variable "volume_configurations" {
+variable "volume_configuration" {
+  description = "Configuration for a volume specified in the task definition as a volume that is configured at launch time. Currently, the only supported volume type is an Amazon EBS volume."
+  default     = []
+  type = list(object({
+    name = string
+    managed_ebs_volume = optional(object({
+      role_arn         = string
+      encrypted        = optional(bool, true)
+      file_system_type = optional(string)
+      iops             = optional(number)
+      kms_key_id       = optional(string)
+      size_in_gb       = optional(number)
+      snapshot_id      = optional(string)
+      throughput       = optional(number)
+      volume_type      = optional(string)
+      tag_specifications = optional(list(object({
+        resource_type  = string
+        propogate_tags = optional(string)
+        tags           = optional(map(string))
+      })), [])
+    }))
+  }))
+}
+
+variable "task_volume_configurations" {
   description = "Volume Block Arguments for Task Definition. List of map. Note that `docker_volume_configuration` should be specified as map argument instead of block. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#volume)"
   default     = []
   type        = list(any)
@@ -211,8 +289,12 @@ variable "volume_configurations" {
 
 variable "vpc_lattice_configurations" {
   description = "The VPC Lattice configuration for your service that allows Lattice to connect, secure, and monitor your service across multiple accounts and VPCs"
-  default     = []
-  type        = list(any)
+  default     = null
+  type = list(object({
+    role_arn         = string
+    target_group_arn = string
+    port_name        = string
+  }))
 }
 
 variable "enable_deployment_circuit_breaker_without_rollback" {

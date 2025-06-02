@@ -78,7 +78,9 @@ variable "enable_fault_injection" {
 variable "ephemeral_storage" {
   description = "The amount of ephemeral storage to allocate for the task. This parameter is used to expand the total amount of ephemeral storage available, beyond the default amount, for tasks hosted on AWS Fargate."
   default     = null
-  type        = any
+  type = object({
+    size_in_gib = number
+  })
 }
 
 variable "force_delete" {
@@ -162,7 +164,10 @@ variable "deployment_maximum_percent" {
 variable "proxy_configuration" {
   description = "The proxy configuration details for the App Mesh proxy. Defined as map argument. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#proxy_configuration)"
   default     = null
-  type        = any
+  type = object({
+    operating_system_family = optional(string)
+    cpu_architecture        = optional(string)
+  })
 }
 
 variable "runtime_platform" {
@@ -250,7 +255,7 @@ variable "volume_configuration" {
   }))
 }
 
-variable "volume_configurations" {
+variable "task_volume_configurations" {
   description = "Volume Block Arguments for Task Definition. List of map. Note that `docker_volume_configuration` should be specified as map argument instead of block. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#volume)"
   default     = []
   type        = list(any)
@@ -300,6 +305,24 @@ variable "force_new_deployment" {
   description = "Enable to force a new task deployment of the service. This can be used to update tasks to use a newer Docker image with same image/tag combination (e.g. `myimage:latest`), roll Fargate tasks onto a newer platform version, or immediately deploy `ordered_placement_strategy` and `placement_constraints` updates."
   default     = null
   type        = bool
+}
+
+variable "inference_accelerator" {
+  description = "Inference accelerator for Task Definition. List of map. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#inference_accelerator)"
+  default     = null
+  type = object({
+    device_name = string
+    device_type = string
+  })
+}
+
+variable "placement_constraints" {
+  description = "Placement constraints for Task Definition. List of map. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#placement_constraints)"
+  default     = null
+  type = object({
+    expression = optional(string)
+    type       = string
+  })
 }
 
 variable "wait_for_steady_state" {

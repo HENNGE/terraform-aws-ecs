@@ -42,7 +42,7 @@ module "ec2" {
 
   task_network_mode = var.network_mode
 
-  task_volume_configurations  = var.volume_configurations
+  task_volume_configurations  = var.task_volume_configurations
   task_proxy_configuration    = var.proxy_configuration
   task_runtime_platform       = var.runtime_platform
   task_enable_fault_injection = var.enable_fault_injection
@@ -50,6 +50,8 @@ module "ec2" {
   task_skip_destroy           = var.skip_destroy
   task_track_latest           = var.track_latest
   service_registry            = var.service_registry
+  task_inference_accelerator  = var.inference_accelerator
+  task_placement_constraints  = var.placement_constraints
 
   capacity_provider_strategy = var.capacity_provider_arn == null ? [] : [
     {
