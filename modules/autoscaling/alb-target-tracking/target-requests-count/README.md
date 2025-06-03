@@ -58,19 +58,19 @@ module "ecs_service_scaling" {
 }
 ```
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.74.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.85.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.74.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.85.0 |
 
 ## Modules
 
@@ -102,7 +102,7 @@ No modules.
 | <a name="output_arn"></a> [arn](#output\_arn) | ARN of the autoscaling policy generated. |
 | <a name="output_name"></a> [name](#output\_name) | Name of the autoscaling policy generated |
 | <a name="output_policy_type"></a> [policy\_type](#output\_policy\_type) | Policy type of the autoscaling policy generated. Always TargetTrackingScaling |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
 
 ## Things to note
 

@@ -6,6 +6,9 @@ resource "aws_ecs_task_definition" "main" {
   task_role_arn      = var.task_role
   execution_role_arn = var.daemon_role
 
+  enable_fault_injection = var.enable_fault_injection
+  skip_destroy           = var.skip_destroy
+
   network_mode = var.network_mode
   ipc_mode     = var.ipc_mode
   pid_mode     = var.pid_mode
@@ -14,6 +17,8 @@ resource "aws_ecs_task_definition" "main" {
   memory = var.memory
 
   requires_compatibilities = var.requires_compatibilites
+
+  track_latest = var.track_latest
 
   dynamic "volume" {
     for_each = var.volume_configurations
@@ -52,8 +57,8 @@ resource "aws_ecs_task_definition" "main" {
   dynamic "placement_constraints" {
     for_each = var.placement_constraints
     content {
-      type       = lookup(placement_constraints.value, "type", null)
-      expression = lookup(placement_constraints.value, "expression", null)
+      type       = placement_constraints.value.expression
+      expression = placement_constraints.value.type
     }
   }
 
@@ -67,18 +72,25 @@ resource "aws_ecs_task_definition" "main" {
   }
 
   dynamic "inference_accelerator" {
-    for_each = var.inference_accelerator
+    for_each = var.inference_accelerator == null ? [] : [var.inference_accelerator]
     content {
-      device_name = lookup(inference_accelerator.value, "device_name", null)
-      device_type = lookup(inference_accelerator.value, "device_type", null)
+      device_name = inference_accelerator.value.device_name
+      device_type = inference_accelerator.value.device_type
     }
   }
 
   dynamic "runtime_platform" {
     for_each = var.runtime_platform == null ? [] : [var.runtime_platform]
     content {
-      operating_system_family = lookup(runtime_platform.value, "operating_system_family", null)
-      cpu_architecture        = lookup(runtime_platform.value, "cpu_architecture", null)
+      operating_system_family = runtime_platform.value.operating_system_family
+      cpu_architecture        = runtime_platform.value.cpu_architecture
+    }
+  }
+
+  dynamic "ephemeral_storage" {
+    for_each = var.ephemeral_storage == null ? [] : [var.ephemeral_storage]
+    content {
+      size_in_gib = ephemeral_storage.value.size_in_gib
     }
   }
 

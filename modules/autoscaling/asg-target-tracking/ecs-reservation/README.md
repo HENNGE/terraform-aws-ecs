@@ -73,19 +73,19 @@ module "asg_scaling" {
 }
 ```
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.74.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.85.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.74.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.85.0 |
 
 ## Modules
 
@@ -125,7 +125,7 @@ No modules.
 | <a name="output_memory_autoscaling_asg_name"></a> [memory\_autoscaling\_asg\_name](#output\_memory\_autoscaling\_asg\_name) | The scaling policy's assigned autoscaling group. |
 | <a name="output_memory_autoscaling_name"></a> [memory\_autoscaling\_name](#output\_memory\_autoscaling\_name) | The scaling policy's name. |
 | <a name="output_memory_autoscaling_policy_type"></a> [memory\_autoscaling\_policy\_type](#output\_memory\_autoscaling\_policy\_type) | The scaling policy's type. |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
 
 ## Things to note
 

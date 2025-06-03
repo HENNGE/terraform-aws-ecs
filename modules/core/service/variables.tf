@@ -60,6 +60,22 @@ variable "iam_daemon_role" {
 # Service Section
 #################
 
+variable "alarms" {
+  description = "List of CloudWatch alarms to monitor for the service. If any alarm is in ALARM state, the service will be marked as unhealthy and will be stopped."
+  default     = null
+  type = object({
+    alarm_names = list(string)
+    enable      = bool
+    rollback    = bool
+  })
+}
+
+variable "availability_zone_rebalancing" {
+  description = "ECS automatically redistributes tasks within a service across Availability Zones (AZs) to mitigate the risk of impaired application availability due to underlying infrastructure failures and task lifecycle activities. The valid values are ENABLED and DISABLED."
+  default     = "DISABLED"
+  type        = string
+}
+
 variable "desired_count" {
   description = "The number of instances of the task definition to place and keep running. Defaults to 0. Do not specify if using the `DAEMON` scheduling strategy."
   default     = null
@@ -113,6 +129,12 @@ variable "enable_deployment_circuit_breaker_with_rollback" {
   type        = bool
 }
 
+variable "force_delete" {
+  description = "Enable to delete a service even if it wasn't scaled down to zero tasks. It's only necessary to use this if the service uses the REPLICA scheduling strategy."
+  default     = false
+  type        = bool
+}
+
 variable "force_new_deployment" {
   description = "Enable to force a new task deployment of the service. This can be used to update tasks to use a newer Docker image with same image/tag combination (e.g. `myimage:latest`), roll Fargate tasks onto a newer platform version, or immediately deploy `ordered_placement_strategy` and `placement_constraints` updates."
   default     = null
@@ -126,7 +148,7 @@ variable "health_check_grace_period_seconds" {
 }
 
 variable "launch_type" {
-  description = "The launch type on which to run your service. The valid values are `EC2` or `FARGATE`."
+  description = "The launch type on which to run your service. The valid values are `EC2`,  `FARGATE` or `EXTERNAL`."
   default     = null
   type        = string
 }
@@ -141,6 +163,43 @@ variable "propagate_tags" {
   description = "Specifies whether to propagate the tags from the task definition or the service to the tasks. The valid values are `SERVICE` and `TASK_DEFINITION`."
   default     = null
   type        = string
+}
+
+variable "service_connect_configuration" {
+  description = "The ECS Service Connect configuration for this service to discover and connect to services, and be discovered by, and connected from, other services within a namespace"
+  type = object({
+    enabled = bool
+    log_configuration = optional(object({
+      log_driver = string
+      options    = optional(string)
+      secret_option = optional(object({
+        name       = string
+        value_from = string
+      }))
+    }))
+    namespace = optional(string)
+    service = optional(object({
+      client_alias = optional(list(object({
+        dns_name = optional(string)
+        port     = number
+      })), [])
+      discovery_name        = optional(string)
+      ingress_port_override = optional(number)
+      port_name             = string
+      timeout = optional(object({
+        idle_timeout_seconds        = optional(number)
+        per_request_timeout_seconds = optional(number)
+      }))
+      tls = optional(object({
+        issuer_cert_authority = object({
+          aws_pca_authority_arn = optional(string)
+        })
+        kms_key  = optional(string)
+        role_arn = optional(string)
+      }))
+    }))
+  })
+  default = null
 }
 
 variable "scheduling_strategy" {
@@ -193,14 +252,51 @@ variable "service_placement_constraints" {
 
 variable "task_placement_constraints" {
   description = "Placement constraints for Task Definition. List of map. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#placement_constraints)"
-  default     = []
-  type        = list(any)
+  default     = null
+  type = object({
+    expression = optional(string)
+    type       = string
+  })
 }
 
 variable "tags" {
   description = "Key-value mapping of resource tags"
   default     = {}
   type        = map(string)
+}
+
+variable "volume_configuration" {
+  description = "Configuration for a volume specified in the task definition as a volume that is configured at launch time. Currently, the only supported volume type is an Amazon EBS volume."
+  default     = []
+  type = list(object({
+    name = string
+    managed_ebs_volume = optional(object({
+      role_arn         = string
+      encrypted        = optional(bool, true)
+      file_system_type = optional(string)
+      iops             = optional(number)
+      kms_key_id       = optional(string)
+      size_in_gb       = optional(number)
+      snapshot_id      = optional(string)
+      throughput       = optional(number)
+      volume_type      = optional(string)
+      tag_specifications = optional(list(object({
+        resource_type  = string
+        propogate_tags = optional(string)
+        tags           = optional(map(string))
+      })), [])
+    }))
+  }))
+}
+
+variable "vpc_lattice_configurations" {
+  description = "The VPC Lattice configuration for your service that allows Lattice to connect, secure, and monitor your service across multiple accounts and VPCs"
+  default     = null
+  type = list(object({
+    role_arn         = string
+    target_group_arn = string
+    port_name        = string
+  }))
 }
 
 ##########################################################################
@@ -218,6 +314,20 @@ variable "task_memory" {
   description = "Task level Memory units."
   default     = null
   type        = number
+}
+
+variable "task_enable_fault_injection" {
+  description = "Enables fault injection and allows for fault injection requests to be accepted from the task's containers."
+  default     = false
+  type        = bool
+}
+
+variable "task_ephemeral_storage" {
+  description = "The amount of ephemeral storage to allocate for the task. This parameter is used to expand the total amount of ephemeral storage available, beyond the default amount, for tasks hosted on AWS Fargate."
+  default     = null
+  type = object({
+    size_in_gib = number
+  })
 }
 
 variable "task_network_mode" {
@@ -238,6 +348,12 @@ variable "task_pid_mode" {
   type        = string
 }
 
+variable "task_skip_destroy" {
+  description = "Whether to retain the old revision when the resource is destroyed or replacement is necessary."
+  default     = false
+  type        = bool
+}
+
 variable "task_requires_compatibilites" {
   description = "A set of launch types required by the task. The valid values are `EC2` and `FARGATE`."
   default     = ["EC2"]
@@ -252,8 +368,11 @@ variable "task_volume_configurations" {
 
 variable "task_inference_accelerator" {
   description = "Inference accelerator for Task Definition. List of map. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#inference_accelerator)"
-  default     = []
-  type        = list(any)
+  default     = null
+  type = object({
+    device_name = string
+    device_type = string
+  })
 }
 
 variable "task_proxy_configuration" {
@@ -266,4 +385,10 @@ variable "task_runtime_platform" {
   description = "Runtime platform (operating system and CPU architecture) that containers may use. Defined as map argument. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#runtime_platform)"
   default     = null
   type        = any
+}
+
+variable "task_track_latest" {
+  description = "Whether should track latest ACTIVE task definition on AWS or the one created with the resource stored in state."
+  default     = false
+  type        = bool
 }

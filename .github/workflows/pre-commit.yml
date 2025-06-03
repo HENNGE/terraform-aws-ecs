@@ -106,7 +106,7 @@ jobs:
           terraform_version: ${{ matrix.version }}
       - name: Install pre-commit dependency - terraform-docs
         run: |
-          TF_DOCS_VER="v0.16.0"
+          TF_DOCS_VER="v0.20.0"
           pushd /tmp
             curl -Lo ./terraform-docs.tar.gz https://github.com/terraform-docs/terraform-docs/releases/download/${TF_DOCS_VER}/terraform-docs-${TF_DOCS_VER}-$(uname)-amd64.tar.gz && tar -xzf terraform-docs.tar.gz && chmod +x terraform-docs && sudo mv terraform-docs /usr/bin/
           popd

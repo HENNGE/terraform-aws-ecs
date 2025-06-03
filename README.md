@@ -15,7 +15,7 @@ The root module (this) only creates `ecs_cluster`, to create other resources, pl
 
 Supports only Terraform ~> 0.12.
 
-Requires Terraform AWS Provider version >=2.42.0 for Capacity Provider options.
+Requires Terraform AWS Provider version >=5.85.0.
 
 ## Usage
 
@@ -44,19 +44,19 @@ This module uses Semver.
 
 `z` shall change when there's documentation updates, minor fixes, etc.
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.74.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.85.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.74.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.85.0 |
 
 ## Modules
 
@@ -88,7 +88,7 @@ No modules.
 |------|-------------|
 | <a name="output_arn"></a> [arn](#output\_arn) | ARN of the generated cluster |
 | <a name="output_name"></a> [name](#output\_name) | Name of the Cluster |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
 
 
 ## Authors

@@ -7,6 +7,7 @@ module "ec2" {
   desired_count                = var.desired_count
   ignore_desired_count_changes = var.ignore_desired_count_changes
   network_configuration        = var.network_configuration
+  volume_configuration         = var.volume_configuration
 
   iam_daemon_role = var.iam_daemon_role
   iam_task_role   = var.iam_task_role
@@ -30,14 +31,27 @@ module "ec2" {
   enable_deployment_circuit_breaker_without_rollback = var.enable_deployment_circuit_breaker_without_rollback
   health_check_grace_period_seconds                  = var.health_check_grace_period_seconds
 
+  alarms                        = var.alarms
+  availability_zone_rebalancing = var.availability_zone_rebalancing
+  force_delete                  = var.force_delete
+  service_connect_configuration = var.service_connect_configuration
+
+  vpc_lattice_configurations = var.vpc_lattice_configurations
+
   enable_execute_command = var.enable_execute_command
 
   task_network_mode = var.network_mode
 
-  task_volume_configurations = var.volume_configurations
-  task_proxy_configuration   = var.proxy_configuration
-  task_runtime_platform      = var.runtime_platform
-  service_registry           = var.service_registry
+  task_volume_configurations  = var.task_volume_configurations
+  task_proxy_configuration    = var.proxy_configuration
+  task_runtime_platform       = var.runtime_platform
+  task_enable_fault_injection = var.enable_fault_injection
+  task_ephemeral_storage      = var.ephemeral_storage
+  task_skip_destroy           = var.skip_destroy
+  task_track_latest           = var.track_latest
+  service_registry            = var.service_registry
+  task_inference_accelerator  = var.inference_accelerator
+  task_placement_constraints  = var.placement_constraints
 
   capacity_provider_strategy = var.capacity_provider_arn == null ? [] : [
     {
