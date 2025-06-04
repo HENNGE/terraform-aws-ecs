@@ -39,8 +39,8 @@ module "fargate" {
 
   enable_execute_command = var.enable_execute_command
 
-  launch_type                  = "FARGATE"
-  task_requires_compatibilites = ["FARGATE"]
+  launch_type                   = "FARGATE"
+  task_requires_compatibilities = ["FARGATE"]
 
   task_network_mode = "awsvpc"
   network_configuration = {

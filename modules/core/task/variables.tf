@@ -84,7 +84,7 @@ variable "memory" {
   type        = number
 }
 
-variable "requires_compatibilites" {
+variable "requires_compatibilities" {
   description = "A set of launch types required by the task. The valid values are EC2 and FARGATE."
   default     = ["EC2"]
   type        = list(string)
@@ -98,11 +98,11 @@ variable "volume_configurations" {
 
 variable "placement_constraints" {
   description = "Placement constraints for Task Definition. List of map. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#placement_constraints)"
-  default     = null
-  type = object({
+  default     = []
+  type = list(object({
     expression = optional(string)
     type       = string
-  })
+  }))
 }
 
 variable "inference_accelerator" {

@@ -104,7 +104,7 @@ resource "aws_ecs_service" "main" {
     for_each = var.service_connect_configuration == null ? [] : [var.service_connect_configuration]
 
     content {
-      enabled = service_connect_configuration.value.enalbed
+      enabled = service_connect_configuration.value.enabled
       dynamic "log_configuration" {
         for_each = service_connect_configuration.value.log_configuration == null ? [] : [service_connect_configuration.value.log_configuration]
 
@@ -116,7 +116,7 @@ resource "aws_ecs_service" "main" {
 
             content {
               name       = secret_option.value.name
-              value_from = secret_option.value.name
+              value_from = secret_option.value.value_from
             }
           }
         }
@@ -190,7 +190,7 @@ resource "aws_ecs_service" "main" {
 
             content {
               resource_type  = tag_specifications.value.resource_type
-              propagate_tags = tag_specifications.value.propogate_tags
+              propagate_tags = tag_specifications.value.propagate_tags
               tags           = tag_specifications.value.tags
             }
           }
@@ -228,11 +228,13 @@ resource "aws_ecs_service" "main_ignore_desired_count_changes" {
   name                               = var.name
   cluster                            = var.cluster
   task_definition                    = var.create_task_definition ? module.task.arn : var.task_definition_arn
+  availability_zone_rebalancing      = var.availability_zone_rebalancing
   deployment_maximum_percent         = var.deployment_maximum_percent
   deployment_minimum_healthy_percent = var.deployment_minimum_healthy_percent
   desired_count                      = var.desired_count
   enable_ecs_managed_tags            = var.enable_ecs_managed_tags
   enable_execute_command             = var.enable_execute_command
+  force_delete                       = var.force_delete
   force_new_deployment               = var.force_new_deployment
   health_check_grace_period_seconds  = var.health_check_grace_period_seconds
   iam_role                           = var.iam_lb_role
@@ -322,7 +324,7 @@ resource "aws_ecs_service" "main_ignore_desired_count_changes" {
     for_each = var.service_connect_configuration == null ? [] : [var.service_connect_configuration]
 
     content {
-      enabled = service_connect_configuration.value.enalbed
+      enabled = service_connect_configuration.value.enabled
       dynamic "log_configuration" {
         for_each = service_connect_configuration.value.log_configuration == null ? [] : [service_connect_configuration.value.log_configuration]
 
@@ -334,7 +336,7 @@ resource "aws_ecs_service" "main_ignore_desired_count_changes" {
 
             content {
               name       = secret_option.value.name
-              value_from = secret_option.value.name
+              value_from = secret_option.value.value_from
             }
           }
         }
@@ -408,7 +410,7 @@ resource "aws_ecs_service" "main_ignore_desired_count_changes" {
 
             content {
               resource_type  = tag_specifications.value.resource_type
-              propagate_tags = tag_specifications.value.propogate_tags
+              propagate_tags = tag_specifications.value.propagate_tags
               tags           = tag_specifications.value.tags
             }
           }
@@ -418,7 +420,7 @@ resource "aws_ecs_service" "main_ignore_desired_count_changes" {
   }
 
   dynamic "vpc_lattice_configurations" {
-    for_each = var.vpc_lattice_configurations == null ? [] : [var.vpc_lattice_configurations]
+    for_each = var.vpc_lattice_configurations
     content {
       role_arn         = vpc_lattice_configurations.value.role_arn
       target_group_arn = vpc_lattice_configurations.value.target_group_arn
@@ -430,26 +432,26 @@ resource "aws_ecs_service" "main_ignore_desired_count_changes" {
 }
 
 module "task" {
-  source                  = "../task"
-  create_task_definition  = var.create_task_definition
-  name                    = var.name
-  container_definitions   = var.container_definitions
-  network_mode            = var.task_network_mode
-  ipc_mode                = var.task_ipc_mode
-  pid_mode                = var.task_pid_mode
-  skip_destroy            = var.task_skip_destroy
-  task_role               = var.iam_task_role
-  daemon_role             = var.iam_daemon_role
-  cpu                     = var.task_cpu
-  memory                  = var.task_memory
-  enable_fault_injection  = var.task_enable_fault_injection
-  ephemeral_storage       = var.task_ephemeral_storage
-  requires_compatibilites = var.task_requires_compatibilites
-  volume_configurations   = var.task_volume_configurations
-  placement_constraints   = var.task_placement_constraints
-  inference_accelerator   = var.task_inference_accelerator
-  proxy_configuration     = var.task_proxy_configuration
-  runtime_platform        = var.task_runtime_platform
-  track_latest            = var.task_track_latest
-  tags                    = var.tags
+  source                   = "../task"
+  create_task_definition   = var.create_task_definition
+  name                     = var.name
+  container_definitions    = var.container_definitions
+  network_mode             = var.task_network_mode
+  ipc_mode                 = var.task_ipc_mode
+  pid_mode                 = var.task_pid_mode
+  skip_destroy             = var.task_skip_destroy
+  task_role                = var.iam_task_role
+  daemon_role              = var.iam_daemon_role
+  cpu                      = var.task_cpu
+  memory                   = var.task_memory
+  enable_fault_injection   = var.task_enable_fault_injection
+  ephemeral_storage        = var.task_ephemeral_storage
+  requires_compatibilities = var.task_requires_compatibilities
+  volume_configurations    = var.task_volume_configurations
+  placement_constraints    = var.task_placement_constraints
+  inference_accelerator    = var.task_inference_accelerator
+  proxy_configuration      = var.task_proxy_configuration
+  runtime_platform         = var.task_runtime_platform
+  track_latest             = var.task_track_latest
+  tags                     = var.tags
 }
