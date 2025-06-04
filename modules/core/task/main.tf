@@ -16,7 +16,7 @@ resource "aws_ecs_task_definition" "main" {
   cpu    = var.cpu
   memory = var.memory
 
-  requires_compatibilities = var.requires_compatibilites
+  requires_compatibilities = var.requires_compatibilities
 
   track_latest = var.track_latest
 
@@ -57,8 +57,8 @@ resource "aws_ecs_task_definition" "main" {
   dynamic "placement_constraints" {
     for_each = var.placement_constraints
     content {
-      type       = placement_constraints.value.expression
-      expression = placement_constraints.value.type
+      type       = placement_constraints.value.type
+      expression = placement_constraints.value.expression
     }
   }
 

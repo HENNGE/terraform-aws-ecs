@@ -171,7 +171,7 @@ variable "service_connect_configuration" {
     enabled = bool
     log_configuration = optional(object({
       log_driver = string
-      options    = optional(string)
+      options    = optional(map(string))
       secret_option = optional(object({
         name       = string
         value_from = string
@@ -252,11 +252,11 @@ variable "service_placement_constraints" {
 
 variable "task_placement_constraints" {
   description = "Placement constraints for Task Definition. List of map. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#placement_constraints)"
-  default     = null
-  type = object({
+  default     = []
+  type = list(object({
     expression = optional(string)
     type       = string
-  })
+  }))
 }
 
 variable "tags" {
@@ -282,7 +282,7 @@ variable "volume_configuration" {
       volume_type      = optional(string)
       tag_specifications = optional(list(object({
         resource_type  = string
-        propogate_tags = optional(string)
+        propagate_tags = optional(string)
         tags           = optional(map(string))
       })), [])
     }))
@@ -291,7 +291,7 @@ variable "volume_configuration" {
 
 variable "vpc_lattice_configurations" {
   description = "The VPC Lattice configuration for your service that allows Lattice to connect, secure, and monitor your service across multiple accounts and VPCs"
-  default     = null
+  default     = []
   type = list(object({
     role_arn         = string
     target_group_arn = string
@@ -354,7 +354,7 @@ variable "task_skip_destroy" {
   type        = bool
 }
 
-variable "task_requires_compatibilites" {
+variable "task_requires_compatibilities" {
   description = "A set of launch types required by the task. The valid values are `EC2` and `FARGATE`."
   default     = ["EC2"]
   type        = list(string)

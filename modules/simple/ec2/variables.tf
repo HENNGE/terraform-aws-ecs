@@ -164,10 +164,7 @@ variable "deployment_maximum_percent" {
 variable "proxy_configuration" {
   description = "The proxy configuration details for the App Mesh proxy. Defined as map argument. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#proxy_configuration)"
   default     = null
-  type = object({
-    operating_system_family = optional(string)
-    cpu_architecture        = optional(string)
-  })
+  type        = any
 }
 
 variable "runtime_platform" {
@@ -188,7 +185,7 @@ variable "service_connect_configuration" {
     enabled = bool
     log_configuration = optional(object({
       log_driver = string
-      options    = optional(string)
+      options    = optional(map(string))
       secret_option = optional(object({
         name       = string
         value_from = string
@@ -248,7 +245,7 @@ variable "volume_configuration" {
       volume_type      = optional(string)
       tag_specifications = optional(list(object({
         resource_type  = string
-        propogate_tags = optional(string)
+        propagate_tags = optional(string)
         tags           = optional(map(string))
       })), [])
     }))
@@ -318,11 +315,11 @@ variable "inference_accelerator" {
 
 variable "placement_constraints" {
   description = "Placement constraints for Task Definition. List of map. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#placement_constraints)"
-  default     = null
-  type = object({
+  default     = []
+  type = list(object({
     expression = optional(string)
     type       = string
-  })
+  }))
 }
 
 variable "wait_for_steady_state" {
