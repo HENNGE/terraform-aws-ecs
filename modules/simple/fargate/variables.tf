@@ -286,7 +286,7 @@ variable "task_volume_configurations" {
 
 variable "vpc_lattice_configurations" {
   description = "The VPC Lattice configuration for your service that allows Lattice to connect, secure, and monitor your service across multiple accounts and VPCs"
-  default     = null
+  default     = []
   type = list(object({
     role_arn         = string
     target_group_arn = string

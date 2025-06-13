@@ -260,7 +260,7 @@ variable "task_volume_configurations" {
 
 variable "vpc_lattice_configurations" {
   description = "The VPC Lattice configuration for your service that allows Lattice to connect, secure, and monitor your service across multiple accounts and VPCs"
-  default     = null
+  default     = []
   type = list(object({
     role_arn         = string
     target_group_arn = string
@@ -344,4 +344,10 @@ variable "tags" {
   description = "Key-value mapping of resource tags"
   default     = {}
   type        = map(string)
+}
+
+variable "ordered_placement_strategy" {
+  description = "List of map of service level strategy rules that are taken into consideration during task placement. List from top to bottom in order of precedence. Max 5. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service#ordered_placement_strategy)"
+  default     = []
+  type        = list(any)
 }

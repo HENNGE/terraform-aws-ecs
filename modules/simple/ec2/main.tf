@@ -61,6 +61,7 @@ module "ec2" {
   ]
 
   service_placement_constraints = var.distinct_instance ? [{ type = "distinctInstance" }] : []
+  ordered_placement_strategy    = var.ordered_placement_strategy
 
   wait_for_steady_state = var.wait_for_steady_state
 
