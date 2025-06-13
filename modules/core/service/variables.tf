@@ -241,7 +241,10 @@ variable "capacity_provider_strategy" {
 variable "ordered_placement_strategy" {
   description = "List of map of service level strategy rules that are taken into consideration during task placement. List from top to bottom in order of precedence. Max 5. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service#ordered_placement_strategy)"
   default     = []
-  type        = list(any)
+  type = list(object({
+    type  = optional(string)
+    field = optional(string)
+  }))
 }
 
 variable "service_placement_constraints" {
