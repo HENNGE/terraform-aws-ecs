@@ -59,6 +59,7 @@ module "fargate" {
   service_registry            = var.service_registry
   task_inference_accelerator  = var.inference_accelerator
   task_placement_constraints  = var.placement_constraints
+  ordered_placement_strategy  = var.ordered_placement_strategy
 
   platform_version = var.platform_version
 

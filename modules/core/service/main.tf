@@ -77,8 +77,8 @@ resource "aws_ecs_service" "main" {
   dynamic "ordered_placement_strategy" {
     for_each = var.ordered_placement_strategy
     content {
-      type  = lookup(ordered_placement_strategy.value, "type", null)
-      field = lookup(ordered_placement_strategy.value, "field", null)
+      type  = ordered_placement_strategy.value.type
+      field = ordered_placement_strategy.value.field
     }
   }
 
