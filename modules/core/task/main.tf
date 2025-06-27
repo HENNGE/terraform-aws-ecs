@@ -71,14 +71,6 @@ resource "aws_ecs_task_definition" "main" {
     }
   }
 
-  dynamic "inference_accelerator" {
-    for_each = var.inference_accelerator == null ? [] : [var.inference_accelerator]
-    content {
-      device_name = inference_accelerator.value.device_name
-      device_type = inference_accelerator.value.device_type
-    }
-  }
-
   dynamic "runtime_platform" {
     for_each = var.runtime_platform == null ? [] : [var.runtime_platform]
     content {

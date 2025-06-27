@@ -449,7 +449,6 @@ module "task" {
   requires_compatibilities = var.task_requires_compatibilities
   volume_configurations    = var.task_volume_configurations
   placement_constraints    = var.task_placement_constraints
-  inference_accelerator    = var.task_inference_accelerator
   proxy_configuration      = var.task_proxy_configuration
   runtime_platform         = var.task_runtime_platform
   track_latest             = var.task_track_latest
