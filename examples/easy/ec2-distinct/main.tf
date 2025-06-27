@@ -16,7 +16,7 @@ locals {
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 5.0"
+  version = "~> 6.0"
 
   name = "${local.prefix}-vpc"
   cidr = local.vpc_cidr
@@ -56,7 +56,7 @@ module "ec2_security_group" {
 
 module "asg" {
   source  = "terraform-aws-modules/autoscaling/aws"
-  version = "~> 7.0"
+  version = "~> 9.0"
 
   name = "${local.prefix}-asg"
 
