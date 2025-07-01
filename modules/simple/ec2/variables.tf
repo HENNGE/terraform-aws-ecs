@@ -304,15 +304,6 @@ variable "force_new_deployment" {
   type        = bool
 }
 
-variable "inference_accelerator" {
-  description = "Inference accelerator for Task Definition. List of map. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#inference_accelerator)"
-  default     = null
-  type = object({
-    device_name = string
-    device_type = string
-  })
-}
-
 variable "placement_constraints" {
   description = "Placement constraints for Task Definition. List of map. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#placement_constraints)"
   default     = []
