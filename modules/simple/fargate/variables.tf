@@ -269,7 +269,7 @@ variable "service_volume_configurations" {
   }))
 }
 
-variable "volume_configurations" {
+variable "task_volume_configurations" {
   description = "Volume Block Arguments for Task Definition. List of map. Note that `docker_volume_configuration` should be specified as map argument instead of block. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#volume)"
   default     = []
   type        = list(any)

@@ -49,7 +49,7 @@ module "fargate" {
     assign_public_ip = var.assign_public_ip
   }
 
-  task_volume_configurations  = var.volume_configurations
+  task_volume_configurations  = var.task_volume_configurations
   task_proxy_configuration    = var.proxy_configuration
   task_runtime_platform       = var.runtime_platform
   task_enable_fault_injection = var.enable_fault_injection
