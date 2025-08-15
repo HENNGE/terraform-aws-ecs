@@ -168,7 +168,7 @@ resource "aws_ecs_service" "main" {
   }
 
   dynamic "volume_configuration" {
-    for_each = var.volume_configuration
+    for_each = var.volume_configurations
 
     content {
       name = volume_configuration.value.name
@@ -388,7 +388,7 @@ resource "aws_ecs_service" "main_ignore_desired_count_changes" {
   }
 
   dynamic "volume_configuration" {
-    for_each = var.volume_configuration
+    for_each = var.volume_configurations
 
     content {
       name = volume_configuration.value.name

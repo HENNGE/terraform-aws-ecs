@@ -228,8 +228,8 @@ variable "track_latest" {
   type        = bool
 }
 
-variable "volume_configuration" {
-  description = "Configuration for a volume specified in the task definition as a volume that is configured at launch time. Currently, the only supported volume type is an Amazon EBS volume."
+variable "service_volume_configurations" {
+  description = "List of configurations for a volume specified in the task definition as a volume that is configured at launch time. Currently, the only supported volume type is an Amazon EBS volume."
   default     = []
   type = list(object({
     name = string

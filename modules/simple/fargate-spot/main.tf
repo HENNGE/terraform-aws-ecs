@@ -6,7 +6,7 @@ module "fargate" {
   container_definitions        = var.container_definitions
   desired_count                = var.desired_count
   ignore_desired_count_changes = var.ignore_desired_count_changes
-  volume_configuration         = var.volume_configuration
+  volume_configurations        = var.service_volume_configurations
 
   iam_daemon_role = var.iam_daemon_role
   iam_task_role   = var.iam_task_role
@@ -48,7 +48,7 @@ module "fargate" {
     assign_public_ip = var.assign_public_ip
   }
 
-  task_volume_configurations  = var.volume_configurations
+  task_volume_configurations  = var.task_volume_configurations
   task_proxy_configuration    = var.proxy_configuration
   task_runtime_platform       = var.runtime_platform
   task_enable_fault_injection = var.enable_fault_injection

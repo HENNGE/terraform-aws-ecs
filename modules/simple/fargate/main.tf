@@ -6,7 +6,7 @@ module "fargate" {
   container_definitions        = var.container_definitions
   desired_count                = var.desired_count
   ignore_desired_count_changes = var.ignore_desired_count_changes
-  volume_configuration         = var.volume_configuration
+  volume_configurations        = var.service_volume_configurations
 
   iam_daemon_role = var.iam_daemon_role
   iam_task_role   = var.iam_task_role
