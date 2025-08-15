@@ -251,8 +251,8 @@ variable "track_latest" {
   type        = bool
 }
 
-variable "volume_configuration" {
-  description = "Configuration for a volume specified in the task definition as a volume that is configured at launch time. Currently, the only supported volume type is an Amazon EBS volume."
+variable "service_volume_configurations" {
+  description = "List of configurations for a volume specified in the task definition as a volume that is configured at launch time. Currently, the only supported volume type is an Amazon EBS volume."
   default     = []
   type = list(object({
     name = string
@@ -280,7 +280,6 @@ variable "volume_configurations" {
   default     = []
   type        = list(any)
 }
-
 variable "vpc_lattice_configurations" {
   description = "The VPC Lattice configuration for your service that allows Lattice to connect, secure, and monitor your service across multiple accounts and VPCs"
   default     = []
