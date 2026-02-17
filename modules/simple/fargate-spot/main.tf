@@ -29,6 +29,7 @@ module "fargate" {
   enable_deployment_circuit_breaker_with_rollback    = var.enable_deployment_circuit_breaker_with_rollback
   enable_deployment_circuit_breaker_without_rollback = var.enable_deployment_circuit_breaker_without_rollback
   health_check_grace_period_seconds                  = var.health_check_grace_period_seconds
+  triggers                                           = var.triggers
 
   alarms                        = var.alarms
   availability_zone_rebalancing = var.availability_zone_rebalancing

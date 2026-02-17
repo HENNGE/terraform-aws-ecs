@@ -16,6 +16,7 @@ resource "aws_ecs_service" "main" {
   enable_execute_command             = var.enable_execute_command
   force_delete                       = var.force_delete
   force_new_deployment               = var.force_new_deployment
+  triggers                           = var.triggers
   health_check_grace_period_seconds  = var.health_check_grace_period_seconds
   iam_role                           = var.iam_lb_role
   launch_type                        = var.launch_type
@@ -236,6 +237,7 @@ resource "aws_ecs_service" "main_ignore_desired_count_changes" {
   enable_execute_command             = var.enable_execute_command
   force_delete                       = var.force_delete
   force_new_deployment               = var.force_new_deployment
+  triggers                           = var.triggers
   health_check_grace_period_seconds  = var.health_check_grace_period_seconds
   iam_role                           = var.iam_lb_role
   launch_type                        = var.launch_type

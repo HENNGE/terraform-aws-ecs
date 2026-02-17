@@ -333,6 +333,12 @@ variable "tags" {
   type        = map(string)
 }
 
+variable "triggers" {
+  description = "Map of arbitrary keys and values that, when changed, will trigger an in-place update (redeployment). Useful with plantimestamp(). [Terraform Docs](https://registry.terraform.io/providers/-/aws/latest/docs/resources/ecs_service#triggers-1)"
+  default     = {}
+  type        = map(string)
+}
+
 variable "ordered_placement_strategy" {
   description = "List of map of service level strategy rules that are taken into consideration during task placement. List from top to bottom in order of precedence. Max 5. [Terraform Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service#ordered_placement_strategy)"
   default     = []
