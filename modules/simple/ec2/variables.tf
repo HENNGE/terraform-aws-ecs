@@ -268,7 +268,7 @@ variable "vpc_lattice_configurations" {
   }))
 }
 
-variable "capacity_provider_arn" {
+variable "capacity_provider" {
   description = "Run the service only on this capacity provider"
   default     = null
   type        = string
@@ -344,4 +344,10 @@ variable "ordered_placement_strategy" {
     type  = string
     field = optional(string)
   }))
+}
+
+variable "requires_compatibilities" {
+  description = "Set of launch types required by the task."
+  default     = null
+  type        = list(string)
 }

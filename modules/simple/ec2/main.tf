@@ -42,19 +42,20 @@ module "ec2" {
 
   task_network_mode = var.network_mode
 
-  task_volume_configurations  = var.task_volume_configurations
-  task_proxy_configuration    = var.proxy_configuration
-  task_runtime_platform       = var.runtime_platform
-  task_enable_fault_injection = var.enable_fault_injection
-  task_ephemeral_storage      = var.ephemeral_storage
-  task_skip_destroy           = var.skip_destroy
-  task_track_latest           = var.track_latest
-  service_registry            = var.service_registry
-  task_placement_constraints  = var.placement_constraints
+  task_volume_configurations    = var.task_volume_configurations
+  task_proxy_configuration      = var.proxy_configuration
+  task_runtime_platform         = var.runtime_platform
+  task_enable_fault_injection   = var.enable_fault_injection
+  task_ephemeral_storage        = var.ephemeral_storage
+  task_skip_destroy             = var.skip_destroy
+  task_track_latest             = var.track_latest
+  service_registry              = var.service_registry
+  task_placement_constraints    = var.placement_constraints
+  task_requires_compatibilities = var.requires_compatibilities
 
-  capacity_provider_strategy = var.capacity_provider_arn == null ? [] : [
+  capacity_provider_strategy = var.capacity_provider == null ? [] : [
     {
-      capacity_provider = var.capacity_provider_arn
+      capacity_provider = var.capacity_provider
       weight            = 1
     }
   ]
