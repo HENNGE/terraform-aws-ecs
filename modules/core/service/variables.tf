@@ -268,6 +268,12 @@ variable "tags" {
   type        = map(string)
 }
 
+variable "triggers" {
+  description = "Map of arbitrary keys and values that, when changed, will trigger an in-place update (redeployment). Useful with plantimestamp(). [Terraform Docs](https://registry.terraform.io/providers/-/aws/latest/docs/resources/ecs_service#triggers-1)"
+  default     = {}
+  type        = map(string)
+}
+
 variable "volume_configurations" {
   description = "List of configurations for a volume specified in the task definition as a volume that is configured at launch time. Currently, the only supported volume type is an Amazon EBS volume."
   default     = []
