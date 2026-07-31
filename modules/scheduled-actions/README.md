@@ -78,7 +78,7 @@ Use `capacity_provider_strategy` instead of a launch type, and `network_configur
 ```hcl
 module "ecs_managed_instances_cron" {
   source  = "HENNGE/ecs/aws//modules/scheduled-actions"
-  version = "1.0.0"
+  version = "5.6.0"
 
   name                 = "worker-managed-cron"
   schedule_description = "Run this daily"
