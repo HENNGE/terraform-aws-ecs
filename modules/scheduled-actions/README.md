@@ -70,6 +70,36 @@ module "ecs_fargate_cron" {
 }
 ```
 
+### Managed Instances Launch Type
+
+Use `capacity_provider_strategy` instead of a launch type, and `network_configuration` for the
+`awsvpc` network mode that Managed Instances requires.
+
+```hcl
+module "ecs_managed_instances_cron" {
+  source  = "HENNGE/ecs/aws//modules/scheduled-actions"
+  version = "1.0.0"
+
+  name                 = "worker-managed-cron"
+  schedule_description = "Run this daily"
+  schedule_rule        = "cron(0 9 * * ? *)"
+  cluster_arn          = module.ecs_cluster.arn
+  iam_invoker          = var.iam_invoker
+  task_count           = 1
+  task_definition_arn  = module.ecs_service.task_definition_arn
+
+  capacity_provider_strategy = [{
+    capacity_provider = aws_ecs_capacity_provider.managed_instances.name
+    weight            = 1
+  }]
+
+  network_configuration = {
+    subnets         = module.vpc.private_subnets
+    security_groups = [module.instance_security_group.this_security_group_id]
+  }
+}
+```
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
@@ -102,12 +132,13 @@ No modules.
 | <a name="input_capacity_provider_strategy"></a> [capacity\_provider\_strategy](#input\_capacity\_provider\_strategy) | List of map of capacity provider strategies to use for the task. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_event_target#capacity_provider_strategy | `list(any)` | `[]` | no |
 | <a name="input_cluster_arn"></a> [cluster\_arn](#input\_cluster\_arn) | ECS Cluster ARN to run ECS Task in | `string` | n/a | yes |
 | <a name="input_container_overrides"></a> [container\_overrides](#input\_container\_overrides) | Overrides options of container. Expecting JSON. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_event_target#ecs-run-task-with-role-and-task-override-usage | `string` | `null` | no |
-| <a name="input_fargate_assign_public_ip"></a> [fargate\_assign\_public\_ip](#input\_fargate\_assign\_public\_ip) | Assign Public IP or not to Fargate task, specify if `is_fargate` | `bool` | `false` | no |
-| <a name="input_fargate_security_groups"></a> [fargate\_security\_groups](#input\_fargate\_security\_groups) | Security groups to assign to Fargate task, specify if `is_fargate` | `list(string)` | `[]` | no |
-| <a name="input_fargate_subnets"></a> [fargate\_subnets](#input\_fargate\_subnets) | Subnets to assign to Fargate task, specify if `is_fargate` | `list(string)` | `[]` | no |
+| <a name="input_fargate_assign_public_ip"></a> [fargate\_assign\_public\_ip](#input\_fargate\_assign\_public\_ip) | Assign Public IP or not to Fargate task, specify if `is_fargate`. Deprecated: use `network_configuration.assign_public_ip`. | `bool` | `false` | no |
+| <a name="input_fargate_security_groups"></a> [fargate\_security\_groups](#input\_fargate\_security\_groups) | Security groups to assign to Fargate task, specify if `is_fargate`. Deprecated: use `network_configuration.security_groups`. | `list(string)` | `[]` | no |
+| <a name="input_fargate_subnets"></a> [fargate\_subnets](#input\_fargate\_subnets) | Subnets to assign to Fargate task, specify if `is_fargate`. Deprecated: use `network_configuration.subnets`. | `list(string)` | `[]` | no |
 | <a name="input_iam_invoker"></a> [iam\_invoker](#input\_iam\_invoker) | IAM ARN to invoke ECS Task | `string` | n/a | yes |
-| <a name="input_is_fargate"></a> [is\_fargate](#input\_is\_fargate) | Task is fargate | `bool` | `false` | no |
+| <a name="input_is_fargate"></a> [is\_fargate](#input\_is\_fargate) | Task is fargate. Only affects `launch_type`; to attach a network configuration to a non-Fargate `awsvpc` task, use `network_configuration` instead. | `bool` | `false` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name for scheduled action | `string` | n/a | yes |
+| <a name="input_network_configuration"></a> [network\_configuration](#input\_network\_configuration) | Network configuration for tasks that use the `awsvpc` network mode. Required by RunTask for `awsvpc` under any launch type, not just Fargate. Takes precedence over the `fargate_*` variables. Must be null when the task does not use `awsvpc`, otherwise the task fails. | <pre>object({<br/>    subnets          = list(string)<br/>    security_groups  = optional(list(string), [])<br/>    assign_public_ip = optional(bool, false)<br/>  })</pre> | `null` | no |
 | <a name="input_propagate_tags"></a> [propagate\_tags](#input\_propagate\_tags) | Specifies whether to propagate the tags from the task definition to the task. | `bool` | `false` | no |
 | <a name="input_schedule_description"></a> [schedule\_description](#input\_schedule\_description) | The description of the rule | `string` | `"Cloudwatch event rule to invoke ECS Task"` | no |
 | <a name="input_schedule_rule"></a> [schedule\_rule](#input\_schedule\_rule) | Schedule in cron or rate (see: https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html for rules) | `string` | n/a | yes |
