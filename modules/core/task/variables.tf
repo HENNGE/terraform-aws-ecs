@@ -1,6 +1,6 @@
-/**
- * Required Variables.
- */
+####################
+# Required Variables
+####################
 
 variable "name" {
   description = "The task name."
@@ -12,9 +12,9 @@ variable "container_definitions" {
   type        = string
 }
 
-/**
- * Optional Variables.
- */
+####################
+# Optional Variables
+####################
 
 variable "create_task_definition" {
   description = "Create the Task Definition"

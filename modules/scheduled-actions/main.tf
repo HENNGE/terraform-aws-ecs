@@ -1,3 +1,13 @@
+locals {
+  network_configuration = var.network_configuration != null ? var.network_configuration : (
+    var.is_fargate ? {
+      subnets          = var.fargate_subnets
+      security_groups  = var.fargate_security_groups
+      assign_public_ip = var.fargate_assign_public_ip
+    } : null
+  )
+}
+
 resource "aws_cloudwatch_event_rule" "rule" {
   name                = var.name
   description         = var.schedule_description
@@ -15,11 +25,11 @@ resource "aws_cloudwatch_event_target" "target" {
     launch_type         = length(var.capacity_provider_strategy) == 0 ? (var.is_fargate ? "FARGATE" : "EC2") : null
 
     dynamic "network_configuration" {
-      for_each = var.is_fargate ? ["yes"] : []
+      for_each = local.network_configuration == null ? [] : [local.network_configuration]
       content {
-        subnets          = var.fargate_subnets
-        security_groups  = var.fargate_security_groups
-        assign_public_ip = var.fargate_assign_public_ip
+        subnets          = network_configuration.value.subnets
+        security_groups  = network_configuration.value.security_groups
+        assign_public_ip = network_configuration.value.assign_public_ip
       }
     }
 
