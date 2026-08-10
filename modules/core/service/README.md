@@ -10,6 +10,29 @@ The goal of this module is to present a unified view between `ECS Service` and `
 
 Since this module is the closest to the `resources` form, there are a lot of customization, for those who want it easy, do check the `simple` module instead of this `core` module.
 
+## Forcing a redeployment on every `apply`
+
+Setting `force_new_deployment = true` on its own does not force a new
+deployment on every `terraform apply` — once the value stops changing
+between runs, Terraform sees no diff on that attribute and skips the
+redeploy (see [hashicorp/terraform-provider-aws#13528](https://github.com/hashicorp/terraform-provider-aws/issues/13528)).
+To force a redeployment on every apply regardless of whether anything else
+changed, combine it with `triggers` and a value that changes every plan,
+such as [`plantimestamp()`](https://developer.hashicorp.com/terraform/language/functions/plantimestamp):
+
+```hcl
+module "service" {
+  source = "HENNGE/ecs/aws//modules/core/service"
+
+  force_new_deployment = true
+  triggers = {
+    redeployment = plantimestamp()
+  }
+
+  # ...
+}
+```
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
